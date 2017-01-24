@@ -1,10 +1,18 @@
 import update from 'immutability-helper';
 import * as actions from '../actions/index';
+// INITIAL STATE {
+// expenses = [
+// 	{
+// 		category: 'entertainment',
+// 		cost: 100,
+// 		description: 'bar'
+// 	}
+// ]
 
-// const newData = update(myData, {
-//   x: {y: {z: {$set: 7}}},
-//   a: {b: {$push: [9]}}
-// });
+// categories = [
+// 	{name: 'entertainment'}, {name: 'utilties'}
+// ] 
+
 
 const initialState = {
 	categories: [],
@@ -14,8 +22,9 @@ const initialState = {
 export const mainReducer = (state= initialState, action) => {
 	if (action.type === actions.ADD_EXPENSE_CATEGORY) {
 		return update(state, {
-			categories: {$push: [action.category]},
-			expenses: {$merge: {[action.category]: 0} }
+			categories: {$push: {name: [action.category]}},
+
+//			expenses: {$merge: {[action.category]: 0} }
 		})
 			
 	}
