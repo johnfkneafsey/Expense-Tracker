@@ -5,7 +5,7 @@ export default function SubmitDay() {
 			<div className="submitDay"> 
 				<form>
 					<label> Submit Day </label>
-					<input type="Submit" name="Submit Day"/>
+					<input type="Submit" name="Submit Dayaaaaaa"/>
 				</form>
 			</div>
 	)

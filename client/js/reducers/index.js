@@ -13,12 +13,19 @@ const initialState = {
 
 export const mainReducer = (state= initialState, action) => {
 	if (action.type === actions.ADD_EXPENSE_CATEGORY) {
-		let catego = action.category;
 		return update(state, {
 			categories: {$push: [action.category]},
 			expenses: {$merge: {[action.category]: 0} }
 		})
 			
+	}
+
+	if (action.type === actions.ADD_EXPENSE_TO_TOTAL) {
+		// let newTotal = action.dollars + (catego)
+		return update( state, {
+			expenses: {[action.category]: {$apply: function(x) {return (x + Number([action.dollars]))}}}
+		})
+		
 	}
 
 
