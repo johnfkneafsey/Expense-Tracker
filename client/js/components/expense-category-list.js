@@ -12,7 +12,7 @@ export class ExpenseCategoryList extends React.Component {
 	onSubmit(category) {
 		category.preventDefault();
 		let textInput = this.textInput.value.toLowerCase();
-		this.props.dispatch(actions.addExpenseCategory(textInput))
+		this.props.dispatch(actions.asyncAddExpenseCategory(textInput))
 		console.log(Store.getState());
 
 	};
