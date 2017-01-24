@@ -15,13 +15,13 @@ export class ExpenseInput extends React.Component {
         let expenseCategory = (this.refs.expenseCategory).value.trim();
         let expenseDescription = (this.refs.description).value.trim();
         console.log(expenseDollars, expenseCategory, expenseDescription);
-        this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory));
+        this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory, expenseDescription));
   	}
 
   	render() {		
 		let options = this.props.categories.map((category,index)=>{
 			return (
-				<option key={index} value={category}>{category}</option>
+				<option key={index} value={category.name}>{category.name}</option>
 			);
 		})
 
