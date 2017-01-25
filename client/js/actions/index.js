@@ -30,9 +30,10 @@ export const addExpenseCategory = (category) => ({
 })
 
 export const ADD_EXPENSE_TO_TOTAL = 'ADD_EXPENSE_TO_TOTAL';
-export	const addExpenseToTotal = (dollars, category, description) => ({
+export	const addExpenseToTotal = (dollars, category, description, date) => ({
 	type: ADD_EXPENSE_TO_TOTAL,
 	dollars: dollars,
 	category: category,
-	description: description
+	description: description,
+	date: date
 })

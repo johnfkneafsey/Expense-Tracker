@@ -47,7 +47,8 @@ export const mainReducer = (state= initialState, action) => {
 		let amount = action.dollars;
 		let catego = action.category;
 		let descript = action.description;
-		let newObj = {category: catego, cost: amount, description: descript};
+		let expenseDate = action.date;
+		let newObj = {category: catego, cost: amount, description: descript, date: expenseDate};
 		return update(state, {
 			expenses: {$push: [newObj]}
 		})

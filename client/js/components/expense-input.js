@@ -14,9 +14,6 @@ export class ExpenseInput extends React.Component {
 
 
   	handleChange(value, formattedValue) {
-  		// const dateSelected = (this.formattedValue);
-  		// console.log("DATE TEST", dateSelected);
-
     	console.log({
     	  value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
      	 formattedValue: formattedValue // Formatted String, ex: "11/19/2016" 
@@ -36,9 +33,8 @@ export class ExpenseInput extends React.Component {
         let expenseCategory = (this.refs.expenseCategory).value.trim();
         let expenseDescription = (this.refs.description).value.trim();
         let dateSelected = document.getElementById("example-datepicker").getAttribute('data-formattedvalue');
-        ;
         console.log(expenseDollars, expenseCategory, expenseDescription, dateSelected);
-        this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory, expenseDescription));
+        this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory, expenseDescription, dateSelected));
   	}
 
   	render() {		
