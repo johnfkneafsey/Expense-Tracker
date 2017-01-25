@@ -1,5 +1,6 @@
+import Store from '../store'
+
 export const asyncAddExpenseCategory = (category) => dispatch => {
-	console.log(category, 'CATEGORY BEING PASSED');
 	return fetch('/category', {
 		method: 'post',
 		headers: {
@@ -15,13 +16,84 @@ export const asyncAddExpenseCategory = (category) => dispatch => {
 		return res.json();
 	})
 	.then(_res => {
-		console.log("_RES", _res);
 		return dispatch(addExpenseCategory(_res.name))
 	})
 	.catch(error => {
 		return error;
 	})
 }
+
+
+export const asyncAddExpense = (dollars, category, description, date) => dispatch => {
+	return fetch('/expense', {
+		method: 'post',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({category: category, 
+							  cost: dollars, 
+							  description: description, 
+							  date: date})
+	})
+	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);			
+		}
+		return res.json();
+	})
+	.then(_res => {
+		return dispatch(addExpense(_res.cost, _res.category, _res.description, _res.date))
+	})
+	.catch(error => {
+		return error;
+	})
+}
+
+export const asyncAddCategoryGoal = (category, dollars) => dispatch => {
+	return fetch('/goals', {
+		method: 'post',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({category: category, 
+							  goal: dollars})
+	})
+	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);			
+		}
+		return res.json();
+	})
+	.then(_res => {
+		return dispatch(addCategoryGoal(_res.category, _res.goal))
+	})
+	.catch(error => {
+		return error;
+	})
+}
+
+
+export const asyncFetchAllTransactions = () => dispatch => {
+  	return fetch('/expense')
+  	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);
+    	}
+    	return res.json(); 
+  	})
+  	.then(_res => {
+	  	console.log(_res, "TRYING TO GET GET RESULTS");
+     	dispatch(fetchAllTransactions(_res))
+	})
+  	.catch(error => {
+  		return error;
+	});
+};
+
+
+
 
 export const ADD_EXPENSE_CATEGORY = 'ADD_EXPENSE_CATEGORY';
 export const addExpenseCategory = (category) => ({
@@ -37,5 +109,21 @@ export const addExpense = (dollars, category, description, date) => ({
 	description: description,
 	date: date
 })
+
+
+export const ADD_CATEGORY_GOAL = 'ADD_CATEGORY_GOAL';
+export const addCategoryGoal = (category, dollars) => ({
+	type: ADD_CATEGORY_GOAL,
+	category: category,
+	dollars: dollars
+})
+
+
+export const FETCH_ALL_TRANSACTIONS = 'FETCH_ALL_TRANSACTIONS';
+export const fetchAllTransactions = (transactions) => ({
+	type: FETCH_ALL_TRANSACTIONS,
+	transactions: transactions
+})
+
 
 

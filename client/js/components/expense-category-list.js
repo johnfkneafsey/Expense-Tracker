@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import Store from '../store';
+import store from '../store';
 
 export class ExpenseCategoryList extends React.Component {
 	constructor(props) {
@@ -12,9 +12,15 @@ export class ExpenseCategoryList extends React.Component {
 	onSubmit(category) {
 		category.preventDefault();
 		let textInput = this.textInput.value.toLowerCase();
-		this.props.dispatch(actions.asyncAddExpenseCategory(textInput))
-		console.log(Store.getState());
-
+		let categoryIndex = -1;
+		for (let i = 0; i < this.props.categories.length; i++) {
+  			if (this.props.categories[i].name === textInput) {
+  					categoryIndex = i;
+  			}
+		}
+		if (categoryIndex === -1) {
+			this.props.dispatch(actions.asyncAddExpenseCategory(textInput))
+		}
 	};
 
 	render() {
@@ -32,8 +38,8 @@ export class ExpenseCategoryList extends React.Component {
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>
 					<label>Add A New Expense Category</label>
-					<input type="text" placeholder="i.e. Food/Grocery"
-					ref={input => this.textInput = input}/>	
+					<input type="text" placeholder="i.e. Food/Entertainment"
+					 ref={input => this.textInput = input}/>	
 					<input type="submit" />				
 				</form>
 			</div>

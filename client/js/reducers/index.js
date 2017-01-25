@@ -1,59 +1,67 @@
 import update from 'immutability-helper';
 import * as actions from '../actions/index';
-// INITIAL STATE {
-// expenses = [
-// 	{
-// 		category: 'entertainment',
-// 		cost: 100,
-// 		description: 'bar'
-// 	}
-// ]
+import store from '../store';
 
-// categories = [{
-// 	name: 'entertainment',
-// }] 
-// }
+//goals: [
+//	{food: 0},
+//	{rent: 0}	
+//]
 
 const initialState = {
 	categories: [],
-	expenses: []
+	expenses: [],
+	goals: [],
+	tempResults: []
 }
 
 export const mainReducer = (state= initialState, action) => {
 	if (action.type === actions.ADD_EXPENSE_CATEGORY) {
-		var index = -1;
-		for (let i = 0; i < state.categories.length; i++) {
-			console.log(state.categories[i].name)
-			console.log(state.categories[i].name === action.category);
-  			if (state.categories[i].name === action.category) {
-  					index = i;
-  					console.log(index);
-  			}
-
-		}
-		if (index === -1) {
 			let catego = action.category
+			let newGoal = {[catego]: 0}
 			let newObj = {name: catego};
+			setTimeout(()=> { console.log(store.getState(), "THIS IS THE CATEGORY GETSTATE")}, 3000);
 			return update(state, {
-				categories: {$push: [newObj]}
+				categories: {$push: [newObj]},
+//				goals: {$push: [newGoal]}
   			})
-//			expenses: {$merge: {[action.category]: 0} }
 		}
-			
-	}
 
 	if (action.type === actions.ADD_EXPENSE) {
-		// let newTotal = action.dollars + (catego)
 		let amount = action.dollars;
 		let catego = action.category;
 		let descript = action.description;
 		let expenseDate = action.date;
 		let newObj = {category: catego, cost: amount, description: descript, date: expenseDate};
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE EXPENSE GETSTATE")}, 3000);
 		return update(state, {
 			expenses: {$push: [newObj]}
-		})
+		})	
+	}
 
-		
+	if (action.type === actions.ADD_CATEGORY_GOAL) {
+		var categoryIndex = -1;
+		for (let i = 0; i < state.goals.length; i++) {
+			console.log('loop entered');
+			  console.log(Object.keys(state.goals[i]))
+			  if (Object.keys(state.goals[i]) === action.category) {
+  					categoryIndex = i;
+  			}
+		}
+		let amount = action.dollars;
+		let catego = action.category;
+		let newObj = {[catego]: amount};
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE GOAL GETSTATE")}, 3000);
+		return update(state, {
+			goals: {$push: [newObj]}
+			})
+	}
+	if (action.type === actions.FETCH_ALL_TRANSACTIONS) {
+		console.log('reached the reducer');
+		let transactions = action.transactions;
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH ALL GETSTATE")}, 3000);
+		return update(state, {
+			tempResults: {$set: [transactions]}
+		})		
 	}
 
 

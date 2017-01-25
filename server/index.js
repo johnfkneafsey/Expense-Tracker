@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
 
-const {Category, Expense} = require('./models');
+const {Category, Expense, Goal} = require('./models');
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/category', jsonParser, (req, res) => {
-    console.log(req.body, 'body from user endpoint');
+    console.log(req.body, 'BODY FROM CATEGORY ENDPOINT');
     Category
         .create({
             name: req.body.name
@@ -37,8 +37,63 @@ app.post('/category', jsonParser, (req, res) => {
         .catch(err => {
             res.status(500).json({error: '500 error'})
         })
-
 });
+
+
+
+app.post('/expense', jsonParser, (req, res) => {
+    console.log(req.body, 'BODY FROM EXPENSE ENDPOINT');
+    Expense
+        .create({
+            category: req.body.category,
+            cost: req.body.cost,
+            description: req.body.description,
+            date: req.body.date
+        })
+        .then(expense => {
+            console.log(expense, "CONSOLE LOGGING EXPENSE RES");
+            res.status(201).json(expense.apiRepr())
+        })
+        .catch(err => {
+            res.status(500).json({error: '500 error'});
+        })
+})
+
+app.post('/goals', jsonParser, (req, res) => {
+    console.log(req.body, 'BODY FROM GOALS ENDPOINT');
+    Goal
+        .create({
+            category: req.body.category,
+            goal: req.body.goal 
+        })
+        .then(goal => {
+            console.log(goal, "CONSOLE LOGGING GOAL RES");
+            res.status(201).json(goal.apiRepr())
+        })
+        .catch(err => {
+            res.status(500).json({error: '500 error'});
+        })
+})
+
+
+app.get('/expense', jsonParser, (req, res) => {
+    Expense
+        .find()
+        .exec()
+        .then(expenses => {
+            res.json(expenses.map(expense => expense.apiRepr()))
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: 'Something went horribly wrong'})
+        })
+})
+
+
+
+
+
+
 
 function runServer() {
     return new Promise((resolve, reject) => {

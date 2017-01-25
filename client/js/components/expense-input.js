@@ -23,8 +23,6 @@ export class ExpenseInput extends React.Component {
   componentDidUpdate() {
     // Access ISO String and formatted values from the DOM. 
     var hiddenInputElement = document.getElementById("example-datepicker");
-    console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z" 
-    console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016" 
 }
 
   	onSubmit(event) {
@@ -33,10 +31,7 @@ export class ExpenseInput extends React.Component {
         let expenseCategory = (this.refs.expenseCategory).value.trim();
         let expenseDescription = (this.refs.description).value.trim();
         let dateSelected = document.getElementById("example-datepicker").getAttribute('data-formattedvalue');
-        console.log(expenseDollars, expenseCategory, expenseDescription, dateSelected);
-	    this.props.dispatch(actions.addExpense(expenseDollars, expenseCategory, expenseDescription, dateSelected));
-		console.log(Store.getState());
-		console.log('helllllo');
+	    this.props.dispatch(actions.asyncAddExpense(expenseDollars, expenseCategory, expenseDescription, dateSelected));
 }
 
   	render() {		
