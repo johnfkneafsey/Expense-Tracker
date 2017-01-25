@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import DatePicker from 'react-bootstrap-date-picker';
+import Store from '../store';
 
 export class ExpenseInput extends React.Component {
 	constructor(props) {
@@ -11,7 +12,6 @@ export class ExpenseInput extends React.Component {
     	this.handleChange = this.handleChange.bind(this);
     	this.componentDidUpdate = this.componentDidUpdate.bind(this);
   	}
-
 
   	handleChange(value, formattedValue) {
     	console.log({
@@ -25,7 +25,7 @@ export class ExpenseInput extends React.Component {
     var hiddenInputElement = document.getElementById("example-datepicker");
     console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z" 
     console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016" 
-  }
+}
 
   	onSubmit(event) {
   		event.preventDefault();
@@ -34,8 +34,10 @@ export class ExpenseInput extends React.Component {
         let expenseDescription = (this.refs.description).value.trim();
         let dateSelected = document.getElementById("example-datepicker").getAttribute('data-formattedvalue');
         console.log(expenseDollars, expenseCategory, expenseDescription, dateSelected);
-        this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory, expenseDescription, dateSelected));
-  	}
+	    this.props.dispatch(actions.addExpense(expenseDollars, expenseCategory, expenseDescription, dateSelected));
+		console.log(Store.getState());
+		console.log('helllllo');
+}
 
   	render() {		
 		let options = this.props.categories.map((category,index)=>{
@@ -45,9 +47,10 @@ export class ExpenseInput extends React.Component {
 		})
 
 		return (
-			<div>Expense Input
+			<div><h3>Expense Input</h3>
 				<form onSubmit={this.onSubmit}>
-					<DatePicker id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
+					<label className="datePicker">Select a Date</label>
+					<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
 					<label> Expense Amount </label>
 					<input type="text" ref="dollars"required/>
 
@@ -71,4 +74,3 @@ const mapStateToProps = (state, props) => ({
 });
 
 export default connect(mapStateToProps)(ExpenseInput);
-

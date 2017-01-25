@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+//import 'babel-polyfill';
 import express from 'express';
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');

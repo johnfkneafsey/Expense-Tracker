@@ -42,7 +42,7 @@ export const mainReducer = (state= initialState, action) => {
 			
 	}
 
-	if (action.type === actions.ADD_EXPENSE_TO_TOTAL) {
+	if (action.type === actions.ADD_EXPENSE) {
 		// let newTotal = action.dollars + (catego)
 		let amount = action.dollars;
 		let catego = action.category;

@@ -29,11 +29,13 @@ export const addExpenseCategory = (category) => ({
 	category: category
 })
 
-export const ADD_EXPENSE_TO_TOTAL = 'ADD_EXPENSE_TO_TOTAL';
-export	const addExpenseToTotal = (dollars, category, description, date) => ({
-	type: ADD_EXPENSE_TO_TOTAL,
+export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const addExpense = (dollars, category, description, date) => ({
+	type: ADD_EXPENSE,
 	dollars: dollars,
 	category: category,
 	description: description,
 	date: date
 })
+
+

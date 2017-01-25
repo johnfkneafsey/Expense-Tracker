@@ -27,7 +27,7 @@ export class ExpenseCategoryList extends React.Component {
 
 	return (
 		<div>
-			<h2>List of expense categories</h2>
+			<h3>Expense Categories</h3>
 		
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>

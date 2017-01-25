@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 export default function SubmitDay() {
@@ -10,3 +11,4 @@ export default function SubmitDay() {
 			</div>
 	)
 }
+*/

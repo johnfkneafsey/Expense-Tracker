@@ -9,11 +9,10 @@ export default function Layout (props) {
 // render() vs return?
 	return (
 		<div className="layoutClass">
-			<h1 className="page-title">page title</h1>
+			<h1 className="page-title">Mint Lite</h1>
 			< ExpenseCategoryList  />
 			< CategoryGoals />
 			< ExpenseInput />
-			< SubmitDay />
 			< WeeklyReport />
 		</div>
 	);
