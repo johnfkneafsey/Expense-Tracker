@@ -12,11 +12,11 @@ export const asyncAddExpenseCategory = (category) => dispatch => {
 		if (!res.ok) {
 				throw new Error(res.statusText);
 		}
-		console.log(res.body);
-		return res.name;
+		return res.json();
 	})
 	.then(_res => {
-		return dispatch(addExpenseCategory(_res))
+		console.log("_RES", _res);
+		return dispatch(addExpenseCategory(_res.name))
 	})
 	.catch(error => {
 		return error;

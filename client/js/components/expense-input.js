@@ -2,19 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
+import DatePicker from 'react-bootstrap-date-picker';
 
 export class ExpenseInput extends React.Component {
 	constructor(props) {
     	super(props);
     	this.onSubmit = this.onSubmit.bind(this);
+    	this.handleChange = this.handleChange.bind(this);
+    	this.componentDidUpdate = this.componentDidUpdate.bind(this);
   	}
+
+
+  	handleChange(value, formattedValue) {
+  		// const dateSelected = (this.formattedValue);
+  		// console.log("DATE TEST", dateSelected);
+
+    	console.log({
+    	  value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
+     	 formattedValue: formattedValue // Formatted String, ex: "11/19/2016" 
+    	});
+ 	}
+
+  componentDidUpdate() {
+    // Access ISO String and formatted values from the DOM. 
+    var hiddenInputElement = document.getElementById("example-datepicker");
+    console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z" 
+    console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016" 
+  }
 
   	onSubmit(event) {
   		event.preventDefault();
   		let expenseDollars = parseInt((this.refs.dollars).value.trim());
         let expenseCategory = (this.refs.expenseCategory).value.trim();
         let expenseDescription = (this.refs.description).value.trim();
-        console.log(expenseDollars, expenseCategory, expenseDescription);
+        let dateSelected = document.getElementById("example-datepicker").getAttribute('data-formattedvalue');
+        ;
+        console.log(expenseDollars, expenseCategory, expenseDescription, dateSelected);
         this.props.dispatch(actions.addExpenseToTotal(expenseDollars, expenseCategory, expenseDescription));
   	}
 
@@ -28,6 +51,7 @@ export class ExpenseInput extends React.Component {
 		return (
 			<div>Expense Input
 				<form onSubmit={this.onSubmit}>
+					<DatePicker id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
 					<label> Expense Amount </label>
 					<input type="text" ref="dollars"required/>
 
