@@ -9,6 +9,10 @@ export class ExpenseCategoryList extends React.Component {
     	this.onSubmit = this.onSubmit.bind(this);
   	}
 
+  	componentDidMount() {
+  		this.props.dispatch(actions.asyncFetchAllCategories());
+  	}
+
 	onSubmit(category) {
 		category.preventDefault();
 		let textInput = (this.refs.newCategory).value.toLowerCase();
@@ -27,6 +31,7 @@ export class ExpenseCategoryList extends React.Component {
 	render() {
 
 	let categories = this.props.categories.map((category,index)=>{
+		console.log(categories, "CATEGORIES on component page")
 			return (
 				<li key={index}>{category.name}</li>
 			);

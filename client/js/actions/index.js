@@ -1,27 +1,17 @@
 import store from '../store'
 
-export const asyncFetchDb = (categoryPromise, goalsPromise, expensePromise) => dispatch => {
-	let responseArray = [];
-	return (Promise.all([categoryPromise, goalsPromise, expensePromise]))
-	.then(responses => {
-		console.log(responses[0], "RESPONSES[0] ");
-		responseArray = responses.map(response => {
-			console.log(response[0].json(), 'RES.JSON')
-			console.log(response.body, 'RES.BODY')
-			console.log(response[0].body.json(), 'RES.BODY.JSON')
-			return response.json()
-		})
-		console.log(responses[0].body.json(), 'response[0].body')
-		return responseArray;
-	})
-	.then(res => {
-		console.log(res, 'res')
-		return dispatch(fetchDb(res))
-	})
-	.catch(err => {
-		return err;
-	})
-}
+// export const asyncFetchDb = (categoryPromise, goalsPromise, expensePromise) => dispatch => {
+// 	var docs = [{categoryPromise}, {goalsPromise}, {expensePromise}];
+// 	return Promise.all(docs.map(doc => {
+// 		console.log(doc.json())
+// 	}))
+// 	.then(res => {
+// 		console.log(res, 'res')
+// 	})
+// 	.catch(err => {
+// 		return err;
+// 	})
+// }
 
 export const asyncAddExpenseCategory = (category) => dispatch => {
 	return fetch('/category', {
@@ -98,6 +88,39 @@ export const asyncAddCategoryGoal = (category, dollars) => dispatch => {
 	})
 }
 
+export const asyncFetchAllCategories = () => dispatch => {
+  	return fetch('/category')
+  	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);
+    	}
+    	return res.json(); 
+  	})
+  	.then(_res => {
+	  	console.log(_res, "TRYING TO GET GET RESULTS");
+     	dispatch(fetchAllCategories(_res))
+	})
+  	.catch(error => {
+  		return error;
+	});
+};
+
+export const asyncFetchAllGoals = () => dispatch => {
+  	return fetch('/goal')
+  	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);
+    	}
+    	return res.json(); 
+  	})
+  	.then(_res => {
+	  	console.log(_res, "TRYING TO GET GET RESULTS");
+     	dispatch(fetchAllGoals(_res))
+	})
+  	.catch(error => {
+  		return error;
+	});
+};
 
 export const asyncFetchAllTransactions = (category='All') => dispatch => {
   	return fetch(`/expense?category=${category}`)
@@ -142,6 +165,18 @@ export const addCategoryGoal = (category, dollars) => ({
 })
 
 
+export const FETCH_ALL_CATEGORIES = 'FETCH_ALL_CATEGORIES';
+export const fetchAllCategories = (categories) => ({
+	type: FETCH_ALL_CATEGORIES,
+	categories: categories
+})
+
+export const FETCH_ALL_GOALS = 'FETCH_ALL_GOALS';
+export const fetchAllGoals = (goals) => ({
+	type: FETCH_ALL_GOALS,
+	goals: goals
+})
+
 export const FETCH_ALL_TRANSACTIONS = 'FETCH_ALL_TRANSACTIONS';
 export const fetchAllTransactions = (transactions) => ({
 	type: FETCH_ALL_TRANSACTIONS,
@@ -154,11 +189,11 @@ export const changeCurrentCategory = (tempCategory) => ({
 	tempCategory: tempCategory
 })
 
-export const FETCH_DB = 'FETCH_DB';
-export const fetchDb = (db) => ({
-	type: FETCH_DB,
-	db: db
-})
+// export const FETCH_DB = 'FETCH_DB';
+// export const fetchDb = (db) => ({
+// 	type: FETCH_DB,
+// 	db: db
+// })
 
 
 

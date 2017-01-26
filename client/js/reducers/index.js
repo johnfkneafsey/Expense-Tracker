@@ -47,16 +47,31 @@ export const mainReducer = (state= initialState, action) => {
 		}
 		let amount = action.dollars;
 		let catego = action.category;
-		let newObj = {[catego]: amount};
+		let newObj = {category: catego, goal: amount};
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE GOAL GETSTATE")}, 3000);
 		return update(state, {
 			goals: {$push: [newObj]}
 			})
 	}
+	if (action.type === actions.FETCH_ALL_CATEGORIES) {
+		let categories = action.categories;
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH categories GETSTATE")}, 3000);
+		return update(state, {
+			categories: {$set: categories}
+		})		
+	}
+	if (action.type === actions.FETCH_ALL_GOALS) {
+		let goals = action.goals;
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH goals GETSTATE")}, 3000);
+		return update(state, {
+			goals: {$set: goals}
+		})		
+	}
 	if (action.type === actions.FETCH_ALL_TRANSACTIONS) {
 		let transactions = action.transactions;
-		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH ALL GETSTATE")}, 3000);
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH transactions GETSTATE")}, 3000);
 		return update(state, {
+			expenses: {$set: [transactions]},
 			tempResults: {$set: [transactions]}
 		})		
 	}

@@ -17,7 +17,7 @@ export class Layout extends React.Component {
 		let categoryPromise = fetch('/category');
 		let goalsPromise = fetch('/goal');
 		let expensePromise = fetch('/expense');
-		this.props.dispatch(actions.asyncFetchDb(expensePromise));
+		this.props.dispatch(actions.asyncFetchAllTransactions());
 		setTimeout(()=> { console.log(store.getState(), "Attempting to get entire DB to store")}, 3000)
 	}
 

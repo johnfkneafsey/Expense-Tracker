@@ -12,6 +12,7 @@ export class DisplayTransactions extends React.Component {
 
 	handleChange(event) {
 		let tempCategory = (this.refs.expenseCategory).value;
+		this.props.dispatch(actions.asyncFetchAllTransactions());
 		this.props.dispatch(actions.changeCurrentCategory(tempCategory));
 	}
 
