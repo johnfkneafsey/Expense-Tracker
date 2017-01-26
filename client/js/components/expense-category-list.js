@@ -11,7 +11,7 @@ export class ExpenseCategoryList extends React.Component {
 
 	onSubmit(category) {
 		category.preventDefault();
-		let textInput = this.textInput.value.toLowerCase();
+		let textInput = (this.refs.newCategory).value.toLowerCase();
 		let categoryIndex = -1;
 		for (let i = 0; i < this.props.categories.length; i++) {
   			if (this.props.categories[i].name === textInput) {
@@ -21,6 +21,7 @@ export class ExpenseCategoryList extends React.Component {
 		if (categoryIndex === -1) {
 			this.props.dispatch(actions.asyncAddExpenseCategory(textInput))
 		}
+		this.refs.newCategory.value = "";
 	};
 
 	render() {
@@ -39,7 +40,7 @@ export class ExpenseCategoryList extends React.Component {
 				<form onSubmit={this.onSubmit}>
 					<label>Add A New Expense Category</label>
 					<input type="text" placeholder="i.e. Food/Entertainment"
-					 ref={input => this.textInput = input}/>	
+					 ref="newCategory"/>	
 					<input type="submit" />				
 				</form>
 			</div>

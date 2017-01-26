@@ -59,7 +59,7 @@ app.post('/expense', jsonParser, (req, res) => {
         })
 })
 
-app.post('/goals', jsonParser, (req, res) => {
+app.post('/goal', jsonParser, (req, res) => {
     console.log(req.body, 'BODY FROM GOALS ENDPOINT');
     Goal
         .create({
@@ -75,6 +75,31 @@ app.post('/goals', jsonParser, (req, res) => {
         })
 })
 
+app.get('/category', jsonParser, (req, res) => {
+    Category
+        .find()
+        .exec()
+        .then(expenses => {
+            res.json(expenses.map(expense => expense.apiRepr()))
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: 'Something went horribly wrong'})
+        })
+})
+
+app.get('/goal', jsonParser, (req, res) => {
+    Goal
+        .find()
+        .exec()
+        .then(expenses => {
+            res.json(expenses.map(expense => expense.apiRepr()))
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: 'Something went horribly wrong'})
+        })
+})
 
 app.get('/expense', jsonParser, (req, res) => {
     Expense

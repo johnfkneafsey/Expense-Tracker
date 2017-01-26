@@ -7,7 +7,14 @@ export class DisplayTransactions extends React.Component {
 	constructor(props) {
     	super(props);
     	this.onSubmit = this.onSubmit.bind(this);
+    	this.handleChange = this.handleChange.bind(this);
   	}
+
+	handleChange(event) {
+		let tempCategory = (this.refs.expenseCategory).value;
+		this.props.dispatch(actions.changeCurrentCategory(tempCategory));
+	}
+
 	onSubmit(event) {
   		event.preventDefault();
 		this.props.dispatch(actions.asyncFetchAllTransactions());
@@ -20,14 +27,35 @@ export class DisplayTransactions extends React.Component {
 			);
 		});
 		let listOfTransactions;
+		console.log(this.props.currentCategory, "Attempting to log curent category");
 		if (this.props.tempResults[0]) {
-			listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
-				console.log(transaction, "TRANSACTION AND INDEX");
-				return (
-				<li key={index}>{transaction.category} {transaction.description} {transaction.cost} {transaction.date} </li>
-				)
-			})
+
+
+			if (this.props.currentCategory === "All") {
+				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
+					console.log(transaction, "TRANSACTION AND INDEX");
+					return (
+					<tbody key={index}><tr><td>{transaction.date}</td><td>{transaction.category}</td><td>{transaction.cost}</td><td>{transaction.description}</td></tr></tbody>
+					)
+				})
+			} else {
+				listOfTransactions = this.props.tempResults[0].filter(transaction => {
+					return (transaction.category == this.props.currentCategory)}).map((transaction, index) => {
+						return (
+							<tbody key={index}><tr><td>{transaction.date}</td><td>{transaction.category}</td><td>{transaction.cost}</td><td>{transaction.description}</td></tr></tbody>
+						)
+				})
+			}
+		
+
+
 		}
+//		array.filter(transaction => {
+//			return (transaction.category = this.props.currentCategory)}).map
+
+
+//			
+
 //		console.log(listOfTransactions, "LIST OF TRANSACTIONS");
 //		console.log(this.props.tempResults[0]);
 //		console.log(this.props.tempResults[0], "this.props.tempResults[0].MAP((transaction...");
@@ -36,15 +64,16 @@ export class DisplayTransactions extends React.Component {
 		<div>
 			<h3>Display Transactions</h3>
 			<form onSubmit={this.onSubmit}>
-				<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" required>
-					<option value="all">All</option>					
+				<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
+					<option value="All">All</option>					
 					{options}
 				</select>
 				<input type="submit" />
 			</form>
-			<ul>
+			<table>
+				<tbody><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th></tr></tbody>
 				{listOfTransactions}
-			</ul>
+			</table>
 		</div>
 	)}
 }
@@ -52,7 +81,8 @@ export class DisplayTransactions extends React.Component {
 
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,
-	tempResults: state.tempResults
+	tempResults: state.tempResults,
+	currentCategory: state.currentCategory
 });
 
 

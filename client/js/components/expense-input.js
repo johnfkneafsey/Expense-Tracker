@@ -32,7 +32,10 @@ export class ExpenseInput extends React.Component {
         let expenseDescription = (this.refs.description).value.trim();
         let dateSelected = document.getElementById("example-datepicker").getAttribute('data-formattedvalue');
 	    this.props.dispatch(actions.asyncAddExpense(expenseDollars, expenseCategory, expenseDescription, dateSelected));
-}
+	    this.refs.dollars.value = "";
+	    this.refs.expenseCategory.value = "";
+	    this.refs.description.value = "";
+	}
 
   	render() {		
 		let options = this.props.categories.map((category,index)=>{

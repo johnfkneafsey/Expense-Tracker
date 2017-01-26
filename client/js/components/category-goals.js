@@ -22,6 +22,9 @@ export class CategoryGoals extends React.Component {
 		if (goalIndex === -1) {
 			this.props.dispatch(actions.asyncAddCategoryGoal(expenseCategory,categoryAmount));
 		}
+		this.refs.expenseCategory.value = "";
+		this.refs.dollars.value = "";
+
 	};
 
 	render() {
@@ -33,9 +36,9 @@ export class CategoryGoals extends React.Component {
 
 	return (
 		<div><h3>Category Goals</h3>
-			<form onSubmit={this.onSubmit}>
+			<form onSubmit={this.onSubmit} id="categoryForm">
 				<label className="category">Expense Category?</label>
-					<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" required>
+					<select name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 						{options}
 					</select>
 				<label className="category amount">Category Amount</label>

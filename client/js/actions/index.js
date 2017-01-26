@@ -1,5 +1,28 @@
 import store from '../store'
 
+export const asyncFetchDb = (categoryPromise, goalsPromise, expensePromise) => dispatch => {
+	let responseArray = [];
+	return (Promise.all([categoryPromise, goalsPromise, expensePromise]))
+	.then(responses => {
+		console.log(responses[0], "RESPONSES[0] ");
+		responseArray = responses.map(response => {
+			console.log(response[0].json(), 'RES.JSON')
+			console.log(response.body, 'RES.BODY')
+			console.log(response[0].body.json(), 'RES.BODY.JSON')
+			return response.json()
+		})
+		console.log(responses[0].body.json(), 'response[0].body')
+		return responseArray;
+	})
+	.then(res => {
+		console.log(res, 'res')
+		return dispatch(fetchDb(res))
+	})
+	.catch(err => {
+		return err;
+	})
+}
+
 export const asyncAddExpenseCategory = (category) => dispatch => {
 	return fetch('/category', {
 		method: 'post',
@@ -52,7 +75,7 @@ export const asyncAddExpense = (dollars, category, description, date) => dispatc
 
 
 export const asyncAddCategoryGoal = (category, dollars) => dispatch => {
-	return fetch('/goals', {
+	return fetch('/goal', {
 		method: 'post',
 		headers: {
 			Accept: 'application/json',
@@ -76,8 +99,8 @@ export const asyncAddCategoryGoal = (category, dollars) => dispatch => {
 }
 
 
-export const asyncFetchAllTransactions = () => dispatch => {
-  	return fetch('/expense')
+export const asyncFetchAllTransactions = (category='All') => dispatch => {
+  	return fetch(`/expense?category=${category}`)
   	.then(res => {
 		if (!res.ok) {
 			throw new Error(res.statusText);
@@ -123,6 +146,18 @@ export const FETCH_ALL_TRANSACTIONS = 'FETCH_ALL_TRANSACTIONS';
 export const fetchAllTransactions = (transactions) => ({
 	type: FETCH_ALL_TRANSACTIONS,
 	transactions: transactions
+})
+
+export const CHANGE_CURRENT_CATEGORY = 'CHANGE_CURRENT_CATEGORY';
+export const changeCurrentCategory = (tempCategory) => ({
+	type: CHANGE_CURRENT_CATEGORY,
+	tempCategory: tempCategory
+})
+
+export const FETCH_DB = 'FETCH_DB';
+export const fetchDb = (db) => ({
+	type: FETCH_DB,
+	db: db
 })
 
 
