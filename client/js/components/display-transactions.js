@@ -11,11 +11,6 @@ export class DisplayTransactions extends React.Component {
 	onSubmit(event) {
   		event.preventDefault();
 		this.props.dispatch(actions.asyncFetchAllTransactions());
-	
-				
-		// dispatch action to state to set "DisplayTransactions" to "true"
-		// How do we display transactions by category?
-		//		-Probably easier to query the database than control individual states... 
 	}
 	
 	render() {
@@ -24,18 +19,18 @@ export class DisplayTransactions extends React.Component {
 				<option key={index} value={category.name}>{category.name}</option>
 			);
 		});
-		let listOfTransactions = [];
+		let listOfTransactions;
 		if (this.props.tempResults[0]) {
-			this.props.tempResults[0].forEach((transaction, index) => {
-				console.log(transaction, index, "TRANSACTION AND INDEX");
-				listOfTransactions+= `<li key=${index}>${transaction.category}</li>`
-				
-		})
-
+			listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
+				console.log(transaction, "TRANSACTION AND INDEX");
+				return (
+				<li key={index}>{transaction.category} {transaction.description} {transaction.cost} {transaction.date} </li>
+				)
+			})
 		}
-		console.log(listOfTransactions, "LIST OF TRANSACTIONS");
-		console.log(this.props.tempResults[0]);
-		console.log(this.props.tempResults[0], "this.props.tempResults[0].MAP((transaction...");
+//		console.log(listOfTransactions, "LIST OF TRANSACTIONS");
+//		console.log(this.props.tempResults[0]);
+//		console.log(this.props.tempResults[0], "this.props.tempResults[0].MAP((transaction...");
 
 	return (
 		<div>
@@ -51,8 +46,6 @@ export class DisplayTransactions extends React.Component {
 				{listOfTransactions}
 			</ul>
 		</div>
-
-
 	)}
 }
 

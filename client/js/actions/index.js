@@ -1,4 +1,4 @@
-import Store from '../store'
+import store from '../store'
 
 export const asyncAddExpenseCategory = (category) => dispatch => {
 	return fetch('/category', {
@@ -50,6 +50,7 @@ export const asyncAddExpense = (dollars, category, description, date) => dispatc
 	})
 }
 
+
 export const asyncAddCategoryGoal = (category, dollars) => dispatch => {
 	return fetch('/goals', {
 		method: 'post',
@@ -93,13 +94,12 @@ export const asyncFetchAllTransactions = () => dispatch => {
 };
 
 
-
-
 export const ADD_EXPENSE_CATEGORY = 'ADD_EXPENSE_CATEGORY';
 export const addExpenseCategory = (category) => ({
 	type: ADD_EXPENSE_CATEGORY,
 	category: category
 })
+
 
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const addExpense = (dollars, category, description, date) => ({
