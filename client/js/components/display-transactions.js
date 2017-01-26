@@ -11,6 +11,7 @@ export class DisplayTransactions extends React.Component {
 	onSubmit(event) {
   		event.preventDefault();
 		this.props.dispatch(actions.asyncFetchAllTransactions());
+	
 				
 		// dispatch action to state to set "DisplayTransactions" to "true"
 		// How do we display transactions by category?
@@ -22,14 +23,19 @@ export class DisplayTransactions extends React.Component {
 			return (
 				<option key={index} value={category.name}>{category.name}</option>
 			);
+		});
+		let listOfTransactions = [];
+		if (this.props.tempResults[0]) {
+			this.props.tempResults[0].forEach((transaction, index) => {
+				console.log(transaction, index, "TRANSACTION AND INDEX");
+				listOfTransactions+= `<li key=${index}>${transaction.category}</li>`
+				
 		})
-		//if (this.props.tempResults[0]) {
-		//	const fetchResults = this.props.tempResults[0];
-		//	console.log(fetchResults);
-		//	let tempResults = fetchResults.map((tempResult, index) => {
-		//		return (
-		//			<li key={index} value={tempResult.category}>{tempResult.category} {tempResult.cost} {tempResult.description} {tempResult.date}</li>
-		//		)})}
+
+		}
+		console.log(listOfTransactions, "LIST OF TRANSACTIONS");
+		console.log(this.props.tempResults[0]);
+		console.log(this.props.tempResults[0], "this.props.tempResults[0].MAP((transaction...");
 
 	return (
 		<div>
@@ -42,13 +48,13 @@ export class DisplayTransactions extends React.Component {
 				<input type="submit" />
 			</form>
 			<ul>
-				
+				{listOfTransactions}
 			</ul>
 		</div>
 
 
 	)}
-	}
+}
 
 
 const mapStateToProps = (state, props) => ({
