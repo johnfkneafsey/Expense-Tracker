@@ -12,7 +12,8 @@ const initialState = {
 	expenses: [],
 	goals: [],
 	tempResults: [],
-	currentCategory: 'All'
+	currentCategory: 'All',
+	categoryTotals: []
 }
 
 export const mainReducer = (state= initialState, action) => {
@@ -82,9 +83,17 @@ export const mainReducer = (state= initialState, action) => {
 		})
 	}
 
-	if (action.type === actions.FETCH_DB) {
-		return update (state: {$set: action.db})
-	}
 
+	if (action.type === actions.GET_CATEGORY_TOTALS) {
+		let newObj = action.categoryTotals
+		// newObj should look like an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
+		setTimeout(()=> { console.log(store.getState(), "This is test for change categoryTotals")}, 3000);	
+		return update(state, {
+			categoryTotals: {$set: [newObj]}
+			//categoryTotals in store should look like:  categoryTotals{[
+			//								food: 25,
+			//								entertainment: 70]}
+		})	
+	}
 	return state;
 }

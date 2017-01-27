@@ -29,8 +29,17 @@ export class CategoryGoals extends React.Component {
 			this.props.dispatch(actions.asyncAddCategoryGoal(goalCategory,categoryAmount));
 		}
 		this.refs.dollars.value = "";
-
 	};
+
+
+	onClick() {
+		this.props.dispatch(actions.asyncGetCategoryTotals());
+		//
+		//onClick needs a button called "calculate category totals" somewhere in this component.  not added yet.
+		//hide original goals table
+		//show new goals table with category totals
+	}
+
 
 	render() {
 		let options = this.props.categories.map((category, index) => {
@@ -39,6 +48,17 @@ export class CategoryGoals extends React.Component {
 			);
 		})
 
+/*
+		console.log("this.props.GOALS", this.props.goals)
+		let goals = this.props.goals.map((goal,index)=>{
+		console.log(goals, "goals on component page")
+			let cat = goal.category 
+			return (
+				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>{categoryTotals.cat}</td></tr>
+			);
+		})
+
+*/
 		console.log("this.props.GOALS", this.props.goals)
 		let goals = this.props.goals.map((goal,index)=>{
 		console.log(goals, "goals on component page")
@@ -71,7 +91,9 @@ export class CategoryGoals extends React.Component {
 
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,
-	goals: state.goals
+	goals: state.goals,
+//	categoryTotals: this.categoryTotals
+
 });
 
 export default connect(mapStateToProps)(CategoryGoals);

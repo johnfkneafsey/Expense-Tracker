@@ -140,6 +140,31 @@ export const asyncFetchAllTransactions = (category='All') => dispatch => {
 };
 
 
+export const asyncGetCategoryTotals = () => dispatch => {
+  	return fetch('/total')
+  	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);
+    	}
+    	return res.json(); 
+  	})
+	// Response will come back as an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
+	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);			
+		}
+		return res.json();
+	})
+	.then(_res => {
+		return dispatch(getCategoryTotals(_res))
+	})
+	.catch(error => {
+		return error;
+	})
+}
+
+
+
 export const ADD_EXPENSE_CATEGORY = 'ADD_EXPENSE_CATEGORY';
 export const addExpenseCategory = (category) => ({
 	type: ADD_EXPENSE_CATEGORY,
@@ -189,11 +214,11 @@ export const changeCurrentCategory = (tempCategory) => ({
 	tempCategory: tempCategory
 })
 
-// export const FETCH_DB = 'FETCH_DB';
-// export const fetchDb = (db) => ({
-// 	type: FETCH_DB,
-// 	db: db
-// })
-
+export const GET_CATEGORY_TOTALS = 'GET_CATEGORY_TOTALS';
+export const getCategoryTotals = (categoryTotals) => ({
+	type: GET_CATEGORY_TOTALS,
+	categoryTotals: categoryTotals
+	//categoryTotals should be an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
+})
 
 
