@@ -42,28 +42,39 @@ export class CategoryGoals extends React.Component {
 
 
 	render() {
+
+		let totalExpenses = {}
+		
+		for (let i=0; i<this.props.categories.length; i++) {
+			let temp = this.props.categories[i].name;
+			totalExpenses[temp] = 0;
+			for(let k=0; k<this.props.expenses[0].length; k++){
+				let newTemp = this.props.expenses[0];
+				if (newTemp[k].category === temp) {
+					totalExpenses[temp] += newTemp[k].cost;
+				}
+				console.log(newTemp[k], "DEEPLY NESTED")
+			//	for(let temp in this.props.expenses)
+			}
+
+			
+
+		}
+		console.log(totalExpenses, " EXPENSE CATEGORY OBJECT ----------------------");
+
 		let options = this.props.categories.map((category, index) => {
 			return (
 				<option key={index} value={category.name}>{category.name}</option>
 			);
 		})
 
-/*
-		console.log("this.props.GOALS", this.props.goals)
-		let goals = this.props.goals.map((goal,index)=>{
-		console.log(goals, "goals on component page")
-			let cat = goal.category 
-			return (
-				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>{categoryTotals.cat}</td></tr>
-			);
-		})
 
-*/
 		console.log("this.props.GOALS", this.props.goals)
 		let goals = this.props.goals.map((goal,index)=>{
-		console.log(goals, "goals on component page")
+			let otherTemp = goal.category;
+		console.log(otherTemp, "otherTemp on component page")
 			return (
-				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>Actual</td></tr>
+				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>{totalExpenses[otherTemp]}</td></tr>
 			);
 		})
 
@@ -92,6 +103,7 @@ export class CategoryGoals extends React.Component {
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,
 	goals: state.goals,
+	expenses: state.expenses
 //	categoryTotals: this.categoryTotals
 
 });

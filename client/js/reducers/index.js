@@ -24,6 +24,7 @@ export const mainReducer = (state= initialState, action) => {
 			setTimeout(()=> { console.log(store.getState(), "THIS IS THE CATEGORY GETSTATE")}, 3000);
 			return update(state, {
 				categories: {$push: [newObj]},
+				categoryTotals: {$merge: {[action.category]: 0}}
   			})
 		}
 
