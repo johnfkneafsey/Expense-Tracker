@@ -31,7 +31,6 @@ export class ExpenseCategoryList extends React.Component {
 	render() {
 
 	let categories = this.props.categories.map((category,index)=>{
-		console.log(categories, "CATEGORIES on component page")
 			return (
 				<li key={index}>{category.name}</li>
 			);

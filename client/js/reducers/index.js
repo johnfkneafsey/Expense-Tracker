@@ -2,11 +2,6 @@ import update from 'immutability-helper';
 import * as actions from '../actions/index';
 import store from '../store';
 
-//goals: [
-//	{food: 0},
-//	{rent: 0}	
-//]
-
 const initialState = {
 	categories: [],
 	expenses: [],
@@ -84,17 +79,5 @@ export const mainReducer = (state= initialState, action) => {
 		})
 	}
 
-
-	if (action.type === actions.GET_CATEGORY_TOTALS) {
-		let newObj = action.categoryTotals
-		// newObj should look like an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
-		setTimeout(()=> { console.log(store.getState(), "This is test for change categoryTotals")}, 3000);	
-		return update(state, {
-			categoryTotals: {$set: [newObj]}
-			//categoryTotals in store should look like:  categoryTotals{[
-			//								food: 25,
-			//								entertainment: 70]}
-		})	
-	}
 	return state;
 }

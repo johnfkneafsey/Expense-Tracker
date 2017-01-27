@@ -114,19 +114,6 @@ app.get('/expense', jsonParser, (req, res) => {
         })
 })
 
-app.get('/total', jsonParser, (req, res) => {
-    Expense
-//      MONGOOSE METHODS 
-//      Mongo will run the query and return an array of category totals in the following "custom" format: [{category: total}]  (i.e. [{food: 35}, {entertainment: 80}].  It seems like returning in that format is doable but I could be wrong.
-        .then(categoryTotals => {
-        //how does this part work?  We are returning data in a different format than what the apiRepr is expecting.  Can we just return in json without the map?  Can we just add categoryTotal to the apiRepr or will that mess up our other stuff?
-            res.json(categoryTotals.map(categoryTotal => categoryTotal.apiRepr()))
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: 'Something went horribly wrong'})
-        })
-})
 
 
 

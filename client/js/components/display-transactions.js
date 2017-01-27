@@ -28,13 +28,11 @@ export class DisplayTransactions extends React.Component {
 			);
 		});
 		let listOfTransactions;
-		console.log(this.props.currentCategory, "Attempting to log curent category");
 		if (this.props.tempResults[0]) {
 
 
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
-					console.log(transaction, "TRANSACTION AND INDEX");
 					return (
 					<tbody key={index}><tr><td>{transaction.date}</td><td>{transaction.category}</td><td>{transaction.cost}</td><td>{transaction.description}</td></tr></tbody>
 					)
@@ -51,15 +49,6 @@ export class DisplayTransactions extends React.Component {
 
 
 		}
-//		array.filter(transaction => {
-//			return (transaction.category = this.props.currentCategory)}).map
-
-
-//			
-
-//		console.log(listOfTransactions, "LIST OF TRANSACTIONS");
-//		console.log(this.props.tempResults[0]);
-//		console.log(this.props.tempResults[0], "this.props.tempResults[0].MAP((transaction...");
 
 	return (
 		<div>

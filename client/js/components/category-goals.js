@@ -19,8 +19,6 @@ export class CategoryGoals extends React.Component {
         let goalCategory = (this.refs.expenseCategory).value.trim();
 		let goalIndex = -1;
 		for (let i = 0; i < this.props.goals.length; i++) {
-			console.log(this.props.goals[i].category, goalCategory, 
-				"CONSOLE LOG COMPARISON")
 			if ((this.props.goals[i].category) === goalCategory) {
 				goalIndex = i;
 			}
@@ -30,16 +28,6 @@ export class CategoryGoals extends React.Component {
 		}
 		this.refs.dollars.value = "";
 	};
-
-
-	onClick() {
-		this.props.dispatch(actions.asyncGetCategoryTotals());
-		//
-		//onClick needs a button called "calculate category totals" somewhere in this component.  not added yet.
-		//hide original goals table
-		//show new goals table with category totals
-	}
-
 
 	render() {
 
@@ -53,14 +41,8 @@ export class CategoryGoals extends React.Component {
 				if (newTemp[k].category === temp) {
 					totalExpenses[temp] += newTemp[k].cost;
 				}
-				console.log(newTemp[k], "DEEPLY NESTED")
-			//	for(let temp in this.props.expenses)
 			}
-
-			
-
 		}
-		console.log(totalExpenses, " EXPENSE CATEGORY OBJECT ----------------------");
 
 		let options = this.props.categories.map((category, index) => {
 			return (
@@ -68,11 +50,8 @@ export class CategoryGoals extends React.Component {
 			);
 		})
 
-
-		console.log("this.props.GOALS", this.props.goals)
 		let goals = this.props.goals.map((goal,index)=>{
 			let otherTemp = goal.category;
-		console.log(otherTemp, "otherTemp on component page")
 			return (
 				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>{totalExpenses[otherTemp]}</td></tr>
 			);
@@ -104,8 +83,6 @@ const mapStateToProps = (state, props) => ({
 	categories: state.categories,
 	goals: state.goals,
 	expenses: state.expenses
-//	categoryTotals: this.categoryTotals
-
 });
 
 export default connect(mapStateToProps)(CategoryGoals);
