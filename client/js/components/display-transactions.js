@@ -41,7 +41,7 @@ export class DisplayTransactions extends React.Component {
 				listOfTransactions = this.props.tempResults[0].filter(transaction => {
 					return (transaction.category == this.props.currentCategory)}).map((transaction, index) => {
 						return (
-							<tr key={index}><td>{transaction.date}</td><td>{transaction.category}</td><td>{transaction.cost}</td><td>{transaction.description}</td></tr>
+							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>{transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td></tr>
 						)
 				})
 			}
@@ -54,11 +54,12 @@ export class DisplayTransactions extends React.Component {
 		<div>
 			<div className="page-header"><h3>Display Transactions</h3></div>
 			<form onSubmit={this.onSubmit}>
-				<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
+				<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 					<option value="All">All</option>					
 					{options}
 				</select>
-				<input type="submit" />
+				<p></p>
+				<input type="submit" className="btn btn-primary"/>
 			</form>
 			<div>
 			<table className="table table-striped">

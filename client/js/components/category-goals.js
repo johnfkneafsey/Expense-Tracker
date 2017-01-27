@@ -34,6 +34,7 @@ export class CategoryGoals extends React.Component {
 	render() {
 
 		let totalExpenses = {}
+		let divStyle = {width: '60%'}
 		
 		for (let i=0; i<this.props.categories.length; i++) {
 			let temp = this.props.categories[i].name;
@@ -54,33 +55,53 @@ export class CategoryGoals extends React.Component {
 
 		let goals = this.props.goals.map((goal,index)=>{
 			let otherTemp = goal.category;
+			let percentageVal;
+			if (Math.floor((totalExpenses[otherTemp]/goal.goal) * 100) > 100) {
+				percentageVal = 100
+			} else {
+				percentageVal = Math.floor((totalExpenses[otherTemp]/goal.goal) * 100)
+			}
+			let divStyle = {width: `${percentageVal}%`}
 			return (
-				<tr key={index}><td>{goal.category}</td><td>{goal.goal}</td><td>{totalExpenses[otherTemp]}</td></tr>
+				<div key={index}>
+					<table className="table"><tbody>
+						<tr><td>{goal.category}</td><td>{goal.goal}</td><td>{totalExpenses[otherTemp]}</td></tr>
+					</tbody></table>
+					<div className="progress">
+				    	<div className="progress-bar" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}>
+				    		{percentageVal}%
+				    	</div>
+					</div>
+				</div>
 			);
 		})
 
 	return (
 		<div>
-		<div className="page-header"><h3>Category Goals</h3></div>
-		<div>
-			<form onSubmit={this.onSubmit} id="goalForm">
-				<label className="category">Expense Category?</label>
-					<select name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
-						{options}
-					</select>
-				<label className="category amount">Category Amount</label>
-					<input type="text" placeholder="Enter dollar amount" ref="dollars" required />
-					<input type="submit" />
-			</form>
-		</div>
-		<div>
-			<table className="table table-striped">
-				<thead><tr><th>Category</th><th>Dollars</th><th>actual</th></tr></thead>
-				<tbody>
+			<div className="page-header"><h3>Category Goals</h3></div>
+			<div >
+				<form onSubmit={this.onSubmit} >
+					<label>Expense Category</label>
+						<select className="form-control" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
+							{options}
+						</select>
+						<p></p>
+					<label>Category Amount</label>
+						<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
+						<p></p>
+						<input type="submit" className="btn btn-primary"/>
+					
+				</form>
+			</div>
+			<div>
+				<div>
+					<table className="table table-striped">
+						<thead><tr><th><h4>Category</h4></th><th><h4>Goal</h4></th><th><h4>Actual</h4></th></tr></thead>
+					</table>
 					{goals}
-				</tbody>
-			</table>
-		</div>
+				</div>
+				
+			</div>
 		</div>
 
 	)}

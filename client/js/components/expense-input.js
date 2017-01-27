@@ -52,17 +52,18 @@ export class ExpenseInput extends React.Component {
 						<label className="datePicker">Select a Date</label>
 						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
 						<label> Expense Amount </label>
-						<input type="text" ref="dollars"required/>
+						<input type="text" className="form-control" ref="dollars"required/>
 
 
-						<label className="category" >Expense Category?</label>
-	      					<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" required>
+						<label className="category" >Expense Category</label>
+	      					<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" required>
 	      						{options}
 	        				</select>
 
 						<label> Expense Description </label>
-						<input type="text" ref="description" required/>
-						<input type="submit" />
+						<input type="text" className="form-control" ref="description" required/>
+						<p></p>
+						<input type="submit" className="btn btn-primary"/>
 					</form>
 				</div>
 			</div>

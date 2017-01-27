@@ -27,7 +27,7 @@ export class Layout extends React.Component {
 				<div className="jumbotron jumbotron-custom">
     				<div class="container">
        					<h1>Mint Lite!</h1>
-        				<p><em>The fast and easy solution for setting and tracking your financial goals.</em></p>
+        				<p><strong>The fast and easy solution for setting and tracking your financial goals.</strong></p>
     				</div>
 				</div>
 
