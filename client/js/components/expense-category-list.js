@@ -32,13 +32,13 @@ export class ExpenseCategoryList extends React.Component {
 
 	let categories = this.props.categories.map((category,index)=>{
 			return (
-				<li key={index}>{category.name}</li>
+				<li key={index} className="list-group-item">{category.name}</li>
 			);
 		})
 
 	return (
 		<div>
-			<h3>Expense Categories</h3>
+			<div className="page-header"><h3>Expense Categories</h3></div>
 		
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>
@@ -48,9 +48,13 @@ export class ExpenseCategoryList extends React.Component {
 					<input type="submit" />				
 				</form>
 			</div>
-			<ul>
-				{categories}
-			</ul>
+			<div className="row">
+				<div className="col-sm-6">
+					<ul className="list-group">
+						{categories}
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	)

@@ -2,7 +2,6 @@ import React from 'react';
 import ExpenseCategoryList from './expense-category-list';
 import CategoryGoals from './category-goals';
 import ExpenseInput from './expense-input';
-import SubmitDay from './submit-day';
 import DisplayTransactions from './display-transactions';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
@@ -25,7 +24,13 @@ export class Layout extends React.Component {
 
 		return (
 			<div className="layoutClass">
-				<h1 className="page-title">Mint Lite</h1>
+				<div className="jumbotron jumbotron-custom">
+    				<div class="container">
+       					<h1>Mint Lite!</h1>
+        				<p><em>The fast and easy solution for setting and tracking your financial goals.</em></p>
+    				</div>
+				</div>
+
 				< ExpenseCategoryList  />
 				< CategoryGoals />
 				< ExpenseInput />

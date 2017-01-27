@@ -45,23 +45,26 @@ export class ExpenseInput extends React.Component {
 		})
 
 		return (
-			<div><h3>Expense Input</h3>
-				<form onSubmit={this.onSubmit}>
-					<label className="datePicker">Select a Date</label>
-					<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
-					<label> Expense Amount </label>
-					<input type="text" ref="dollars"required/>
+			<div>
+				<div className="page-header"><h3>Expense Input</h3></div>
+				<div>
+					<form onSubmit={this.onSubmit}>
+						<label className="datePicker">Select a Date</label>
+						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
+						<label> Expense Amount </label>
+						<input type="text" ref="dollars"required/>
 
 
-					<label className="category" >Expense Category?</label>
-      					<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" required>
-      						{options}
-        				</select>
+						<label className="category" >Expense Category?</label>
+	      					<select name="expenseCategory" id='expenseCategory' value={this.value} ref="expenseCategory" required>
+	      						{options}
+	        				</select>
 
-					<label> Expense Description </label>
-					<input type="text" ref="description" required/>
-					<input type="submit" />
-				</form>
+						<label> Expense Description </label>
+						<input type="text" ref="description" required/>
+						<input type="submit" />
+					</form>
+				</div>
 			</div>
 		)
 	}

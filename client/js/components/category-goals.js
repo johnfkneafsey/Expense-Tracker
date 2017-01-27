@@ -13,6 +13,8 @@ export class CategoryGoals extends React.Component {
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
 
+
+
 	onSubmit(event) {
   		event.preventDefault();
   		let categoryAmount = parseInt((this.refs.dollars).value.trim());
@@ -58,7 +60,8 @@ export class CategoryGoals extends React.Component {
 		})
 
 	return (
-		<div><h3>Category Goals</h3>
+		<div>
+		<div className="page-header"><h3>Category Goals</h3></div>
 		<div>
 			<form onSubmit={this.onSubmit} id="goalForm">
 				<label className="category">Expense Category?</label>
@@ -70,10 +73,14 @@ export class CategoryGoals extends React.Component {
 					<input type="submit" />
 			</form>
 		</div>
-			<table>
-				<tbody><tr><th>Category</th><th>Dollars</th><th>actual</th></tr></tbody>
-				{goals}
+		<div>
+			<table className="table table-striped">
+				<thead><tr><th>Category</th><th>Dollars</th><th>actual</th></tr></thead>
+				<tbody>
+					{goals}
+				</tbody>
 			</table>
+		</div>
 		</div>
 
 	)}
