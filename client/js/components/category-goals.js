@@ -13,7 +13,11 @@ export class CategoryGoals extends React.Component {
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
 
-
+						// <div className="progress">
+						// 	<div className="progress-bar" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
+						// 		{percentageVal}%
+						// 	</div>
+						// </div>
 
 	onSubmit(event) {
   		event.preventDefault();
@@ -47,9 +51,13 @@ export class CategoryGoals extends React.Component {
 			}
 		}
 
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+
 		let options = this.props.categories.map((category, index) => {
 			return (
-				<option key={index} value={category.name}>{category.name}</option>
+				<option key={index} value={category.name}>{category.name.capitalize()}</option>
 			);
 		})
 
@@ -61,24 +69,30 @@ export class CategoryGoals extends React.Component {
 			} else {
 				percentageVal = Math.floor((totalExpenses[otherTemp]/goal.goal) * 100)
 			}
+
+			
 			let divStyle = {width: `${percentageVal}%`}
 			return (
-				<div key={index}>
-					<table className="table"><tbody>
-						<tr><td>{goal.category}</td><td>{goal.goal}</td><td>{totalExpenses[otherTemp]}</td></tr>
-					</tbody></table>
-					<div className="progress">
-				    	<div className="progress-bar" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}>
-				    		{percentageVal}%
-				    	</div>
-					</div>
-				</div>
+						<tr key={index}>
+							<td>{goal.category.capitalize()}</td>
+							<td className="center">{goal.goal}</td>
+							<td className="center">{totalExpenses[otherTemp]}</td>
+						
+							<div className="progress">
+								<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
+									{percentageVal}%
+								</div>
+							</div>	
+						</tr>
 			);
 		})
 
 	return (
 		<div>
-			<div className="page-header"><h3>Category Goals</h3></div>
+			<div className="page-header makeColoredHeader">
+				<h2>Category Budgets</h2>
+				<h5 className="steps">Step 2: Define budgets for your categories</h5> 
+			</div>
 			<div >
 				<form onSubmit={this.onSubmit} >
 					<label>Expense Category</label>
@@ -86,19 +100,32 @@ export class CategoryGoals extends React.Component {
 							{options}
 						</select>
 						<p></p>
-					<label>Category Amount</label>
+					<label>Category Budget</label>
 						<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
 						<p></p>
 						<input type="submit" className="btn btn-primary"/>
-					
 				</form>
 			</div>
+				<p></p>
+				<p></p>
+				<p></p>
 			<div>
 				<div>
-					<table className="table table-striped">
-						<thead><tr><th><h4>Category</h4></th><th><h4>Goal</h4></th><th><h4>Actual</h4></th></tr></thead>
+			<div className="page-header makeColoredHeader">
+				<h2>Expenses Summary</h2>
+				<h5 className="steps">View a high-level summary of your expenses here</h5>
+			</div>
+					<table className="table">
+						<tr>
+							<th><h4>Category</h4></th>
+							<th><h4>Budget</h4></th>
+							<th><h4>Spent</h4></th>
+							<th><h4>Percent of Budget Used</h4></th>							
+						</tr>
+
+							{goals}
+
 					</table>
-					{goals}
 				</div>
 				
 			</div>

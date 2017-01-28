@@ -32,14 +32,18 @@ export class ExpenseCategoryList extends React.Component {
 
 	let categories = this.props.categories.map((category,index)=>{
 			return (
-				<li key={index} className="list-group-item">{category.name}</li>
+				<li key={index} className="list-group-item">{category.name.capitalize()}</li>
 			);
 		})
 
 	return (
 		<div>
-			<div className="page-header"><h3>Expense Categories</h3></div>
-		
+			<div className="page-header makeColoredHeader">
+				<h2>Expense Categories</h2>
+				<h5 className="steps">Step 1: Enter categories for your expenses</h5>
+			</div>
+
+			
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>
 					<label>Add A New Expense Category</label>

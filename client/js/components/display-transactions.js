@@ -22,6 +22,11 @@ export class DisplayTransactions extends React.Component {
 	}
 	
 	render() {
+
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+
 		let options = this.props.categories.map((category, index) => {
 			return (
 				<option key={index} value={category.name}>{category.name}</option>
@@ -34,7 +39,7 @@ export class DisplayTransactions extends React.Component {
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
 					return (
-					<tr key={index}><td>{transaction.date}</td><td>{transaction.category}</td><td>{transaction.cost}</td><td>{transaction.description}</td></tr>
+					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">{transaction.cost}</td><td className="center">{transaction.description}</td></tr>
 					)
 				})
 			} else {
@@ -52,15 +57,22 @@ export class DisplayTransactions extends React.Component {
 
 	return (
 		<div>
-			<div className="page-header"><h3>Display Transactions</h3></div>
+			<div className="page-header makeColoredHeader">
+				<h2>Full Expense Detail</h2>
+				<h5 className="steps">View detailed information about your expenses here</h5>
+			</div>
 			<form onSubmit={this.onSubmit}>
+				<label>Sort by category</label>
 				<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 					<option value="All">All</option>					
 					{options}
 				</select>
 				<p></p>
+				<p></p>		
 				<input type="submit" className="btn btn-primary"/>
 			</form>
+				<p></p>
+				<p></p>	
 			<div>
 			<table className="table table-striped">
 				<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th></tr></thead>

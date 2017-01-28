@@ -45,7 +45,7 @@ app.post('/expense', jsonParser, (req, res) => {
     console.log(req.body, 'BODY FROM EXPENSE ENDPOINT');
     Expense
         .create({
-            category: req.body.category,
+            category: req.body.category,    
             cost: req.body.cost,
             description: req.body.description,
             date: req.body.date
@@ -113,11 +113,6 @@ app.get('/expense', jsonParser, (req, res) => {
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
-
-
-
-
-
 
 
 function runServer() {

@@ -1,17 +1,5 @@
 import store from '../store'
 
-// export const asyncFetchDb = (categoryPromise, goalsPromise, expensePromise) => dispatch => {
-// 	var docs = [{categoryPromise}, {goalsPromise}, {expensePromise}];
-// 	return Promise.all(docs.map(doc => {
-// 		console.log(doc.json())
-// 	}))
-// 	.then(res => {
-// 		console.log(res, 'res')
-// 	})
-// 	.catch(err => {
-// 		return err;
-// 	})
-// }
 
 export const asyncAddExpenseCategory = (category) => dispatch => {
 	return fetch('/category', {

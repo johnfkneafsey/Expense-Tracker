@@ -37,22 +37,30 @@ export class ExpenseInput extends React.Component {
 	    this.refs.description.value = "";
 	}
 
-  	render() {		
+  	render() {	
+
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+			
 		let options = this.props.categories.map((category,index)=>{
 			return (
-				<option key={index} value={category.name}>{category.name}</option>
+				<option key={index} value={category.name}>{category.name.capitalize()}</option>
 			);
 		})
 
 		return (
 			<div>
-				<div className="page-header"><h3>Expense Input</h3></div>
+				<div className="page-header makeColoredHeader">
+					<h2>Expense Input</h2>
+					<h5 className="steps">Step 3: Enter your individual expenses</h5>
+				</div>
 				<div>
 					<form onSubmit={this.onSubmit}>
 						<label className="datePicker">Select a Date</label>
 						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
 						<label> Expense Amount </label>
-						<input type="text" className="form-control" ref="dollars"required/>
+						<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
 
 
 						<label className="category" >Expense Category</label>
@@ -61,7 +69,7 @@ export class ExpenseInput extends React.Component {
 	        				</select>
 
 						<label> Expense Description </label>
-						<input type="text" className="form-control" ref="description" required/>
+						<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
 						<p></p>
 						<input type="submit" className="btn btn-primary"/>
 					</form>

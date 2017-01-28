@@ -25,8 +25,8 @@ export class Layout extends React.Component {
 		return (
 			<div className="layoutClass">
 				<div className="jumbotron jumbotron-custom">
-    				<div class="container">
-       					<h1>Mint Lite!</h1>
+    				<div className="container">
+       					<h1>Mint Lite</h1>
         				<p><strong>The fast and easy solution for setting and tracking your financial goals.</strong></p>
     				</div>
 				</div>
