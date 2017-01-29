@@ -50,9 +50,9 @@ export class ExpenseInput extends React.Component {
 		})
 
 		return (
-			<div>
+			<div className="component">
 				<div className="page-header makeColoredHeader">
-					<h2>Expense Input</h2>
+					<h1 className="stepHeaders">Expense Input</h1>
 					<h5 className="steps">Step 3: Enter your individual expenses</h5>
 				</div>
 				<div>

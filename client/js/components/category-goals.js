@@ -88,9 +88,9 @@ export class CategoryGoals extends React.Component {
 		})
 
 	return (
-		<div>
+		<div className="component">
 			<div className="page-header makeColoredHeader">
-				<h2>Category Budgets</h2>
+				<h1 className="stepHeaders">Category Budgets</h1>
 				<h5 className="steps">Step 2: Define budgets for your categories</h5> 
 			</div>
 			<div >
@@ -112,15 +112,15 @@ export class CategoryGoals extends React.Component {
 			<div>
 				<div>
 			<div className="page-header makeColoredHeader">
-				<h2>Expenses Summary</h2>
+				<h1 className="stepHeaders">Expenses Summary</h1>
 				<h5 className="steps">View a high-level summary of your expenses here</h5>
 			</div>
 					<table className="table">
 						<tr>
-							<th><h4>Category</h4></th>
-							<th><h4>Budget</h4></th>
-							<th><h4>Spent</h4></th>
-							<th><h4>Percent of Budget Used</h4></th>							
+							<th><h3>Category</h3></th>
+							<th><h3>Budget</h3></th>
+							<th><h3>Spent</h3></th>
+							<th><h3>Percent of Budget Used</h3></th>							
 						</tr>
 
 							{goals}
@@ -129,6 +129,7 @@ export class CategoryGoals extends React.Component {
 				</div>
 				
 			</div>
+
 		</div>
 
 	)}

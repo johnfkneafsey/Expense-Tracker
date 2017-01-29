@@ -23,19 +23,16 @@ export class Layout extends React.Component {
 	render() { 
 
 		return (
-			<div className="layoutClass">
-				<div className="jumbotron jumbotron-custom">
-    				<div className="container">
-       					<h1>Mint Lite</h1>
-        				<p><strong>The fast and easy solution for setting and tracking your financial goals.</strong></p>
-    				</div>
-				</div>
-
+			<div className="allText">
 				< ExpenseCategoryList  />
 				< CategoryGoals />
 				< ExpenseInput />
 				< DisplayTransactions />
-			</div>
+			</div>	
+
+
+
+
 		);
 	}
 }
