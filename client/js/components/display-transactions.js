@@ -58,8 +58,8 @@ export class DisplayTransactions extends React.Component {
 	return (
 		<div className="component">
 			<div className="page-header makeColoredHeader">
-				<h1 className="stepHeaders">Full Expense Detail</h1>
-				<h5 className="steps">View detailed information about your expenses here</h5>
+
+				<h3 className="steps">View detailed information about your expenses here</h3>
 			</div>
 			<form onSubmit={this.onSubmit}>
 				<label>Sort by category</label>

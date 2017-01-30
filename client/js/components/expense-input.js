@@ -52,8 +52,8 @@ export class ExpenseInput extends React.Component {
 		return (
 			<div className="component">
 				<div className="page-header makeColoredHeader">
-					<h1 className="stepHeaders">Expense Input</h1>
-					<h5 className="steps">Step 3: Enter your individual expenses</h5>
+				<h1 className="stepHeaders">Step 3:</h1>
+				<h3 className="steps">Enter your individual expenses by category</h3>
 				</div>
 				<div>
 					<form onSubmit={this.onSubmit}>
