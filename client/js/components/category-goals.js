@@ -120,7 +120,7 @@ export class CategoryGoals extends React.Component {
 							<th><h4><u>Category</u></h4></th>
 							<th><h4><u>Spent</u></h4></th>
 							<th><h4><u>Budget</u></h4></th>
-							<th><h4><u>Percent of Budget Used</u></h4></th>							
+							<th className="center-percentages"><h4><u>Percent of Budget Used</u></h4></th>							
 						</tr>
 
 							{goals}
