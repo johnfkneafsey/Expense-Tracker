@@ -117,7 +117,7 @@ app.get('/expense', jsonParser, (req, res) => {
 
 function runServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://localhost/MintLite', function(err){
+        mongoose.connect('mongodb://john:jetnumber1@ds137139.mlab.com:37139/easybudget', function(err){
         if(err) {
             return reject(err);
         }
