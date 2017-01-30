@@ -63,6 +63,8 @@ export class DisplayTransactions extends React.Component {
 			</div>
 			<form onSubmit={this.onSubmit}>
 				<label>Sort by category</label>
+						<p></p>						
+
 				<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 					<option value="All">All</option>					
 					{options}

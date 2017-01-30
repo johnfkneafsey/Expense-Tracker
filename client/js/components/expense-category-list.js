@@ -44,7 +44,8 @@ export class ExpenseCategoryList extends React.Component {
 			</div>
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>
-					<label>Add A New Expense Category</label>
+					<label>Add A New Expense Category</label> 
+					<p></p>
 					<input type="text"  className="form-control" placeholder="i.e. Food/Entertainment"
 					 ref="newCategory"/>	
 					 <p></p>

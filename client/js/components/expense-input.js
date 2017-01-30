@@ -58,18 +58,24 @@ export class ExpenseInput extends React.Component {
 				<div>
 					<form onSubmit={this.onSubmit}>
 						<label className="datePicker">Select a Date</label>
+						<p></p>						
 						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
 						<label> Expense Amount </label>
+						<p></p>						
 						<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
-
+						<p></p>		
 
 						<label className="category" >Expense Category</label>
-	      					<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" required>
+						<p></p>						
+	      		
+						  <select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" required>
 	      						{options}
 	        				</select>
-
-						<label> Expense Description </label>
-						<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
+						<p></p>		
+						
+					<label> Expense Description </label>
+						<p></p>											
+					<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
 						<p></p>
 						<input type="submit" className="btn btn-primary"/>
 					</form>

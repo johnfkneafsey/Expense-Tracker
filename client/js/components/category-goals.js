@@ -96,11 +96,13 @@ export class CategoryGoals extends React.Component {
 			<div >
 				<form onSubmit={this.onSubmit} >
 					<label>Expense Category</label>
+					<p></p>
 						<select className="form-control" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 							{options}
 						</select>
 						<p></p>
 					<label>Category Budget</label>
+					<p></p>
 						<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
 						<p></p>
 						<input type="submit" className="btn btn-primary"/>
