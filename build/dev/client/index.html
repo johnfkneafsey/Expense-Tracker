@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>MintLite</title>
+<title>Easy Budget</title>
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -13,9 +13,9 @@
 
 <link href="freelancer.min.css" rel="stylesheet">
 
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
 
 <!--
@@ -45,14 +45,136 @@
     margin-bottom: auto !important;
     margin-left: auto !important;
     float: none !important;
+    border-top-color: rgb(51,51,51) !important;  
+    border-left-color: rgb(51,51,51) !important;
+    border-right-color: rgb(51,51,51) !important;
+    border-bottom-color: rgb(51,51,51) !important;
+    border-top-width: 3px !important;  
+    border-left-width: 3px !important;
+    border-right-width: 3px !important;
+    border-bottom-width: 3px !important;
+    background-color: rgb(230, 230, 230) !important;
+    color: rgb(51,51,51) !important;
 }
-.input-group .form-control, .input-group-addon, .input-group-btn {
-    display: inherit;
+.input-group {
+    display: block !important;
+    margin-top: auto !important;
+    margin-right: auto !important;
+    margin-bottom: auto !important;
+    margin-left: auto !important;
+    float: none !important;
+    text-align: center !important;
+
 }
 
-.b {
-    font-size: 18px;
+.body {
+    font-size: 16px !important;
 }
+
+.technologies { 
+    word-spacing: 100px !important;
+    display: inline-block;
+}
+
+.list-group-item {
+    background-image: linear-gradient(to bottom,rgb(187, 246, 234) 0,rgb(24,188,156) 100%) !important;
+    background-color: rgb(24,188,156) !important;
+    width: 16% !important;
+    font-size: 18px !important;
+    color: rgb(51,51,51) !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    border-top-color: rgb(51,51,51) !important;  
+    border-left-color: rgb(51,51,51) !important;
+    border-right-color: rgb(51,51,51) !important;
+    border-bottom-color: rgb(51,51,51) !important;
+    border-top-width: 1px !important;  
+    border-left-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    display: block !important;
+    margin-top: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 0.5% !important;
+    margin-left: auto !important;
+    padding: 3px 15px !important;
+}
+
+.btn {
+    background-color: rgb(35,49,64) !important;
+    text-transform: uppercase !important;
+    transform-style: preserve-3d !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.3s !important;
+    transition-property: all !important;
+    transition-timing-function: ease !important;
+    cursor: pointer;
+    background-attachment: scroll !important;
+    background-clip: border-box !important;
+    background-image: none !important;
+    background-origin: padding-box !important;
+    background-position-x: 0% !important;
+    background-position-y: 0% !important;
+    background-repeat-x: initial !important;
+    background-repeat-y: initial !important ;
+    background-size: auto !important;
+
+}
+
+.btn-primary {
+    background-color: rgb(35,49,64) !important;
+    text-transform: uppercase !important;
+    transform-style: preserve-3d !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.3s !important;
+    transition-property: all !important;
+    transition-timing-function: ease !important;
+    cursor: pointer !important;
+    background-attachment: scroll !important;
+    background-clip: border-box !important;
+    background-image: none !important;
+    background-origin: padding-box !important;
+    background-position-x: 0% !important;
+    background-position-y: 0% !important;
+    background-repeat-x: initial !important;
+    background-repeat-y: initial !important ;
+    background-size: auto !important;
+}
+
+.center-dropdown {
+    font-weight: bold !important;
+    text-align: center !important;
+    color: rgb(51,51,51) !important;
+    left: 50% !important;
+    right: auto !important;
+    text-indent: 42.5% !important;
+}
+
+td {
+    text-align: left !important;
+}
+
+.input-group-addon {
+    display: block !important;
+    margin-top: auto !important;
+    margin-right: auto !important;
+    margin-bottom: auto !important;
+    margin-left: auto !important;
+    width: 10px !important;
+    border-radius: 4px !important;
+    border-width: 1px !important;
+    font-weight: bold !important;
+}
+
+label {
+    font-weight: bold !important;
+}
+
+.component {
+    margin-bottom: 360px !important;
+}
+
+
 
 </style>
 </head>
@@ -138,7 +260,7 @@
                     <div class="footer-col col-md-4">
                         <h3>Technologies</h3>
                         <div class="technologies">
-                         <table style="width:100%">
+                         <table style="width:100%" class="center-table">
 
                             <tr>
                                 <td>React</td>

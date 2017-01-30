@@ -74,10 +74,9 @@ export class CategoryGoals extends React.Component {
 			let divStyle = {width: `${percentageVal}%`}
 			return (
 						<tr key={index}>
-							<td>{goal.category.capitalize()}</td>
-							<td className="center">{goal.goal}</td>
-							<td className="center">{totalExpenses[otherTemp]}</td>
-						
+							<td><b>{goal.category.capitalize()}</b></td>
+							<td className="center">${totalExpenses[otherTemp]}</td>
+							<td className="center">${goal.goal}</td>
 							<div className="progress">
 								<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
 									{percentageVal}%
@@ -97,7 +96,7 @@ export class CategoryGoals extends React.Component {
 				<form onSubmit={this.onSubmit} >
 					<label>Expense Category</label>
 					<p></p>
-						<select className="form-control" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
+						<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 							{options}
 						</select>
 						<p></p>
@@ -118,10 +117,10 @@ export class CategoryGoals extends React.Component {
 			</div>
 					<table className="table">
 						<tr>
-							<th><h3>Category</h3></th>
-							<th><h3>Budget</h3></th>
-							<th><h3>Spent</h3></th>
-							<th><h3>Percent of Budget Used</h3></th>							
+							<th><h4><u>Category</u></h4></th>
+							<th><h4><u>Spent</u></h4></th>
+							<th><h4><u>Budget</u></h4></th>
+							<th><h4><u>Percent of Budget Used</u></h4></th>							
 						</tr>
 
 							{goals}

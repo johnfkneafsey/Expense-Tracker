@@ -67,6 +67,7 @@ export class ExpenseCategoryList extends React.Component {
 				<p></p>
 				<p></p>
 		</div>
+			
 	)
 	}
 }

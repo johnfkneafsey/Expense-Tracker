@@ -68,7 +68,7 @@ export class ExpenseInput extends React.Component {
 						<label className="category" >Expense Category</label>
 						<p></p>						
 	      		
-						  <select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" required>
+						  <select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" required>
 	      						{options}
 	        				</select>
 						<p></p>		

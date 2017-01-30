@@ -39,14 +39,14 @@ export class DisplayTransactions extends React.Component {
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
 					return (
-					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">{transaction.cost}</td><td className="center">{transaction.description}</td></tr>
+					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td></tr>
 					)
 				})
 			} else {
 				listOfTransactions = this.props.tempResults[0].filter(transaction => {
 					return (transaction.category == this.props.currentCategory)}).map((transaction, index) => {
 						return (
-							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>{transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td></tr>
+							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td></tr>
 						)
 				})
 			}
@@ -65,7 +65,7 @@ export class DisplayTransactions extends React.Component {
 				<label>Sort by category</label>
 						<p></p>						
 
-				<select name="expenseCategory" id='expenseCategory' className="form-control" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
+				<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 					<option value="All">All</option>					
 					{options}
 				</select>

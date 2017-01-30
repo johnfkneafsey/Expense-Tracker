@@ -504,7 +504,4 @@ fieldset[disabled] .btn-success.active {
   display: none;
 }
 
-.technologies { 
-    word-spacing: 100px !important;
-    display: inline-block;
-}
+
