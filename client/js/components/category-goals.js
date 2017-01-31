@@ -107,6 +107,8 @@ export class CategoryGoals extends React.Component {
 
 
 			<div>
+
+			
 			<div className="page-header makeColoredHeader">
 				<h3 className="steps">Expenses Summary</h3>
 			</div>

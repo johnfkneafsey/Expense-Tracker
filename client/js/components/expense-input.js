@@ -35,7 +35,9 @@ export class ExpenseInput extends React.Component {
 	    this.refs.dollars.value = "";
 	    this.refs.expenseCategory.value = "";
 	    this.refs.description.value = "";
-	}
+		this.props.dispatch(actions.asyncFetchAllTransactions());
+		
+}
 
   	render() {	
 
