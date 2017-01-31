@@ -39,18 +39,17 @@ export class DisplayTransactions extends React.Component {
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
 					return (
-					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td></tr>
+					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td><td><button className="glyphicon glyphicon-remove"></button></td></tr>
 					)
 				})
 			} else {
 				listOfTransactions = this.props.tempResults[0].filter(transaction => {
 					return (transaction.category == this.props.currentCategory)}).map((transaction, index) => {
 						return (
-							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td></tr>
+							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td><td><button className="glyphicon glyphicon-remove"></button></td></tr>
 						)
 				})
 			}
-		
 
 
 		}
@@ -59,7 +58,7 @@ export class DisplayTransactions extends React.Component {
 		<div className="component">
 			<div className="page-header makeColoredHeader">
 
-				<h3 className="steps">View detailed information about your expenses here</h3>
+				<h3 className="steps">View detailed information about your expenses</h3>
 			</div>
 			<form onSubmit={this.onSubmit}>
 				<label>Sort by category</label>
@@ -77,7 +76,7 @@ export class DisplayTransactions extends React.Component {
 				<p></p>	
 			<div>
 			<table className="table table-striped">
-				<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th></tr></thead>
+				<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th>Remove</th></tr></thead>
 				<tbody>
 					{listOfTransactions}
 				</tbody>

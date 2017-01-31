@@ -15,15 +15,14 @@ export class ExpenseInput extends React.Component {
 
   	handleChange(value, formattedValue) {
     	console.log({
-    	  value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
-     	 formattedValue: formattedValue // Formatted String, ex: "11/19/2016" 
+    	  value: value, 
+     	  formattedValue: formattedValue 
     	});
  	}
 
-  componentDidUpdate() {
-    // Access ISO String and formatted values from the DOM. 
+    componentDidUpdate() {
     var hiddenInputElement = document.getElementById("example-datepicker");
-}
+	}
 
   	onSubmit(event) {
   		event.preventDefault();

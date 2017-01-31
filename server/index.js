@@ -59,6 +59,7 @@ app.post('/expense', jsonParser, (req, res) => {
         })
 })
 
+
 app.post('/goal', jsonParser, (req, res) => {
     console.log(req.body, 'BODY FROM GOALS ENDPOINT');
     Goal
@@ -75,6 +76,7 @@ app.post('/goal', jsonParser, (req, res) => {
         })
 })
 
+
 app.get('/category', jsonParser, (req, res) => {
     Category
         .find()
@@ -87,6 +89,7 @@ app.get('/category', jsonParser, (req, res) => {
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
+
 
 app.get('/goal', jsonParser, (req, res) => {
     Goal
@@ -101,6 +104,7 @@ app.get('/goal', jsonParser, (req, res) => {
         })
 })
 
+
 app.get('/expense', jsonParser, (req, res) => {
     Expense
         .find()
@@ -113,6 +117,20 @@ app.get('/expense', jsonParser, (req, res) => {
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
+
+
+app.delete('/expense', jsonParser, (req, res) => {
+  Expense
+    .findByIdAndRemove(req.body.id)
+    .exec()
+    .then(() => {
+      res.status(204).json({message: 'success'});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 
 
 function runServer() {

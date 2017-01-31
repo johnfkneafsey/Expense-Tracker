@@ -68,8 +68,7 @@ export class ExpenseCategoryList extends React.Component {
 				<p></p>
 		</div>
 			
-	)
-	}
+	)}
 }
 
 const mapStateToProps = (state, props) => ({

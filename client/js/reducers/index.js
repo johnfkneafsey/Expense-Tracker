@@ -13,15 +13,15 @@ const initialState = {
 
 export const mainReducer = (state= initialState, action) => {
 	if (action.type === actions.ADD_EXPENSE_CATEGORY) {
-			let catego = action.category
-			let newGoal = {[catego]: 0}
-			let newObj = {name: catego};
-			setTimeout(()=> { console.log(store.getState(), "THIS IS THE CATEGORY GETSTATE")}, 3000);
-			return update(state, {
-				categories: {$push: [newObj]},
-				categoryTotals: {$merge: {[action.category]: 0}}
-  			})
-		}
+		let catego = action.category
+		let newGoal = {[catego]: 0}
+		let newObj = {name: catego};
+		setTimeout(()=> { console.log(store.getState(), "THIS IS THE CATEGORY GETSTATE")}, 3000);
+		return update(state, {
+			categories: {$push: [newObj]},
+			categoryTotals: {$merge: {[action.category]: 0}}
+  		})
+	}
 
 	if (action.type === actions.ADD_EXPENSE) {
 		let amount = action.dollars;
@@ -48,8 +48,9 @@ export const mainReducer = (state= initialState, action) => {
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE GOAL GETSTATE")}, 3000);
 		return update(state, {
 			goals: {$push: [newObj]}
-			})
+		})
 	}
+
 	if (action.type === actions.FETCH_ALL_CATEGORIES) {
 		let categories = action.categories;
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH categories GETSTATE")}, 3000);
@@ -57,6 +58,7 @@ export const mainReducer = (state= initialState, action) => {
 			categories: {$set: categories}
 		})		
 	}
+
 	if (action.type === actions.FETCH_ALL_GOALS) {
 		let goals = action.goals;
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH goals GETSTATE")}, 3000);
@@ -64,6 +66,7 @@ export const mainReducer = (state= initialState, action) => {
 			goals: {$set: goals}
 		})		
 	}
+
 	if (action.type === actions.FETCH_ALL_TRANSACTIONS) {
 		let transactions = action.transactions;
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH transactions GETSTATE")}, 3000);
@@ -72,6 +75,7 @@ export const mainReducer = (state= initialState, action) => {
 			tempResults: {$set: [transactions]}
 		})		
 	}
+	
 	if (action.type === actions.CHANGE_CURRENT_CATEGORY) {
 		setTimeout(()=> { console.log(store.getState(), "This is test for change currentCategory")}, 3000);
 		return update(state, {

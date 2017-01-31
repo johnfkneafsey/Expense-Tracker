@@ -67,10 +67,8 @@ export class ExpenseSummary extends React.Component {
 
     return (
 
-    
 			<div className="component">
 
-			
 			<div className="page-header makeColoredHeader">
 				<h3 className="steps">Expenses Summary</h3>
 			</div>
@@ -81,18 +79,11 @@ export class ExpenseSummary extends React.Component {
 							<th><h4><u>Budget</u></h4></th>
 							<th className="center-percentages"><h4><u>Percent of Budget Used</u></h4></th>							
 						</tr>
-
 							{goals}
-
 					</table>
-
 			</div>
-
-
-
     
-        )
-    }
+    )}
 }
 
 

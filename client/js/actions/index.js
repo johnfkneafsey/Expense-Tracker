@@ -136,7 +136,6 @@ export const asyncGetCategoryTotals = () => dispatch => {
     	}
     	return res.json(); 
   	})
-	// Response will come back as an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
 	.then(res => {
 		if (!res.ok) {
 			throw new Error(res.statusText);			
@@ -206,7 +205,6 @@ export const GET_CATEGORY_TOTALS = 'GET_CATEGORY_TOTALS';
 export const getCategoryTotals = (categoryTotals) => ({
 	type: GET_CATEGORY_TOTALS,
 	categoryTotals: categoryTotals
-	//categoryTotals should be an array of key value pairs like this:  [{food: 35}, {entertainment: 80}]
 })
 
 

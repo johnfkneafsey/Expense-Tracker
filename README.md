@@ -17,4 +17,11 @@ A full stack JavaScript application.
 
 * React, Redux, Express, Mongo, Node
 
+## To-Do
+
+* Add functionality for remove button
+* Add routers for components
+* Sort transactions by date
+* High level summary information for expenses summary.  Pie chart, total expenses, total budget
+
 

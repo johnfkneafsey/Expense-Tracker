@@ -31,11 +31,7 @@ export class Layout extends React.Component {
 				< ExpenseSummary />
 				< DisplayTransactions />
 			</div>	
-
-
-
-
-		);
+		)
 	}
 }
 
