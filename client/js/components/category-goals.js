@@ -13,12 +13,6 @@ export class CategoryGoals extends React.Component {
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
 
-						// <div className="progress">
-						// 	<div className="progress-bar" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
-						// 		{percentageVal}%
-						// 	</div>
-						// </div>
-
 	onSubmit(event) {
   		event.preventDefault();
   		let categoryAmount = parseInt((this.refs.dollars).value.trim());
@@ -70,7 +64,6 @@ export class CategoryGoals extends React.Component {
 				percentageVal = Math.floor((totalExpenses[otherTemp]/goal.goal) * 100)
 			}
 
-			
 			let divStyle = {width: `${percentageVal}%`}
 			return (
 						<tr key={index}>
@@ -110,8 +103,10 @@ export class CategoryGoals extends React.Component {
 				<p></p>
 				<p></p>
 				<p></p>
+
+
+
 			<div>
-				<div>
 			<div className="page-header makeColoredHeader">
 				<h3 className="steps">Expenses Summary</h3>
 			</div>
@@ -126,8 +121,6 @@ export class CategoryGoals extends React.Component {
 							{goals}
 
 					</table>
-				</div>
-				
 			</div>
 
 		</div>
