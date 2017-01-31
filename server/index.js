@@ -81,8 +81,8 @@ app.get('/category', jsonParser, (req, res) => {
     Category
         .find()
         .exec()
-        .then(expenses => {
-            res.json(expenses.map(expense => expense.apiRepr()))
+        .then(categories => {
+            res.json(categories.map(category => category.apiRepr()))
         })
         .catch(err => {
             console.log(err);
@@ -95,8 +95,8 @@ app.get('/goal', jsonParser, (req, res) => {
     Goal
         .find()
         .exec()
-        .then(expenses => {
-            res.json(expenses.map(expense => expense.apiRepr()))
+        .then(goals => {
+            res.json(goals.map(goal => goal.apiRepr()))
         })
         .catch(err => {
             console.log(err);
@@ -121,7 +121,7 @@ app.get('/expense', jsonParser, (req, res) => {
 
 app.delete('/expense', jsonParser, (req, res) => {
   Expense
-    .findByIdAndRemove(req.body.id)
+    .findByIdAndRemove(req.body.expenseId)
     .exec()
     .then(() => {
       res.status(204).json({message: 'success'});
@@ -146,10 +146,9 @@ function runServer() {
         }
         const host = HOST || 'localhost';
         console.log(`Listening on ${host}:${PORT}`);
-     });
-   });
-        
+        });
     });
+});
 }
 
 if (require.main === module) {

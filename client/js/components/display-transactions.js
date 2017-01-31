@@ -8,6 +8,7 @@ export class DisplayTransactions extends React.Component {
     	super(props);
     	this.onSubmit = this.onSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
+		this.onClick = this.onClick.bind(this);
   	}
 
 	handleChange(event) {
@@ -18,6 +19,12 @@ export class DisplayTransactions extends React.Component {
 
 	onSubmit(event) {
   		event.preventDefault();
+		this.props.dispatch(actions.asyncFetchAllTransactions());
+	}
+
+	onClick(expenseId) {
+		console.log(expenseId, "expenseId");
+		this.props.dispatch(actions.asyncDeleteExpense(expenseId));
 		this.props.dispatch(actions.asyncFetchAllTransactions());
 	}
 	
@@ -34,24 +41,21 @@ export class DisplayTransactions extends React.Component {
 		});
 		let listOfTransactions;
 		if (this.props.tempResults[0]) {
-
-
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.tempResults[0].map((transaction, index) => {
 					return (
-					<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td><td><button className="glyphicon glyphicon-remove"></button></td></tr>
+						<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td><td><button className="glyphicon glyphicon-remove" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
 					)
 				})
 			} else {
 				listOfTransactions = this.props.tempResults[0].filter(transaction => {
-					return (transaction.category == this.props.currentCategory)}).map((transaction, index) => {
+					return (
+						transaction.category == this.props.currentCategory)}).map((transaction, index) => {
 						return (
-							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td><td><button className="glyphicon glyphicon-remove"></button></td></tr>
+							<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category.capitalize()}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td><td><button className="glyphicon glyphicon-remove" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="button"></button></td></tr>
 						)
 				})
 			}
-
-
 		}
 
 	return (

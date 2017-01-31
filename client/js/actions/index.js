@@ -151,6 +151,34 @@ export const asyncGetCategoryTotals = () => dispatch => {
 }
 
 
+export const asyncDeleteExpense = (expenseId) => dispatch => {
+	console.log("Beginning to fetch delete")
+	console.log(expenseId)
+	return fetch('/expense', {
+		method: 'delete',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({expenseId: expenseId})
+
+	})
+	.then(res => {
+		if (!res.ok) {
+			throw new Error(res.statusText);			
+		}
+		return res.json();
+	})
+	.then(_res => {
+		console.log(_res, "THIS IS THE RESPONSE FOR DELETE")
+		return dispatch(deleteExpense(_res.expenseId))
+	})
+	.catch(error => {
+		return error;
+	})
+}
+
+
 
 export const ADD_EXPENSE_CATEGORY = 'ADD_EXPENSE_CATEGORY';
 export const addExpenseCategory = (category) => ({
@@ -166,6 +194,12 @@ export const addExpense = (dollars, category, description, date) => ({
 	category: category,
 	description: description,
 	date: date
+})
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const deleteExpense = (expenseId) => ({
+	type: DELETE_EXPENSE,
+	expenseId: expenseId
 })
 
 
