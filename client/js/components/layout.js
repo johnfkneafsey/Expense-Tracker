@@ -4,6 +4,7 @@ import CategoryGoals from './category-goals';
 import ExpenseInput from './expense-input';
 import DisplayTransactions from './display-transactions';
 import ExpenseSummary from './expense-summary';
+import ExpenseChart from './expense-chart';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
@@ -29,6 +30,7 @@ export class Layout extends React.Component {
 				< CategoryGoals />
 				< ExpenseInput />
 				< ExpenseSummary />
+				< ExpenseChart />
 				< DisplayTransactions />
 			</div>	
 		)

@@ -61,6 +61,7 @@ export class ExpenseInput extends React.Component {
 						<label className="datePicker">Select a Date</label>
 						<p></p>						
 						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
+						<p></p>	
 						<label> Expense Amount </label>
 						<p></p>						
 						<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>

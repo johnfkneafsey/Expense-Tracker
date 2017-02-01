@@ -40,7 +40,6 @@ app.post('/category', jsonParser, (req, res) => {
 });
 
 
-
 app.post('/expense', jsonParser, (req, res) => {
     console.log(req.body, 'BODY FROM EXPENSE ENDPOINT');
     Expense
