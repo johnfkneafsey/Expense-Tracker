@@ -64,11 +64,20 @@ export class ExpenseChart extends React.Component {
         console.log(totalExpenseBudgets, 'GOALS ARRAY');
         console.log(summedExpenses, 'SUMMED EXPENSES')
 
-
-
-
         let radarData = {
             labels: totalExpensesCategory,
+        /*    options: {
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(51, 51, 51)',
+                        fontSize: '30'
+                    }
+                }
+            }    */
+            options: {
+                scaleFontSize : 26,scaleFontColor : 'rgb(51,51,51)'}               
+            ,
             datasets: [
                 {
                 label: 'Budget',
@@ -78,6 +87,7 @@ export class ExpenseChart extends React.Component {
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(44,62,80)',
+                options: {scaleFontSize : 26,scaleFontColor : 'rgb(51,51,51)'},
                 data: totalExpenseBudgets
 
                 },
@@ -88,6 +98,7 @@ export class ExpenseChart extends React.Component {
                 pointBackgroundColor: 'rgb(24,188,156)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
+                options: {scaleFontSize : 26,scaleFontColor : 'rgb(51,51,51)'},                
                 pointHoverBorderColor: 'rgb(24,188,156)',
                 /*
                 fillColor : "rgb(24,188,156)",
@@ -103,6 +114,8 @@ export class ExpenseChart extends React.Component {
 
         let doughnutData = {
             labels: totalExpensesCategory,
+            options: {
+                legend:{display: true,labels:{fontSize:100,boxWidth:100}}},
             datasets: [{
                 data: totalExpensesAmount,
                 backgroundColor: [
@@ -129,9 +142,9 @@ export class ExpenseChart extends React.Component {
           return (
             <div className="component">
                 <div>
-                    <h2>Spent vs. Budgeted by Category</h2>
+                    <h3>Spent vs. Budgeted by Category</h3>
                     <Radar className="chart" data={radarData} />
-                    <h2>Category Breakdown</h2>
+                    <h3>Expeditures by Category</h3>
                     <Doughnut className="chart" data={doughnutData} />
                 </div>
             </div>
