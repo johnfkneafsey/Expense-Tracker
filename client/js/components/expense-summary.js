@@ -43,6 +43,7 @@ export class ExpenseSummary extends React.Component {
 		})
 
 		let goals = this.props.goals.map((goal,index)=>{
+            console.log(goal.goal, 'GOAL OT GOAL');
 			let otherTemp = goal.category;
 			let percentageVal;
 			if (Math.floor((totalExpenses[otherTemp]/goal.goal) * 100) > 100) {

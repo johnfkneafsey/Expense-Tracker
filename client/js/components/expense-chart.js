@@ -18,7 +18,7 @@ export class ExpenseChart extends React.Component {
 		}
 
 		let totalExpenses = {} 
-		
+
 		for (let i=0; i<this.props.categories.length; i++) {
 			let temp = this.props.categories[i].name;
 			totalExpenses[temp] = 0;
@@ -36,67 +36,67 @@ export class ExpenseChart extends React.Component {
         for (let key in totalExpenses) {
             console.log(totalExpenses[key], 'AMOUNT')
             console.log(key, 'KEY')
+            
             totalExpensesCategory.push(key.capitalize());
             totalExpensesAmount.push(totalExpenses[key]);
-            totalExpenseBudgets.push()
+            
+            for (let i=0; i<this.props.goals.length; i++) {
+                let temp = this.props.goals[i].category;
+                console.log(temp, 'SHOULD BE CATEGORY NAME')
+                console.log(this.props.goals[i], 'THIS IS TEMP BIG CAT')
+                if (key === temp) {
+                   totalExpenseBudgets.push(this.props.goals[i].goal)                              
+                }
+            }
         }
+
+
+
+        console.log(totalExpenses, "TOTAL EXPENSES")
 
         let summedExpenses = totalExpensesAmount.reduce((a, b) => {
             return a + b;
         }, 0);
+
+
         console.log(totalExpensesCategory, 'CATEGORY ARRAY');
         console.log(totalExpensesAmount, 'EXPENSES ARRAY');
+        console.log(totalExpenseBudgets, 'GOALS ARRAY');
         console.log(summedExpenses, 'SUMMED EXPENSES')
-
-        let goals = this.props.goals.map((goal,index)=>{
-                console.log(goal.goal, 'GOAL DOT GOAL');
-            return (
-                "hello"
-            )
-
-            let divStyle = {width: `${percentageVal}%`}
-            return (
-                        <tr key={index}>
-                            <td><b>{goal.category.capitalize()}</b></td>
-                            <td className="center">${totalExpenses[otherTemp]}</td>
-                            <td className="center">${goal.goal}</td>
-                            <div className="progress">
-                                <div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
-                                    {percentageVal}%
-                                </div>
-                            </div>	
-                        </tr>
-            );
-        })
-
-
-
 
 
 
 
         let radarData = {
-            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+            labels: totalExpensesCategory,
             datasets: [
                 {
-                label: 'My First dataset',
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                borderColor: 'rgba(179,181,198,1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
+                label: 'Budget',
+                backgroundColor: 'rgba(45,126,127,0.20)',
+                borderColor: 'rgb(44,62,80)',
+                pointBackgroundColor: 'rgb(44,62,80)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
+                pointHoverBorderColor: 'rgb(44,62,80)',
+                data: totalExpenseBudgets
+
                 },
                 {
-                label: 'My Second dataset',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
+                label: 'Spent',
+                backgroundColor: 'rgba(79,250,127,0.20)',
+                borderColor: 'rgb(24,188,156)',
+                pointBackgroundColor: 'rgb(24,188,156)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
+                pointHoverBorderColor: 'rgb(24,188,156)',
+                /*
+                fillColor : "rgb(24,188,156)",
+                strokeColor : "rgb(24,188,156)",
+                pointColor : "rgb(24,188,156)",
+                pointStrokeColor : "rgb(24,188,156)",
+                pointHighlightFill : "rgb(24,188,156)",
+                pointHighlightStroke : "rgb(24,188,156)", */
+                data: totalExpensesAmount
                 }
             ]
             };
@@ -129,7 +129,7 @@ export class ExpenseChart extends React.Component {
           return (
             <div className="component">
                 <div>
-                    <h2>Total Expenditures by Day</h2>
+                    <h2>Spent vs. Budgeted by Category</h2>
                     <Radar className="chart" data={radarData} />
                     <h2>Category Breakdown</h2>
                     <Doughnut className="chart" data={doughnutData} />
