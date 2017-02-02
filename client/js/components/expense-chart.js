@@ -122,15 +122,15 @@ export class ExpenseChart extends React.Component {
                 '#FF6384',
                 '#36A2EB',
                 '#FFCE56',
-                '#ffce56',
-                '#66ff66'
+                '#66ff66',
+                '#9933ff'
                 ],
                 hoverBackgroundColor: [
                 '#FF6384',
                 '#36A2EB',
                 '#FFCE56',
-                '#ffce56',
-                '#66ff66'
+                '#66ff66',
+                '#9933ff'
                 ]
             }]
         };
