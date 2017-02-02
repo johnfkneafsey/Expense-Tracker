@@ -21,6 +21,7 @@ const jsonParser = bodyParser.json();
 
 app.use(express.static(process.env.CLIENT_PATH));
 
+/* old guy
 //'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp'
 function runServer() {
     return new Promise((resolve, reject) => {
@@ -43,6 +44,8 @@ function runServer() {
 if (require.main === module) {
     runServer();
 }
+*/
+
 
 // NEW GUY
 let server;
