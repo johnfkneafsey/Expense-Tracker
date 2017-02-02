@@ -28,8 +28,9 @@ export class ExpenseCategoryList extends React.Component {
 		this.refs.newCategory.value = "";
 	};
 
-	render() {
 
+	render() {
+	
 	let categories = this.props.categories.map((category,index)=>{
 			return (
 				<li key={index} className="list-group-item">{category.name.capitalize()}</li>

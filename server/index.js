@@ -2,19 +2,78 @@
 import express from 'express';
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+/*old
 const HOST = process.env.HOST;
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
+*/
+// new guy
+const DATABASE_URL = 'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp';
+const PORT = 37759;
 
 const {Category, Expense, Goal} = require('./models');
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
+
 
 const app = express();
 mongoose.Promise = global.Promise;
 const jsonParser = bodyParser.json();
 
 app.use(express.static(process.env.CLIENT_PATH));
+
+//'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp'
+function runServer() {
+    return new Promise((resolve, reject) => {
+        mongoose.connect('mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp', function(err){
+        if(err) {
+            return reject(err);
+        }
+        app.listen(PORT, HOST, (err) => {
+        if (err) {
+            console.error(err);
+            reject(err);
+        }
+        const host = HOST || 'localhost';
+        console.log(`Listening on ${host}:${PORT}`);
+        });
+    });
+});
+}
+
+if (require.main === module) {
+    runServer();
+}
+
+// NEW GUY
+let server;
+
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+
+      app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+
+// `closeServer` function is here in original code
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+
+
+
 
 app.get('/', (req, res) => {
     Category
@@ -130,26 +189,3 @@ app.delete('/expense', jsonParser, (req, res) => {
       res.status(500).json({error: 'something went terribly wrong'});
     });
 });
-
-//'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp'
-function runServer() {
-    return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp', function(err){
-        if(err) {
-            return reject(err);
-        }
-        app.listen(PORT, HOST, (err) => {
-        if (err) {
-            console.error(err);
-            reject(err);
-        }
-        const host = HOST || 'localhost';
-        console.log(`Listening on ${host}:${PORT}`);
-        });
-    });
-});
-}
-
-if (require.main === module) {
-    runServer();
-}

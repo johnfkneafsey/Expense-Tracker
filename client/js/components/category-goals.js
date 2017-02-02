@@ -40,7 +40,17 @@ export class CategoryGoals extends React.Component {
 				<option key={index} value={category.name}>{category.name.capitalize()}</option>
 			);
 		})
-		
+
+		let categories = this.props.categories.map((category,index)=>{
+				return (
+					<div className="budget-checkmarks" key={index}>
+						{category.name.capitalize()} 
+							
+					</div>
+				);
+			})
+
+
 	return (
 		<div className="component">
 			<div className="page-header makeColoredHeader">
@@ -64,8 +74,12 @@ export class CategoryGoals extends React.Component {
 				</form>
 			</div>
 				<p></p>
-				<p></p>
-				<p></p>
+
+			<div className="row">
+				<div className="list-group">
+						{categories}
+				</div>
+			</div>
 
 		</div>
 
