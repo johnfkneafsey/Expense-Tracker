@@ -6,12 +6,19 @@ import store from '../store';
 export class CategoryGoals extends React.Component {
 	constructor(props) {
     	super(props);
+		this.state = {};
     	this.onSubmit = this.onSubmit.bind(this);
+    	this.completeStatus = this.completeStatus.bind(this);
+		this.getBudget = this.getBudget.bind(this);
   	}
 
   	componentDidMount() {
+		console.log('DID THIS MOTHA FUCKA MOUNT>?????111111111111111111111111')
+		this.setState({massive: 'fartbaby'})
+		console.log(this.state, 'CAN I GET A FARTH BABBY???');
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
+
 
 	onSubmit(event) {
   		event.preventDefault();
@@ -29,7 +36,33 @@ export class CategoryGoals extends React.Component {
 		this.refs.dollars.value = "";
 	};
 
+	completeStatus(goalCategory) {
+		for (let i = 0; i < this.props.goals.length; i++) {
+			if (goalCategory === this.props.goals[i].category) {
+				console.log('ITS A MATCH OMGGG', goalCategory, ' AND ', this.props.goals[i].category)
+				return 'glyphicon glyphicon-ok';
+			}
+		}
+			return 'glyphicon glyphicon-option-horizontal';	
+	}
+
+	getBudget(categoryName) {
+		for (let i = 0; i < this.props.goals.length; i++) {
+			if (this.props.goals[i].category === categoryName) {
+				return this.props.goals[i].goal;
+			}
+		}
+	}
+
 	render() {
+
+		let categories = this.props.categories.map((category,index)=>{
+			return (
+				<div>
+					<tr key={index} className='budgets'> <td> {category.name.capitalize()}  :  {this.getBudget(category.name)}  </td>  </tr> <span className={this.completeStatus(category.name) + ' centerMarks'} aria-hidden="true"></span>  
+				</div>
+			);
+		})
 
 		String.prototype.capitalize = function() {
     		return this.charAt(0).toUpperCase() + this.slice(1);
@@ -40,16 +73,6 @@ export class CategoryGoals extends React.Component {
 				<option key={index} value={category.name}>{category.name.capitalize()}</option>
 			);
 		})
-
-		let categories = this.props.categories.map((category,index)=>{
-				return (
-					<div className="budget-checkmarks" key={index}>
-						{category.name.capitalize()} 
-							
-					</div>
-				);
-			})
-
 
 	return (
 		<div className="component">
@@ -65,7 +88,7 @@ export class CategoryGoals extends React.Component {
 						<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 							{options}
 						</select>
-						<p></p>
+					<p></p>
 					<label>Category Budget</label>
 					<p></p>
 						<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
@@ -74,13 +97,11 @@ export class CategoryGoals extends React.Component {
 				</form>
 			</div>
 				<p></p>
-
-			<div className="row">
-				<div className="list-group">
-						{categories}
-				</div>
+			<div>
+			<ul>
+					{categories}
+			</ul>
 			</div>
-
 		</div>
 
 	)}

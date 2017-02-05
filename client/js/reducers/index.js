@@ -1,14 +1,18 @@
 import update from 'immutability-helper';
 import * as actions from '../actions/index';
+import {calendar} from '../calendar';
 import store from '../store';
+
+console.log(calendar, 'DIS DAT CALENDARRRRRR');
+
 
 const initialState = {
 	categories: [],
 	expenses: [],
 	goals: [],
-	tempResults: [],
 	currentCategory: 'All',
-	categoryTotals: []
+	categoryTotals: [],
+	calendar: calendar
 }
 
 export const mainReducer = (state= initialState, action) => {
@@ -72,7 +76,6 @@ export const mainReducer = (state= initialState, action) => {
 		setTimeout(()=> { console.log(store.getState(), "THIS IS THE FETCH transactions GETSTATE")}, 3000);
 		return update(state, {
 			expenses: {$set: [transactions]},
-			tempResults: {$set: [transactions]}
 		})		
 	}
 	
@@ -82,6 +85,7 @@ export const mainReducer = (state= initialState, action) => {
 			currentCategory: {$set: action.tempCategory}
 		})
 	}
+
 
 	return state;
 }

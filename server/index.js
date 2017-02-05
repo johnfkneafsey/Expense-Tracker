@@ -2,13 +2,12 @@
 import express from 'express';
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-/*old
+
 const HOST = process.env.HOST;
-const PORT = 8080;
-*/
+
 // new guy
-const DATABASE_URL = 'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp';
-const PORT = 37759;
+const DATABASE_URL = 'mongodb://localhost/MintLite';
+const PORT = 8080;
 
 const {Category, Expense, Goal} = require('./models');
 
@@ -21,11 +20,11 @@ const jsonParser = bodyParser.json();
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-/* old guy
+
 //'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp'
 function runServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp', function(err){
+        mongoose.connect('mongodb://localhost/MintLite', function(err){
         if(err) {
             return reject(err);
         }
@@ -44,38 +43,6 @@ function runServer() {
 if (require.main === module) {
     runServer();
 }
-*/
-
-
-// NEW GUY
-let server;
-
-function runServer(databaseUrl=DATABASE_URL, port=PORT) {
-  return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
-      if (err) {
-        return reject(err);
-      }
-
-      app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
-        resolve();
-      })
-      .on('error', err => {
-        mongoose.disconnect();
-        reject(err);
-      });
-    });
-  });
-}
-
-// `closeServer` function is here in original code
-
-if (require.main === module) {
-  runServer().catch(err => console.error(err));
-};
-
-
 
 
 app.get('/', (req, res) => {

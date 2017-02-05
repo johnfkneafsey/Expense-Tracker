@@ -242,3 +242,9 @@ export const getCategoryTotals = (categoryTotals) => ({
 })
 
 
+export const FETCH_CALENDAR = 'FETCH_CALENDAR';
+export const asyncFetchCalendar = (calendar) => ({
+	type: FETCH_CALENDAR,
+	calendar: calendar
+})
+
