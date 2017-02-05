@@ -11,12 +11,7 @@ export class ExpenseChart extends React.Component {
   	}
 
 
-      render () {
-
-		String.prototype.capitalize = function() {
-    		return this.charAt(0).toUpperCase() + this.slice(1);
-		}
-
+      radarData () {
 		let totalExpenses = {} 
 
 		for (let i=0; i<this.props.categories.length; i++) {
@@ -94,7 +89,58 @@ export class ExpenseChart extends React.Component {
                 data: totalExpensesAmount
                 }
             ]
-            };
+        };
+        return radarData;        
+      }
+
+      doughnutData () {
+        let totalExpenses = {} 
+
+		for (let i=0; i<this.props.categories.length; i++) {
+			let temp = this.props.categories[i].name;
+			totalExpenses[temp] = 0;
+			for(let k=0; k<this.props.expenses[0].length; k++){
+				let newTemp = this.props.expenses[0];
+				if (newTemp[k].category === temp) {
+					totalExpenses[temp] += newTemp[k].cost;
+				}
+			}
+		}
+
+        let totalExpensesCategory = [];
+        let totalExpensesAmount = [];
+        let totalExpenseBudgets = [];
+        for (let key in totalExpenses) {
+            console.log(totalExpenses[key], 'AMOUNT')
+            console.log(key, 'KEY')
+            
+            totalExpensesCategory.push(key.capitalize());
+            totalExpensesAmount.push(totalExpenses[key]);
+            
+            for (let i=0; i<this.props.goals.length; i++) {
+                let temp = this.props.goals[i].category;
+                console.log(temp, 'SHOULD BE CATEGORY NAME')
+                console.log(this.props.goals[i], 'THIS IS TEMP BIG CAT')
+                if (key === temp) {
+                   totalExpenseBudgets.push(this.props.goals[i].goal)                              
+                }
+            }
+        }
+
+
+
+        console.log(totalExpenses, "TOTAL EXPENSES")
+
+        let summedExpenses = totalExpensesAmount.reduce((a, b) => {
+            return a + b;
+        }, 0);
+
+
+        console.log(totalExpensesCategory, 'CATEGORY ARRAY');
+        console.log(totalExpensesAmount, 'EXPENSES ARRAY');
+        console.log(totalExpenseBudgets, 'GOALS ARRAY');
+        console.log(summedExpenses, 'SUMMED EXPENSES')
+
 
         let doughnutData = {
             labels: totalExpensesCategory,
@@ -119,17 +165,26 @@ export class ExpenseChart extends React.Component {
             }]
         };
 
-        
-        console.log(doughnutData.datasets.data, 'THIS IS THE DATA SET FROM DONUTS')
-        console.log(doughnutData.labels, 'THese ARE THE LAVBELS  FROM DONUTS')
+        return doughnutData;
+
+      }
+
+
+
+
+
+
+      render () {
+
+
 
           return (
             <div className="component">
                 <div>
                     <h3>Spent vs. Budgeted by Category</h3>
-                    <Radar className="chart" data={radarData} />
+                    <Radar className="chart" data={this.radarData()} />
                     <h3>Expeditures by Category</h3>
-                    <Doughnut className="chart" data={doughnutData} />
+                    <Doughnut className="chart" data={this.doughnutData()} />
                 </div>
             </div>
           )
