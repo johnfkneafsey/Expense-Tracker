@@ -3,7 +3,6 @@ import * as actions from '../actions/index';
 import {calendar} from '../calendar';
 import store from '../store';
 
-console.log(calendar, 'DIS DAT CALENDARRRRRR');
 
 
 const initialState = {

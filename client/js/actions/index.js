@@ -85,7 +85,6 @@ export const asyncFetchAllCategories = () => dispatch => {
     	return res.json(); 
   	})
   	.then(_res => {
-	  	console.log(_res, "TRYING TO GET GET RESULTS");
      	dispatch(fetchAllCategories(_res))
 	})
   	.catch(error => {
@@ -102,7 +101,6 @@ export const asyncFetchAllGoals = () => dispatch => {
     	return res.json(); 
   	})
   	.then(_res => {
-	  	console.log(_res, "TRYING TO GET GET RESULTS");
      	dispatch(fetchAllGoals(_res))
 	})
   	.catch(error => {
@@ -119,7 +117,6 @@ export const asyncFetchAllTransactions = (category='All') => dispatch => {
     	return res.json(); 
   	})
   	.then(_res => {
-	  	console.log(_res, "TRYING TO GET GET RESULTS");
      	dispatch(fetchAllTransactions(_res))
 	})
   	.catch(error => {
@@ -152,8 +149,6 @@ export const asyncGetCategoryTotals = () => dispatch => {
 
 
 export const asyncDeleteExpense = (expenseId) => dispatch => {
-	console.log("Beginning to fetch delete")
-	console.log(expenseId)
 	return fetch('/expense', {
 		method: 'delete',
 		headers: {

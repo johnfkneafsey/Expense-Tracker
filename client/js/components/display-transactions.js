@@ -8,8 +8,6 @@ export class DisplayTransactions extends React.Component {
 	constructor(props) {
     	super(props);
 		this.onClick = this.onClick.bind(this);
-    	this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
-    	this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
   	}
 
@@ -52,12 +50,9 @@ export class DisplayTransactions extends React.Component {
 	}
 
 	onClick(expenseId) {
-		console.log(expenseId, "expenseId");
 		this.props.dispatch(actions.asyncDeleteExpense(expenseId));
 		this.props.dispatch(actions.asyncFetchAllTransactions());
 	}
-
-
 
 
 	render() {
@@ -75,40 +70,24 @@ export class DisplayTransactions extends React.Component {
 
 		let listOfTransactions;
 		if (this.props.expenses[0]) {
-			console.log('expenses found')
 			if (this.props.currentCategory === "All") {
-				console.log('do you see all')
 				listOfTransactions = this.props.expenses[0].map((transaction, index) => {
-					console.log('are we mapping through all')
-					console.log(this.props.calendar.indexOf(this.onSubmitStart()), 'WHERE OUR ADVENTURE BEGINS')
-					console.log(this.props.calendar.indexOf(this.onSubmitEnd()), 'WHERE OUR ADVENTURE ends')
 					for (let i = this.props.calendar.indexOf(this.onSubmitStart()); i <= this.props.calendar.indexOf(this.onSubmitEnd()); i++) {
-						console.log('6 fart babies')
-						console.log(this.props.calendar[i]);
-						console.log(transaction.date);
 						if (this.props.calendar[i] === transaction.date) {			
 					return (
 						<tr key={index}><td>{transaction.date}</td><td className="center">{transaction.category.capitalize()}</td><td className="center">${transaction.cost}</td><td className="center">{transaction.description}</td><td><button className="glyphicon glyphicon-remove" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
 					)
 				}}})
 			} else {
-				console.log('or do you see else?')
 				listOfTransactions = this.props.expenses[0].filter(transaction => {
 					return (
 						transaction.category == this.props.currentCategory)}).map((transaction, index) => {
-					console.log('are we mapping through else?')
-							for (let i = this.props.calendar.indexOf(this.onSubmitStart); i < this.props.calendar.indexOf(this.onSubmitEnd); i++) {
+							for (let i = this.props.calendar.indexOf(this.onSubmitStart()); i < this.props.calendar.indexOf(this.onSubmitEnd()); i++) {
 							if (this.props.calendar[i] === transaction.date) {
 								return (
 									<tr key={index}><td><bold>{transaction.date}</bold></td><td><bold>{transaction.category.capitalize()}</bold></td><td><bold>${transaction.cost}</bold></td><td><bold>{transaction.description}</bold></td><td><button className="glyphicon glyphicon-remove" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="button"></button></td></tr>
 								)
 			}}} )}}
-
-
-
-
-		
-
 
 
 	return (

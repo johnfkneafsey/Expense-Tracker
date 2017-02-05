@@ -13,9 +13,7 @@ export class CategoryGoals extends React.Component {
   	}
 
   	componentDidMount() {
-		console.log('DID THIS MOTHA FUCKA MOUNT>?????111111111111111111111111')
 		this.setState({massive: 'fartbaby'})
-		console.log(this.state, 'CAN I GET A FARTH BABBY???');
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
 
@@ -39,7 +37,6 @@ export class CategoryGoals extends React.Component {
 	completeStatus(goalCategory) {
 		for (let i = 0; i < this.props.goals.length; i++) {
 			if (goalCategory === this.props.goals[i].category) {
-				console.log('ITS A MATCH OMGGG', goalCategory, ' AND ', this.props.goals[i].category)
 				return 'glyphicon glyphicon-ok';
 			}
 		}

@@ -66,15 +66,6 @@ export class ExpenseChart extends React.Component {
 
         let radarData = {
             labels: totalExpensesCategory,
-        /*    options: {
-                legend: {
-                    display: true,
-                    labels: {
-                        fontColor: 'rgb(51, 51, 51)',
-                        fontSize: '30'
-                    }
-                }
-            }    */
             options: {
                 scaleFontSize : 26,scaleFontColor : 'rgb(51,51,51)'}               
             ,
@@ -100,13 +91,6 @@ export class ExpenseChart extends React.Component {
                 pointHoverBackgroundColor: '#fff',
                 options: {scaleFontSize : 26,scaleFontColor : 'rgb(51,51,51)'},                
                 pointHoverBorderColor: 'rgb(24,188,156)',
-                /*
-                fillColor : "rgb(24,188,156)",
-                strokeColor : "rgb(24,188,156)",
-                pointColor : "rgb(24,188,156)",
-                pointStrokeColor : "rgb(24,188,156)",
-                pointHighlightFill : "rgb(24,188,156)",
-                pointHighlightStroke : "rgb(24,188,156)", */
                 data: totalExpensesAmount
                 }
             ]

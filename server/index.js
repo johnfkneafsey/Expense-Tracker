@@ -54,13 +54,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/category', jsonParser, (req, res) => {
-    console.log(req.body, 'BODY FROM CATEGORY ENDPOINT');
     Category
         .create({
             name: req.body.name
         })
         .then(category => {
-            console.log(category, "CONSOLE LOGGING CATEGORY RES")
             res.status(201).json(category.apiRepr())
         })
         .catch(err => {
@@ -70,7 +68,6 @@ app.post('/category', jsonParser, (req, res) => {
 
 
 app.post('/expense', jsonParser, (req, res) => {
-    console.log(req.body, 'BODY FROM EXPENSE ENDPOINT');
     Expense
         .create({
             category: req.body.category,    
@@ -79,7 +76,6 @@ app.post('/expense', jsonParser, (req, res) => {
             date: req.body.date
         })
         .then(expense => {
-            console.log(expense, "CONSOLE LOGGING EXPENSE RES");
             res.status(201).json(expense.apiRepr())
         })
         .catch(err => {
@@ -89,14 +85,12 @@ app.post('/expense', jsonParser, (req, res) => {
 
 
 app.post('/goal', jsonParser, (req, res) => {
-    console.log(req.body, 'BODY FROM GOALS ENDPOINT');
     Goal
         .create({
             category: req.body.category,
             goal: req.body.goal 
         })
         .then(goal => {
-            console.log(goal, "CONSOLE LOGGING GOAL RES");
             res.status(201).json(goal.apiRepr())
         })
         .catch(err => {
@@ -113,7 +107,6 @@ app.get('/category', jsonParser, (req, res) => {
             res.json(categories.map(category => category.apiRepr()))
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
@@ -127,7 +120,6 @@ app.get('/goal', jsonParser, (req, res) => {
             res.json(goals.map(goal => goal.apiRepr()))
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
@@ -141,7 +133,6 @@ app.get('/expense', jsonParser, (req, res) => {
             res.json(expenses.map(expense => expense.apiRepr()))
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({error: 'Something went horribly wrong'})
         })
 })
@@ -155,7 +146,6 @@ app.delete('/expense', jsonParser, (req, res) => {
       res.status(204).json({message: 'success'});
     })
     .catch(err => {
-      console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
     });
 });
