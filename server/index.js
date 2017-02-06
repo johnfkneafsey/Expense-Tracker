@@ -24,7 +24,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 //'mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp'
 function runServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://localhost/MintLite', function(err){
+        mongoose.connect('mongodb://testuser:testpassword@ds137759.mlab.com:37759/easybudgetapp', function(err){
         if(err) {
             return reject(err);
         }
