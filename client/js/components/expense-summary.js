@@ -7,11 +7,34 @@ import store from '../store';
 export class ExpenseSummary extends React.Component {
 	constructor(props) {
     	super(props);
+		this.getTotalBudget = this.getTotalBudget.bind(this);
+		this.getTotalSpent = this.getTotalSpent.bind(this);
   	}
 
   	componentDidMount() {
   		this.props.dispatch(actions.asyncFetchAllGoals());
+		this.props.dispatch(actions.asyncFetchAllTransactions());
   	}
+
+	getTotalBudget() {
+		let totalBudget = 0;
+		for (let i = 0; i < this.props.goals.length; i++) {	
+			totalBudget += this.props.goals[i].goal;	
+		}
+		return totalBudget;
+	}
+
+	getTotalSpent() {
+		let totalSpent = 0;
+		let placeholder = this.props.expenses[0];
+		if (placeholder) {
+			for (let i = 0; i < placeholder.length; i++) {	
+				totalSpent += placeholder[i].cost;	
+			}
+			return totalSpent
+		}
+		return totalSpent;
+	}
 
 
     render() {
@@ -54,7 +77,7 @@ export class ExpenseSummary extends React.Component {
 			let divStyle = {width: `${percentageVal}%`}
 			return (
 						<tr key={index}>
-							<td><b>{goal.category.capitalize()}</b></td>
+							<td className="category-title"><b>{goal.category.capitalize()}</b></td>
 							<td className="center">${totalExpenses[otherTemp]}</td>
 							<td className="center">${goal.goal}</td>
 							<div className="progress">
@@ -66,21 +89,49 @@ export class ExpenseSummary extends React.Component {
 			);
 		})
 
+		let percentageValue;
+			if (Math.floor((this.getTotalSpent()/this.getTotalBudget()) * 100) > 100) {
+				percentageValue = 100
+			} else {
+				percentageValue = Math.floor((this.getTotalSpent()/this.getTotalBudget()) * 100)
+			}
+
+			let totalDivStyle = {width: `${percentageValue}%`}
+
+		let totals = 
+			<tr>
+				<td className="category-title"><b><h5>Total</h5></b></td>
+				<td className="center"><b><h5>${this.getTotalSpent()}</h5></b></td>
+				<td className="center"><b><h5>${this.getTotalBudget()}</h5></b></td>
+				<div className="progress">
+					<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageValue}" aria-valuemin="0" aria-valuemax="100" style={totalDivStyle}> 
+						{percentageValue}%
+					</div>
+				</div>
+			</tr>
+
     return (
 
 			<div className="component">
 
 			<div className="page-header makeColoredHeader">
-				<h3 className="steps">Expenses Summary</h3>
+				<h3 className="steps">Summary of your expenses</h3>
 			</div>
 					<table className="table">
 						<tr>
 							<th><h4><u>Category</u></h4></th>
-							<th><h4><u>Spent</u></h4></th>
-							<th><h4><u>Budget</u></h4></th>
+							<th><h4 className="center"><u className="center">Spent</u></h4></th>
+							<th><h4 className="center"><u className="center">Budget</u></h4></th>
 							<th className="center-percentages"><h4><u>Percent of Budget Used</u></h4></th>							
 						</tr>
 							{goals}
+						<tr className="center-no-height">
+							<td className="category-title center-no-height">__________</td>
+							<td className="center"><b className="center">__________</b></td>
+							<td className="center"><b className="center">__________</b></td>
+							<td className="center"><b className="center">________________________________________________________________________________</b></td>
+						</tr>							
+							{totals}
 					</table>
 			</div>
     

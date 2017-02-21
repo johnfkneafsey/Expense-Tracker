@@ -5,9 +5,10 @@ import ExpenseInput from './expense-input';
 import DisplayTransactions from './display-transactions';
 import ExpenseSummary from './expense-summary';
 import ExpenseChart from './expense-chart';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
+// import Login from './sign-in';
 
 export class Layout extends React.Component {
 	constructor(props) {
@@ -15,22 +16,33 @@ export class Layout extends React.Component {
   	}
 
 	componentDidMount() {
-		let categoryPromise = fetch('/category');
-		let goalsPromise = fetch('/goal');
-		let expensePromise = fetch('/expense');
 		this.props.dispatch(actions.asyncFetchAllTransactions());
 	}
 
+	// add back login
 	render() { 
 
 		return (
 			<div className="allText">
-				< ExpenseCategoryList  />
-				< CategoryGoals />
-				< ExpenseInput />
-				< ExpenseSummary />
-				< ExpenseChart />
-				< DisplayTransactions />
+				<section name="ExpenseCategoryList"  id="ExpenseCategoryList" className="panel" data-section-name="ExpenseCategoryList">
+					< ExpenseCategoryList  />
+				</section>
+				<section name="CategoryGoals"  id="CategoryGoals" className="panel" data-section-name="CategoryGoals">
+					< CategoryGoals />
+				</section>
+				<section name="ExpenseInput"  id="ExpenseInput" className="panel" data-section-name="ExpenseInputtop">
+					< ExpenseInput />
+				</section>
+				<section name="ExpenseSummary"  id="ExpenseSummary" className="panel" data-section-name="ExpenseSummary">
+					< ExpenseSummary />
+				</section>
+				<section name="DisplayTransactions"  id="DisplayTransactions" className="panel" data-section-name="DisplayTransactions">
+					< DisplayTransactions />
+				</section>
+				<section name="ExpenseChart"  id="ExpenseChart" className="panel" data-section-name="ExpenseChart">
+					< ExpenseChart />
+				</section>
+
 			</div>	
 		)
 	}
@@ -46,3 +58,5 @@ const mapStateToProps = (state, props) => ({
 });
 
 export default connect(mapStateToProps)(Layout);
+
+

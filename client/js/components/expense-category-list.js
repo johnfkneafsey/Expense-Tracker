@@ -41,11 +41,11 @@ export class ExpenseCategoryList extends React.Component {
 		<div className="component">
 			<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 1:</h1>
-				<h3 className="steps"> Enter categories for your expenses</h3>
+				<h3 className="steps"> Categorize your expenses</h3>
 			</div>
 			<div className="submitNewExpenseCategory">
 				<form onSubmit={this.onSubmit}>
-					<label>Add A New Expense Category</label> 
+					<label>Add a category below</label> 
 					<p></p>
 					<input type="text"  className="form-control" placeholder="i.e. Food/Entertainment"
 					 ref="newCategory"/>	

@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-signin-client_id" content="172739207430-a4207nj9v3dfdmbmdf652at6m2epdi7i.apps.googleusercontent.com">
 
 <title>Easy Budget</title>
 
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+<!-- <script src="assets/vendor/jquery/jquery.min.js"></script> -->
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -15,26 +16,16 @@
 
 <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-
-<!--
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
--->
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
 <style>
 
 .form-control {
-    width: 40% !important;
+    width: 20% !important;
     text-align: center !important;
     display: inline-block !important;
     margin-top: auto !important;
@@ -60,7 +51,6 @@
     margin-left: auto !important;
     float: none !important;
     text-align: center !important;
-
 }
 
 .body {
@@ -112,12 +102,8 @@
     color: rgb(51,51,51) !important;
     left: 50% !important;
     right: auto !important;
-    text-indent: 42.5% !important;
 }
 
-.center {
-    text-align: left !important;
-}
 
 .input-group-addon {
     display: block !important;
@@ -163,13 +149,11 @@ canvas {
     margin-right: auto !important;
     margin-bottom: auto !important;
     margin-left: auto !important;
-    color: red !important;
-    margin-bottom: 360px !important;
 }
 
-.chart {
-    color: red !important;
-    margin-bottom: 360px !important;
+
+.chart-line {
+    margin-bottom: 60px !important;
 }
 
 .navbar-custom {
@@ -188,48 +172,22 @@ canvas {
 
 .glyphicon-ok   {
     color: rgb(24,188,156);
-    text-align: left;
-    display: inline-block;
+
 
 }
 
-.glyphicon .glyphicon-option-horizontal .centerMarks {   
+.glyphicon .glyphicon-option-horizontal  {   
     color: rgb(51,51,51);
-    text-align: left;
-    display: inline-block;
+
 
 }
 
 .centerMarks {
-    display: table-cell !important;
+
 
 }
 
 .budgets {
-    background-color: rgb(24, 188, 156) !important;
-    background-image: linear-gradient(rgb(187, 246, 234) 0px, rgb(24, 188, 156) 100%) !important;
-    border-bottom-color: rgb(51, 51, 51) !important;
-    border-bottom-style: solid !important;
-    border-bottom-width: 1px !important;
-    border-image-outset: 0px !important;
-    border-image-repeat: stretch !important;
-    border-image-slice: 100% !important;
-    border-image-source: none !important;
-    border-image-width: 1 !important;
-    border-left-color: rgb(51, 51, 51) !important;
-    border-left-style: solid !important;
-    border-left-width: 1px !important;
-    border-right-color: rgb(51, 51, 51) !important;
-    border-right-style: solid !important;
-    border-right-width: 1px !important;
-    border-top-color: rgb(51, 51, 51) !important;
-    border-top-left-radius: 4px !important;
-    border-top-right-radius: 4px !important;
-    border-top-style: solid !important;
-    border-top-width: 1px !important;
-    box-sizing: border-box !important;
-    color: rgb(51, 51, 51) !important;
-    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 18px !important;
     font-weight: bold !important;
     display: inline-block !important;
@@ -243,82 +201,147 @@ canvas {
     height: 10% !important;
 }
 
+.shrink-div {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
 
+.category-title {
+    text-align: left !important;
+}
+
+.center-input-text {
+    text-align: center !important;
+}
+
+select {
+  text-align: center !important;
+  text-align-last: center !important;
+  /* webkit*/
+}
+
+option {
+  text-align: center !important;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.center-no-height {
+    text-align: left !important;
+    height: 2px !important;
+}
+
+.progress {
+    margin-top: 20px !important;
+}
+
+.chart-space {
+    margin-bottom: 360px !important;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.container {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    text-transform: uppercase !important;    
+}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.12/jquery.scrollify.min.js"></script>
+<script>
+    $(function() {
+        $.scrollify({
+            section : ".panel",
+        });
+    });
+</script>
+
 </head>
 
 
 <body id="page-top" class="index">
 
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div class="container">
-           
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#page-top">easy Budget</a>
-            </div>
-
+    <section name="top"  id="top" class="panel" data-section-name="top">
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+            <div class="container">
             
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Advice</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">Resources</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Your Account</a>
-                    </li>
-                </ul>
-            </div>
-       </div>
-       <div className="green-bar">
-           
-       </div>
-    </nav>
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="#page-top">easy Budget</a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#portfolio">Advice</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#about">Resources</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#about">Sign In</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div className="green-bar">
+            
+        </div>
+        </nav>
 
-    
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="assets/img/profile.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">Easy Budget</span>
-                        <hr class="star-light">
-                        <span class="skills">Expense Tracking - Budgeting - <em>Simplicity</em></span>
+        
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img class="img-responsive" src="assets/img/profile.png" alt="">
+                        <div class="intro-text">
+                            <span class="name">Easy Budget</span>
+                            <hr class="star-light">
+                            <span class="skills">Expense Tracking - Budgeting - <em>Simplicity</em></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-  
-
-    <section id="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Ready to make budgeting easy?</h2>
-                    <hr class="star-primary">
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Ready to make budgeting easy?</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
+        </section>
+
     </section>
+
+
+
+
+
 <div class="text-center">
-                        <div class="container">
-                        <div id="app"></div>
-                        <div class="container theme-showcase" role="main"></div>
-                    </div>
+    <div class="container">
+    <div id="app"></div>
+    <div class="container theme-showcase" role="main"></div>
 </div>
+</div>
+    <div id="signIn"></div>
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
@@ -394,6 +417,25 @@ canvas {
     <script src="js/thinkful-full-stack-template.0.0.1.js"></script>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.12/jquery.scrollify.min.js"></script>
+    <script>
+        $(function () {
+            $(".panel").css({
+                "height": $(window).height()
+            });
+            $.scrollify({
+                section: ".panel"
+            });
+
+
+            $(".scroll").click(function (e) {
+                e.preventDefault();
+                $.scrollify("move", $(this).attr("href"));
+            });
+        });
+    </script>
 
 </body>
 

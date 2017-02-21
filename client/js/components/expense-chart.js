@@ -5,10 +5,17 @@ import store from '../store';
 import {Radar} from 'react-chartjs-2';
 import {Doughnut} from 'react-chartjs-2';
 import {Line} from 'react-chartjs-2';
+import {calendar} from '../calendar';
+import DatePicker from 'react-bootstrap-date-picker';
 
 export class ExpenseChart extends React.Component {
 	constructor(props) {
     	super(props);
+        this.state = {
+            lineData : {
+            }
+        }
+		this.onSubmit = this.onSubmit.bind(this);
   	}
 
       radarData () {
@@ -132,125 +139,110 @@ export class ExpenseChart extends React.Component {
                 ]
             }]
         };
-
         return doughnutData;
-
       }
 
-//  Needs:  Two arrays 
-//                -dates - array of all dates between user inputted start and end. 
-//                      -Take begin/end from displayTransactions component.  Start and end date from form, iterate through array.
-//                -totalDailyExpenses - array of all expenses per day.  Will have to sum amounts for days with multiple expenses.  Will have to give '0' for days with no expenses.
-//                      -define empty array
- //                     -Take begin/end from displayTransactions component.  Start and end date from form, iterate through array.                                   
-//                      -Roll through days and search for !expenses for each day, if true, + x amount to total vr defined at begining.  
-//                      -push that var to the array.
-//
-//
-
-      lineData () {
-        let totalExpenses = {} 
-
-		for (let i=0; i<this.props.categories.length; i++) {
-			let temp = this.props.categories[i].name;
-			totalExpenses[temp] = 0;
-			for(let k=0; k<this.props.expenses[0].length; k++){
-				let newTemp = this.props.expenses[0];
-				if (newTemp[k].category === temp) {
-					totalExpenses[temp] += newTemp[k].cost;
-				}
-			}
-		}
-
-        let totalExpensesCategory = [];
-        let totalExpensesAmount = [];
-        let totalExpenseBudgets = [];
-        for (let key in totalExpenses) {
-            console.log(totalExpenses[key], 'AMOUNT')
-            console.log(key, 'KEY')
-            
-            totalExpensesCategory.push(key.capitalize());
-            totalExpensesAmount.push(totalExpenses[key]);
-            
-            for (let i=0; i<this.props.goals.length; i++) {
-                let temp = this.props.goals[i].category;
-                console.log(temp, 'SHOULD BE CATEGORY NAME')
-                console.log(this.props.goals[i], 'THIS IS TEMP BIG CAT')
-                if (key === temp) {
-                   totalExpenseBudgets.push(this.props.goals[i].goal)                              
+  
+      onSubmit (event) {
+        event.preventDefault();
+        let startDate = document.getElementById("example-datepicker-start").getAttribute('data-formattedvalue');
+        let endDate = document.getElementById("example-datepicker-end").getAttribute('data-formattedvalue');
+        let dateArray = [];     
+        for (let i = this.props.calendar.indexOf(startDate.toString()); i <= this.props.calendar.indexOf(endDate.toString()); i++) {
+            dateArray.push(this.props.calendar[i]);
+        }
+        console.log(dateArray);
+        let expensesArray = [];
+        for (let k = 0; k < dateArray.length; k++) {
+            let dailyExpenses = 0;
+            for (let j = 0; j < this.props.expenses[0].length; j++) {
+                if (dateArray[k] == this.props.expenses[0][j].date) {
+                    dailyExpenses += this.props.expenses[0][j].cost;
                 }
             }
+            expensesArray.push(dailyExpenses); 
         }
 
-        console.log(totalExpenses, "TOTAL EXPENSES")
-
-        let summedExpenses = totalExpensesAmount.reduce((a, b) => {
-            return a + b;
-        }, 0);
-
-        console.log(totalExpensesCategory, 'CATEGORY ARRAY');
-        console.log(totalExpensesAmount, 'EXPENSES ARRAY');
-        console.log(totalExpenseBudgets, 'GOALS ARRAY');
-        console.log(summedExpenses, 'SUMMED EXPENSES')
-
         let lineData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: dateArray,
             datasets: [
                 {
-                label: 'My First dataset',
-                fill: false,
+                label: 'Dollars Spent',
+                fill: true,
                 lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(45,126,127,0.20)',
+                borderColor: 'rgb(24,188,156)',
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBorderColor: 'rgb(24,188,156)',
                 pointBackgroundColor: '#fff',
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBackgroundColor: 'rgb(24,188,156)',
+                pointHoverBorderColor: 'rgb(24,188,156)',
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                fillStyle: 'rgb(24,188,156)',
+                data: expensesArray
                 }
             ]
         };
-
-        return lineData;
-
-      }
+        this.setState({ lineData: lineData })
+        }
 
 
+render () {
 
-      render () {
-
-
+    let lineChartDisplay
+    console.log(this.state.lineData.labels, 'label')
+    if (this.state.lineData.labels) {
+        console.log('settinglinechart')
+        lineChartDisplay = <Line className="chart-line" data={this.state.lineData} />
+    }
+    console.log(lineChartDisplay, 'l chart boyyyy');
+  
 
           return (
             <div className="component">
                 <div>
-                    <h3>Spent vs. Budgeted by Category</h3>
-                    <Radar className="chart" data={this.radarData()} />
-                    <h3>Expeditures by Category</h3>
-                    <Doughnut className="chart" data={this.doughnutData()} />
-                    <Line className="chart" data={this.lineData()} />
+                    <div>
+                        <h3>Spent vs. Budgeted by Category</h3>
+                        <Radar className="chart" data={this.radarData()} />
+                    </div>
+                    <div className="chart-space">
+                    </div>  
+                    <div>                  
+                        <h3>Expenditures by Category</h3>
+                        <Doughnut className="chart" data={this.doughnutData()} />
+                    </div>
+                    <div className="chart-space">
+                    </div>
+                    <div>
+                        <h3>Expenditures by Day</h3>
+                        {lineChartDisplay}
+                        <form onSubmit={this.onSubmit}>
+                            <label className="category" >Choose a start date,</label>
+                            <DatePicker  className='calendarToggle' id="example-datepicker-start" ref="datePicked" onChange={this.handleChangeStartDate} />
+                            <label className="category" >...and an end date</label> 
+                            <DatePicker  className='calendarToggle' id="example-datepicker-end" ref="datePicked" onChange={this.handleChangeEndDate} />
+                            <input type="submit" className="btn btn-primary"/> 
+                        </form> 
+                    </div>                   
                 </div>
             </div>
           )
       }
 }
 
-
-
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,
 	goals: state.goals,
-	expenses: state.expenses
+	expenses: state.expenses,
+    calendar: state.calendar,
 });
 
-
 export default connect(mapStateToProps)(ExpenseChart);
+

@@ -11,7 +11,8 @@ const initialState = {
 	goals: [],
 	currentCategory: 'All',
 	categoryTotals: [],
-	calendar: calendar
+	calendar: calendar,
+	displayTransactions: {startDate: null, endDate: null}
 }
 
 export const mainReducer = (state= initialState, action) => {
@@ -85,6 +86,19 @@ export const mainReducer = (state= initialState, action) => {
 		})
 	}
 
+	if (action.type === actions.DISPLAY_TRANSACTION_START_DATE) {
+		setTimeout(()=> { console.log(store.getState(), "This is test for change display start date")}, 3000);
+		return update(state, {
+			displayTransactions: {$merge: {startDate: action.startDate}}
+		})
+	}
+	
+	if (action.type === actions.DISPLAY_TRANSACTION_END_DATE) {
+		setTimeout(()=> { console.log(store.getState(), "This is test for change display end date")}, 3000);
+		return update(state, {
+			displayTransactions: {$merge: {endDate: action.endDate}}
+		})
+	}
 
 	return state;
 }

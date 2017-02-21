@@ -10,10 +10,10 @@ export class CategoryGoals extends React.Component {
     	this.onSubmit = this.onSubmit.bind(this);
     	this.completeStatus = this.completeStatus.bind(this);
 		this.getBudget = this.getBudget.bind(this);
+		this.getTotalBudget = this.getTotalBudget.bind(this);
   	}
 
   	componentDidMount() {
-		this.setState({massive: 'fartbaby'})
   		this.props.dispatch(actions.asyncFetchAllGoals());
   	}
 
@@ -44,6 +44,7 @@ export class CategoryGoals extends React.Component {
 	}
 
 	getBudget(categoryName) {
+
 		for (let i = 0; i < this.props.goals.length; i++) {
 			if (this.props.goals[i].category === categoryName) {
 				return this.props.goals[i].goal;
@@ -51,15 +52,29 @@ export class CategoryGoals extends React.Component {
 		}
 	}
 
+	getTotalBudget() {
+		let totalBudget = 0;
+		for (let i = 0; i < this.props.goals.length; i++) {	
+			totalBudget += this.props.goals[i].goal;	
+		}
+		return totalBudget;
+	}
+
 	render() {
+
 
 		let categories = this.props.categories.map((category,index)=>{
 			return (
-				<div>
-					<tr key={index} className='budgets'> <td> {category.name.capitalize()}  :  {this.getBudget(category.name)}  </td>  </tr> <span className={this.completeStatus(category.name) + ' centerMarks'} aria-hidden="true"></span>  
+				<div className="shrink-div">
+					<p key={index} className='budgets'>{category.name.capitalize()}  :  ${this.getBudget(category.name)}</p>
+					<span className={this.completeStatus(category.name) + ' centerMarks'} aria-hidden="true"></span>  
 				</div>
 			);
 		})
+
+		let totalBudget = 
+				<b><p className='budgets'>Total  :  ${this.getTotalBudget()}</p></b>
+			
 
 		String.prototype.capitalize = function() {
     		return this.charAt(0).toUpperCase() + this.slice(1);
@@ -67,7 +82,7 @@ export class CategoryGoals extends React.Component {
 
 		let options = this.props.categories.map((category, index) => {
 			return (
-				<option key={index} value={category.name}>{category.name.capitalize()}</option>
+				<option key={index} value={category.name} className="center-dropdown">{category.name.capitalize()}</option>
 			);
 		})
 
@@ -75,18 +90,18 @@ export class CategoryGoals extends React.Component {
 		<div className="component">
 			<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 2:</h1>
-				<h3 className="steps">Define budgets for your expense categories</h3>
+				<h3 className="steps">Define budgets by category</h3>
 			</div>
 
 			<div>
 				<form onSubmit={this.onSubmit} >
-					<label>Expense Category</label>
+					<label>Select a category</label>
 					<p></p>
 						<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 							{options}
 						</select>
 					<p></p>
-					<label>Category Budget</label>
+					<label>Set a budget</label>
 					<p></p>
 						<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
 						<p></p>
@@ -97,6 +112,7 @@ export class CategoryGoals extends React.Component {
 			<div>
 			<ul>
 					{categories}
+					{totalBudget}
 			</ul>
 			</div>
 		</div>

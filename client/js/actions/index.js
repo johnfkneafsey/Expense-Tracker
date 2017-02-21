@@ -174,7 +174,6 @@ export const asyncDeleteExpense = (expenseId) => dispatch => {
 }
 
 
-
 export const ADD_EXPENSE_CATEGORY = 'ADD_EXPENSE_CATEGORY';
 export const addExpenseCategory = (category) => ({
 	type: ADD_EXPENSE_CATEGORY,
@@ -242,4 +241,17 @@ export const asyncFetchCalendar = (calendar) => ({
 	type: FETCH_CALENDAR,
 	calendar: calendar
 })
+
+export const DISPLAY_TRANSACTION_START_DATE = 'DISPLAY_TRANSACTION_START_DATE';
+export const displayTransactionStartDate = (startDate) => ({
+	type: DISPLAY_TRANSACTION_START_DATE,
+	startDate: startDate
+})
+
+export const DISPLAY_TRANSACTION_END_DATE = 'DISPLAY_TRANSACTION_END_DATE';
+export const displayTransactionEndDate = (endDate) => ({
+	type: DISPLAY_TRANSACTION_END_DATE,
+	endDate: endDate
+})
+
 

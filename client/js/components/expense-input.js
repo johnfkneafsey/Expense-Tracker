@@ -35,7 +35,6 @@ export class ExpenseInput extends React.Component {
 	    this.refs.expenseCategory.value = "";
 	    this.refs.description.value = "";
 		this.props.dispatch(actions.asyncFetchAllTransactions());
-		
 	}
 
   	render() {	
@@ -46,7 +45,7 @@ export class ExpenseInput extends React.Component {
 			
 		let options = this.props.categories.map((category,index)=>{
 			return (
-				<option key={index} value={category.name}>{category.name.capitalize()}</option>
+				<option key={index} value={category.name} className="center-input-text">{category.name.capitalize()}</option>
 			);
 		})
 
@@ -54,20 +53,20 @@ export class ExpenseInput extends React.Component {
 			<div className="component">
 				<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 3:</h1>
-				<h3 className="steps">Enter your individual expenses by category</h3>
+				<h3 className="steps">Input your expenses</h3>
 				</div>
 				<div>
 					<form onSubmit={this.onSubmit}>
-						<label className="datePicker">Select a Date</label>
+						<label className="datePicker">When did it occur?</label>
 						<p></p>						
-						<DatePicker  id="example-datepicker" value={new Date().toISOString()} ref="datePicked" onChange={this.handleChange} />
+						<DatePicker  id="example-datepicker" ref="datePicked" onChange={this.handleChange} />
 							<p></p>	
-						<label> Expense Amount </label>
+						<label> What did it cost? </label>
 						<p></p>						
 						<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
 						<p></p>		
 
-						<label className="category" >Expense Category</label>
+						<label className="category" >How would you categorize this?</label>
 						<p></p>						
 	      		
 						  <select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" required>
@@ -75,7 +74,7 @@ export class ExpenseInput extends React.Component {
 	        				</select>
 						<p></p>		
 						
-					<label> Expense Description </label>
+					<label> Describe the expense </label>
 						<p></p>											
 					<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
 						<p></p>
