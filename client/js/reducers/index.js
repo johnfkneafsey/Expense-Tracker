@@ -13,7 +13,7 @@ const initialState = {
 	categoryTotals: [],
 	calendar: calendar,
 	displayTransactions: {startDate: null, endDate: null},
-	renderPage: 1
+	renderPage: 0
 }
 
 export const mainReducer = (state= initialState, action) => {

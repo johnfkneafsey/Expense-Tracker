@@ -165,7 +165,8 @@ export class ExpenseSummary extends React.Component {
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,
 	goals: state.goals,
-	expenses: state.expenses
+	expenses: state.expenses,
+	renderPage: state.renderPage
 });
 
 export default connect(mapStateToProps)(ExpenseSummary);

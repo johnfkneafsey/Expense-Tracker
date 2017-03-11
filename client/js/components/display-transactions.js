@@ -144,7 +144,8 @@ const mapStateToProps = (state, props) => ({
 	currentCategory: state.currentCategory,
 	expenses: state.expenses,
 	calendar: state.calendar,
-	displayTransactions: state.displayTransactions
+	displayTransactions: state.displayTransactions,
+	renderPage: state.renderPage
 });
 
 

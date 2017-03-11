@@ -5,6 +5,7 @@ import ExpenseInput from './expense-input';
 import DisplayTransactions from './display-transactions';
 import ExpenseSummary from './expense-summary';
 import ExpenseChart from './expense-chart';
+import Landing from './landing';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
@@ -23,29 +24,44 @@ export class Layout extends React.Component {
 	// add back login
 	render() { 
 
-		return (
-			<div className="allText">
-				<section name="ExpenseCategoryList"  id="ExpenseCategoryList" data-section-name="ExpenseCategoryList">
-					< ExpenseCategoryList  />
-				</section>
-				<section name="CategoryGoals"  id="CategoryGoals"  data-section-name="CategoryGoals">
-					< CategoryGoals />
-				</section>
-				<section name="ExpenseInput"  id="ExpenseInput"  data-section-name="ExpenseInputtop">
-					< ExpenseInput />
-				</section>
-				<section name="ExpenseSummary"  id="ExpenseSummary"  data-section-name="ExpenseSummary">
-					< ExpenseSummary />
-				</section>
-				<section name="DisplayTransactions"  id="DisplayTransactions" data-section-name="DisplayTransactions">
-					< DisplayTransactions />
-				</section>
-				<section name="ExpenseChart"  id="ExpenseChart"  data-section-name="ExpenseChart">
-					< ExpenseChart />
-				</section>
+		if (this.props.renderPage === 0) {
+			return (
+			< Landing  />
+			)
+		}
+		if (this.props.renderPage === 1) {
+			return (
+			< ExpenseCategoryList  />
+			)
+		}
+		if (this.props.renderPage === 2) {
+			return (
+			< CategoryGoals />
+			)
+		}
+		if (this.props.renderPage === 3) {
+			return (
+			< ExpenseInput />
+			)
+		}
+		if (this.props.renderPage === 4) {
+			return (
+			< ExpenseSummary />
+			)
+		}
+		if (this.props.renderPage === 5) {
+			return (
+			< DisplayTransactions />
+			)
+		}
+		if (this.props.renderPage === 6) {
+			return (
+			< ExpenseChart /> 
+			)
+		}
 
-			</div>	
-		)
+	
+		
 	}
 }
 
@@ -54,8 +70,8 @@ const mapStateToProps = (state, props) => ({
 	goals: state.goals,
 	expenses: state.expenses,
 	tempResults: state.tempResults,
-	currentCategory: state.currentCategory
-
+	currentCategory: state.currentCategory,
+	renderPage: state.renderPage
 });
 
 export default connect(mapStateToProps)(Layout);

@@ -260,6 +260,7 @@ const mapStateToProps = (state, props) => ({
 	goals: state.goals,
 	expenses: state.expenses,
     calendar: state.calendar,
+	renderPage: state.renderPage
 });
 
 export default connect(mapStateToProps)(ExpenseChart);

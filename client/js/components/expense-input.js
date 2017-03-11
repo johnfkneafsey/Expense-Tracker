@@ -110,7 +110,8 @@ export class ExpenseInput extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-	categories: state.categories
+	categories: state.categories,
+	renderPage: state.renderPage
 });
 
 export default connect(mapStateToProps)(ExpenseInput);
