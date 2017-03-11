@@ -8,6 +8,7 @@ import {Line} from 'react-chartjs-2';
 import {calendar} from '../calendar';
 import DatePicker from 'react-bootstrap-date-picker';
 
+
 export class ExpenseChart extends React.Component {
 	constructor(props) {
     	super(props);
@@ -16,7 +17,25 @@ export class ExpenseChart extends React.Component {
             }
         }
 		this.onSubmit = this.onSubmit.bind(this);
+    	this.onClickBack = this.onClickBack.bind(this);
+    	this.onClickNext = this.onClickNext.bind(this);
   	}
+
+
+	onClickBack() {
+		console.log('PREV');
+		if (this.props.renderPage > 1) {
+			this.props.dispatch(actions.decrementRenderView())
+		}
+	}
+
+	onClickNext() {
+		console.log('NEXT')
+		if (this.props.renderPage < 6) {
+		this.props.dispatch(actions.incrementRenderView())	
+		}
+	}
+
 
       radarData () {
 		let totalExpenses = {} 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
 
+
 export class CategoryGoals extends React.Component {
 	constructor(props) {
     	super(props);
@@ -11,7 +12,25 @@ export class CategoryGoals extends React.Component {
     	this.completeStatus = this.completeStatus.bind(this);
 		this.getBudget = this.getBudget.bind(this);
 		this.getTotalBudget = this.getTotalBudget.bind(this);
+    	this.onClickBack = this.onClickBack.bind(this);
+    	this.onClickNext = this.onClickNext.bind(this);
   	}
+
+
+	onClickBack() {
+		console.log('PREV');
+		if (this.props.renderPage > 1) {
+			this.props.dispatch(actions.decrementRenderView())
+		}
+	}
+
+	onClickNext() {
+		console.log('NEXT')
+		if (this.props.renderPage < 6) {
+		this.props.dispatch(actions.incrementRenderView())	
+		}
+	}
+
 
   	componentDidMount() {
   		this.props.dispatch(actions.asyncFetchAllGoals());

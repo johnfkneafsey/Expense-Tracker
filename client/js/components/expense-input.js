@@ -5,13 +5,32 @@ import * as actions from '../actions/index';
 import DatePicker from 'react-bootstrap-date-picker';
 import Store from '../store';
 
+
 export class ExpenseInput extends React.Component {
 	constructor(props) {
     	super(props);
     	this.onSubmit = this.onSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
     	this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    	this.onClickBack = this.onClickBack.bind(this);
+    	this.onClickNext = this.onClickNext.bind(this);
   	}
+
+
+	onClickBack() {
+		console.log('PREV');
+		if (this.props.renderPage > 1) {
+			this.props.dispatch(actions.decrementRenderView())
+		}
+	}
+
+	onClickNext() {
+		console.log('NEXT')
+		if (this.props.renderPage < 6) {
+		this.props.dispatch(actions.incrementRenderView())	
+		}
+	}
+
 
   	handleChange(value, formattedValue) {
     	console.log({

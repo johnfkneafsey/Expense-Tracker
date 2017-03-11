@@ -4,6 +4,7 @@ import * as actions from '../actions/index';
 import DatePicker from 'react-bootstrap-date-picker';
 import store from '../store';
 
+
 export class DisplayTransactions extends React.Component {
 	constructor(props) {
     	super(props);
@@ -11,8 +12,25 @@ export class DisplayTransactions extends React.Component {
 		this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
 		this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		
+    	this.onClickBack = this.onClickBack.bind(this);
+    	this.onClickNext = this.onClickNext.bind(this);
   	}
+
+
+	onClickBack() {
+		console.log('PREV');
+		if (this.props.renderPage > 1) {
+			this.props.dispatch(actions.decrementRenderView())
+		}
+	}
+
+	onClickNext() {
+		console.log('NEXT')
+		if (this.props.renderPage < 6) {
+		this.props.dispatch(actions.incrementRenderView())	
+		}
+	}
+
 
 	componentDidMount() {
 		this.props.dispatch(actions.asyncFetchCalendar());

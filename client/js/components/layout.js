@@ -8,6 +8,7 @@ import ExpenseChart from './expense-chart';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
+
 // import Login from './sign-in';
 
 export class Layout extends React.Component {

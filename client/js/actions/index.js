@@ -254,4 +254,14 @@ export const displayTransactionEndDate = (endDate) => ({
 	endDate: endDate
 })
 
+export const DECREMENT_RENDER_VIEW = 'DECREMENT_RENDER_VIEW';
+export const decrementRenderView = () => ({
+	type: DECREMENT_RENDER_VIEW,
+})
+
+export const INCREMENT_RENDER_VIEW = 'INCREMENT_RENDER_VIEW';
+export const incrementRenderView = () => ({
+	type: INCREMENT_RENDER_VIEW,
+})
+
 

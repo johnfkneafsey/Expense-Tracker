@@ -12,7 +12,8 @@ const initialState = {
 	currentCategory: 'All',
 	categoryTotals: [],
 	calendar: calendar,
-	displayTransactions: {startDate: null, endDate: null}
+	displayTransactions: {startDate: null, endDate: null},
+	renderPage: 1
 }
 
 export const mainReducer = (state= initialState, action) => {
@@ -97,6 +98,20 @@ export const mainReducer = (state= initialState, action) => {
 		setTimeout(()=> { console.log(store.getState(), "This is test for change display end date")}, 3000);
 		return update(state, {
 			displayTransactions: {$merge: {endDate: action.endDate}}
+		})
+	}
+
+	if (action.type === actions.DECREMENT_RENDER_VIEW) {
+		setTimeout(()=> { console.log(store.getState(), "This is test for DECREMENT_RENDER_VIEW")}, 3000);
+		return update(state, {
+			renderPage: {$apply: function(x) {return x - 1}}
+		})
+	}
+
+	if (action.type === actions.INCREMENT_RENDER_VIEW) {
+		setTimeout(()=> { console.log(store.getState(), "This is test for INCREMENT_RENDER_VIEW")}, 3000);
+		return update(state, {
+			renderPage: {$apply: function(x) {return x + 1}}
 		})
 	}
 

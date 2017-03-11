@@ -3,11 +3,29 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
 
+
 export class ExpenseCategoryList extends React.Component {
 	constructor(props) {
     	super(props);
     	this.onSubmit = this.onSubmit.bind(this);
+    	this.onClickBack = this.onClickBack.bind(this);
+    	this.onClickNext = this.onClickNext.bind(this);
   	}
+
+
+	onClickBack() {
+		console.log('PREV');
+		if (this.props.renderPage > 1) {
+			this.props.dispatch(actions.decrementRenderView())
+		}
+	}
+
+	onClickNext() {
+		console.log('NEXT')
+		if (this.props.renderPage < 6) {
+		this.props.dispatch(actions.incrementRenderView())	
+		}
+	}
 
   	componentDidMount() {
   		this.props.dispatch(actions.asyncFetchAllCategories());
@@ -29,6 +47,8 @@ export class ExpenseCategoryList extends React.Component {
 	};
 
 
+
+
 	render() {
 	
 	let categories = this.props.categories.map((category,index)=>{
@@ -39,6 +59,10 @@ export class ExpenseCategoryList extends React.Component {
 
 	return (
 		<div className="component">
+			<div className="buttons">
+				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+			</div>
 			<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 1:</h1>
 				<h3 className="steps"> Categorize your expenses</h3>
@@ -73,7 +97,9 @@ export class ExpenseCategoryList extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-	categories: state.categories
+	categories: state.categories,
+	renderPage: state.renderPage
+	
 });
 
 export default connect(mapStateToProps)(ExpenseCategoryList);
