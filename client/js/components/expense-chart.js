@@ -221,6 +221,10 @@ render () {
 
           return (
             <div className="component">
+			<div className="buttons">
+				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+			</div>
                 <div>
                     <div>
                         <h3>Spent vs. Budgeted by Category</h3>

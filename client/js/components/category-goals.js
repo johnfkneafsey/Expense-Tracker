@@ -107,6 +107,10 @@ export class CategoryGoals extends React.Component {
 
 	return (
 		<div className="component">
+			<div className="buttons">
+				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+			</div>
 			<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 2:</h1>
 				<h3 className="steps">Define budgets by category</h3>

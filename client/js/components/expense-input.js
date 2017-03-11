@@ -70,6 +70,10 @@ export class ExpenseInput extends React.Component {
 
 		return (
 			<div className="component">
+			<div className="buttons">
+				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+			</div>
 				<div className="page-header makeColoredHeader">
 				<h1 className="stepHeaders">Step 3:</h1>
 				<h3 className="steps">Input your expenses</h3>
