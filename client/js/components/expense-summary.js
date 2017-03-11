@@ -96,7 +96,7 @@ export class ExpenseSummary extends React.Component {
 				percentageValue = Math.floor((this.getTotalSpent()/this.getTotalBudget()) * 100)
 			}
 
-			let totalDivStyle = {width: `${percentageValue}%`}
+		let totalDivStyle = {width: `${percentageValue}%`}
 
 		let totals = 
 			<tr>

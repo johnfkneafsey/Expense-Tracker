@@ -20,12 +20,10 @@ export class DisplayTransactions extends React.Component {
 	} 
 
   	handleChangeStartDate(value, formattedValue) {
-		console.log('returning begin ', formattedValue)
 		this.props.dispatch(actions.displayTransactionStartDate(formattedValue));
  	}
 
   	handleChangeEndDate(value, formattedValue) {		
-		console.log('returning end ', formattedValue)
 		this.props.dispatch(actions.displayTransactionEndDate(formattedValue));
  	}
 
@@ -36,7 +34,6 @@ export class DisplayTransactions extends React.Component {
 	}
 
 	handleChange() {
-		console.log('hey there');
 		let tempCategory = (this.refs.expenseCategory).value;
 		this.props.dispatch(actions.asyncFetchAllTransactions());
 		this.props.dispatch(actions.changeCurrentCategory(tempCategory));
@@ -55,13 +52,11 @@ export class DisplayTransactions extends React.Component {
 			);
 		});
 					
-		console.log(this.props.displayTransactions);
 		let listOfTransactions;
 		if (this.props.expenses[0]) {
 			if (this.props.currentCategory === "All") {
 				listOfTransactions = this.props.expenses[0].map((transaction, index) => {
 				for (let i = this.props.calendar.indexOf(this.props.displayTransactions.startDate); i <= this.props.calendar.indexOf(this.props.displayTransactions.endDate); i++) {
-					console.log('submit start', i)
 					if (this.props.calendar[i] === transaction.date) {	
 						return (
 							<tr key={index}><td className="left">{transaction.date}</td><td className="left">{transaction.category.capitalize()}</td><td className="left">${transaction.cost}</td><td className="left">{transaction.description}</td><td><button className="glyphicon glyphicon-remove left" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>

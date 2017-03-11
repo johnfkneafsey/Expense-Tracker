@@ -24,22 +24,22 @@ export class Layout extends React.Component {
 
 		return (
 			<div className="allText">
-				<section name="ExpenseCategoryList"  id="ExpenseCategoryList" className="panel" data-section-name="ExpenseCategoryList">
+				<section name="ExpenseCategoryList"  id="ExpenseCategoryList" data-section-name="ExpenseCategoryList">
 					< ExpenseCategoryList  />
 				</section>
-				<section name="CategoryGoals"  id="CategoryGoals" className="panel" data-section-name="CategoryGoals">
+				<section name="CategoryGoals"  id="CategoryGoals"  data-section-name="CategoryGoals">
 					< CategoryGoals />
 				</section>
-				<section name="ExpenseInput"  id="ExpenseInput" className="panel" data-section-name="ExpenseInputtop">
+				<section name="ExpenseInput"  id="ExpenseInput"  data-section-name="ExpenseInputtop">
 					< ExpenseInput />
 				</section>
-				<section name="ExpenseSummary"  id="ExpenseSummary" className="panel" data-section-name="ExpenseSummary">
+				<section name="ExpenseSummary"  id="ExpenseSummary"  data-section-name="ExpenseSummary">
 					< ExpenseSummary />
 				</section>
-				<section name="DisplayTransactions"  id="DisplayTransactions" className="panel" data-section-name="DisplayTransactions">
+				<section name="DisplayTransactions"  id="DisplayTransactions" data-section-name="DisplayTransactions">
 					< DisplayTransactions />
 				</section>
-				<section name="ExpenseChart"  id="ExpenseChart" className="panel" data-section-name="ExpenseChart">
+				<section name="ExpenseChart"  id="ExpenseChart"  data-section-name="ExpenseChart">
 					< ExpenseChart />
 				</section>
 

@@ -120,7 +120,6 @@
     "react-google-login-component": "^0.5.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "scrollify": "^1.0.0"
+    "redux-thunk": "^2.2.0"
   }
 }

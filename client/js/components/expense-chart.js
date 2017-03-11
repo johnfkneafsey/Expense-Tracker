@@ -151,7 +151,6 @@ export class ExpenseChart extends React.Component {
         for (let i = this.props.calendar.indexOf(startDate.toString()); i <= this.props.calendar.indexOf(endDate.toString()); i++) {
             dateArray.push(this.props.calendar[i]);
         }
-        console.log(dateArray);
         let expensesArray = [];
         for (let k = 0; k < dateArray.length; k++) {
             let dailyExpenses = 0;
@@ -197,13 +196,9 @@ export class ExpenseChart extends React.Component {
 render () {
 
     let lineChartDisplay
-    console.log(this.state.lineData.labels, 'label')
     if (this.state.lineData.labels) {
-        console.log('settinglinechart')
         lineChartDisplay = <Line className="chart-line" data={this.state.lineData} />
     }
-    console.log(lineChartDisplay, 'l chart boyyyy');
-  
 
           return (
             <div className="component">
