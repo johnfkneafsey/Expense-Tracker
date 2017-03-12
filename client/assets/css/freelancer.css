@@ -2,12 +2,21 @@ form {
   margin-bottom: 15px;
 }
 
-.budgets2 {
- color: rgb(24,188,156);
+.greenie {
+  color: rgb(24,188,156);
 }
 
-.budgets3 {
+.summaryTotal {
+  color: rgb(24,188,156)
+}
 
+.form-control {
+  border-color: rgb(44, 62, 80);
+  border-width: 2px;
+}
+
+.budgets2 {
+ color: rgb(24,188,156);
 }
 
 .landingHeader {
@@ -31,6 +40,14 @@ form {
   height: 100vh;
 }
 
+.summaryContent {
+  margin-top: 130px;
+  height: 100vh;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+
 .stepsLanding {
   margin-top: 80px;
 }
@@ -44,7 +61,6 @@ form {
 .landingContainer {
   height: 100vh;
 }
-
 
 .arrow {
   position: fixed;
@@ -107,7 +123,6 @@ animation-duration:2s;
 }
 
 #section05 {
-
   margin: 10px
 }
 
@@ -307,7 +322,7 @@ canvas {
 }
 
 .input-group .form-control {
-    width: 40% !important;
+    width: 300px !important;
     float: none  ;
 }
 
@@ -317,8 +332,6 @@ canvas {
 
 .glyphicon-ok   {
     color: rgb(24,188,156);
-
-
 }
 
 .glyphicon .glyphicon-option-horizontal  {   
@@ -359,7 +372,6 @@ canvas {
 select {
   text-align: center  ;
   text-align-last: center  ;
-  /* webkit*/
 }
 
 option {

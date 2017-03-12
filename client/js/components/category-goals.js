@@ -165,10 +165,10 @@ export class CategoryGoals extends React.Component {
 					<div >
 						<ul>
 							<div className="budgets3">
-							{categories}
+								{categories}
 							</div>
 							<div className="budgets2">
-							{totalBudget}
+								{totalBudget}
 							</div>
 						</ul>
 					</div>

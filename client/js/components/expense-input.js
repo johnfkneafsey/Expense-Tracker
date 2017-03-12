@@ -101,42 +101,40 @@ export class ExpenseInput extends React.Component {
                 </div>
             </nav>
 			<div className="container">
-				<div className="component">
+				<div className="categoriesContent">
 					<div className="buttons">
-						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+						<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+						<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 					</div>
 					<div className="page-header makeColoredHeader">
-					<h1 className="stepHeaders">Step 3:</h1>
-					<h3 className="steps">Input your expenses</h3>
+						<h1 className="stepHeaders">Step 3:</h1>
+						<h3 className="steps">Input your expenses</h3>
 					</div>
 					<div>
 						<form onSubmit={this.onSubmit}>
 							<label className="datePicker">When did it occur?</label>
-							<p></p>						
-							<DatePicker  id="example-datepicker" ref="datePicked" onChange={this.handleChange} />
-								<p></p>	
+							<br></br>					
+							<DatePicker  id="example-datepicker" ref="datePicked" className="datePicker" onChange={this.handleChange} />
+							<br></br>	
 							<label> What did it cost? </label>
-							<p></p>						
+							<br></br>						
 							<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
-							<p></p>		
-
+							<br></br>	
 							<label className="category" >How would you categorize this?</label>
-							<p></p>						
-					
+							<br></br>	
 							<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" required>
 									{options}
 							</select>
-							<p></p>		
-							
-						<label> Describe the expense </label>
-							<p></p>											
+							<br></br>	
+						<label> Describe the expense</label>
+							<br></br>										
 						<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
-							<p></p>
+							<br></br>	
 							<input type="submit" className="btn btn-primary"/>
 						</form>
 					</div>
 				</div>
+
 			</div>
 		</div>
 		)

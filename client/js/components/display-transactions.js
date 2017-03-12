@@ -69,6 +69,11 @@ export class DisplayTransactions extends React.Component {
 				<option key={index} value={category.name}>{category.name}</option>
 			);
 		});
+
+		let transactionsBlurb;
+		if (this.props.displayTransactions.startDate || this.props.displayTransactions.endDate) {
+			transactionsBlurb = <h3>Showing <span className="greenie" >{this.props.currentCategory}</span> transactions between <span className="greenie" >{this.props.displayTransactions.startDate}</span> and <span className="greenie" >{this.props.displayTransactions.endDate}</span> </h3>
+		}					
 					
 		let listOfTransactions;
 		if (this.props.expenses[0]) {
@@ -125,37 +130,33 @@ export class DisplayTransactions extends React.Component {
                 </div>
             </nav>
 			<div className="container">
-				<div className="component">
+				<div className="summaryContent">
 					<div className="buttons">
-						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+						<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+						<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 					</div>
 					<div className="page-header makeColoredHeader">
 						<h3 className="steps">Your Expense History</h3>
 					</div>
 					<form >
 						<label>Choose a category,</label>
-								<p></p>						
+						<br></br>					
 
 						<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 							<option value="All">All</option>					
 							{options}
 						</select>
-						<p></p>
-						<p></p>
-					
 						<label className='' >a start date,</label>
-						<p></p>
-
-						<p></p>
 						<DatePicker  className='calendarToggle' id="example-datepicker-start"   ref="datePicked" onChange={this.handleChangeStartDate}   placeholderText={this.props.displayTransactions.startDate} />
+						<br></br>
 						<label className='' >and an end date</label>
 						<DatePicker  className='calendarToggle' id="example-datepicker-end"   ref="datePicked" onChange={this.handleChangeEndDate}   placeholderText={this.props.displayTransactions.endDate}/>
-						<p></p>	
-			
+						<br></br>
+						
 					</form>
-						<p></p>
-						<p></p>	
+						{transactionsBlurb}
+						<br></br>
+						<br></br>
 					<div>
 					<table className="table">
 						<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th>Remove</th></tr></thead>

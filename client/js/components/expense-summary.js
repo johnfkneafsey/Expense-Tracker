@@ -118,7 +118,7 @@ export class ExpenseSummary extends React.Component {
 		let totalDivStyle = {width: `${percentageValue}%`}
 
 		let totals = 
-			<tr>
+			<tr className="summaryTotal">
 				<td className="category-title"><b><h5>Total</h5></b></td>
 				<td className="center"><b><h5>${this.getTotalSpent()}</h5></b></td>
 				<td className="center"><b><h5>${this.getTotalBudget()}</h5></b></td>
@@ -156,39 +156,40 @@ export class ExpenseSummary extends React.Component {
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div className="green-bar"> 
-                </div>
+				</div>
             </nav>
-			<div className="container">
-				<div className="component">
+			<div className="summaryContent">
 				<div className="buttons">
-					<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-					<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+					<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+					<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 				</div>
 
 				<div className="page-header makeColoredHeader">
 					<h3 className="steps">Summary of your expenses</h3>
 				</div>
-						<table className="table">
-							<tr>
-								<th><h4><u>Category</u></h4></th>
-								<th><h4 className="center"><u className="center">Spent</u></h4></th>
-								<th><h4 className="center"><u className="center">Budget</u></h4></th>
-								<th className="center-percentages"><h4><u>Percent of Budget Used</u></h4></th>							
-							</tr>
-								{goals}
-							<tr className="center-no-height">
-								<td className="category-title center-no-height">__________</td>
-								<td className="center"><b className="center">__________</b></td>
-								<td className="center"><b className="center">__________</b></td>
-								<td className="center"><b className="center">________________________________________________________________________________</b></td>
-							</tr>							
-								{totals}
-						</table>
-				</div>
+
+				<table className="table">
+					<tr>
+						<th><h4><u>Category</u></h4></th>
+						<th><h4 className="center"><u className="center">Spent</u></h4></th>
+						<th><h4 className="center"><u className="center">Budget</u></h4></th>
+						<th className="center-percentages"><h4><u>Percent of Budget Used</u></h4></th>							
+					</tr>
+						{goals}
+					<tr className="center-no-height">
+						<td className="category-title center-no-height">__________</td>
+						<td className="center"><b className="center">__________</b></td>
+						<td className="center"><b className="center">__________</b></td>
+						<td className="center"><b className="center">________________________________________________________________________________</b></td>
+					</tr>	
+									
+							{totals}
+						
+				</table>
 			</div>
 		</div>
+		
+		
     )}
 }
 
