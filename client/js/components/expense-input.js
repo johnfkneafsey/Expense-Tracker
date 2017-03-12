@@ -69,6 +69,37 @@ export class ExpenseInput extends React.Component {
 		})
 
 		return (
+		<div>
+            <nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
+                <div className="container">
+                
+                    <div className="navbar-header page-scroll">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
+                        </button>
+                        <a className="navbar-brand" href="#page-top">Easy Budget</a>
+                    </div>
+                    
+                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul className="nav navbar-nav navbar-right">
+                            <li className="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li className="page-scroll">
+                                <a href="#portfolio">Advice</a>
+                            </li>
+                            <li className="page-scroll">
+                                <a href="#about">Resources</a>
+                            </li>
+                            <li className="page-scroll">
+                                <a href="#about">Sign In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="green-bar"> 
+                </div>
+            </nav>
 			<div className="component">
 			<div className="buttons">
 				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
@@ -105,6 +136,7 @@ export class ExpenseInput extends React.Component {
 					</form>
 				</div>
 			</div>
+		</div>
 		)
 	}
 }
