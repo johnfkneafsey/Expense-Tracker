@@ -100,40 +100,42 @@ export class ExpenseInput extends React.Component {
                 <div className="green-bar"> 
                 </div>
             </nav>
-			<div className="component">
-			<div className="buttons">
-				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-			</div>
-				<div className="page-header makeColoredHeader">
-				<h1 className="stepHeaders">Step 3:</h1>
-				<h3 className="steps">Input your expenses</h3>
-				</div>
-				<div>
-					<form onSubmit={this.onSubmit}>
-						<label className="datePicker">When did it occur?</label>
-						<p></p>						
-						<DatePicker  id="example-datepicker" ref="datePicked" onChange={this.handleChange} />
-							<p></p>	
-						<label> What did it cost? </label>
-						<p></p>						
-						<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
-						<p></p>		
+			<div className="container">
+				<div className="component">
+					<div className="buttons">
+						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+					</div>
+					<div className="page-header makeColoredHeader">
+					<h1 className="stepHeaders">Step 3:</h1>
+					<h3 className="steps">Input your expenses</h3>
+					</div>
+					<div>
+						<form onSubmit={this.onSubmit}>
+							<label className="datePicker">When did it occur?</label>
+							<p></p>						
+							<DatePicker  id="example-datepicker" ref="datePicked" onChange={this.handleChange} />
+								<p></p>	
+							<label> What did it cost? </label>
+							<p></p>						
+							<input type="text" className="form-control" ref="dollars" placeholder="Enter dollar amount" required/>
+							<p></p>		
 
-						<label className="category" >How would you categorize this?</label>
-						<p></p>						
-	      		
-						  <select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" required>
-	      						{options}
-	        			</select>
-						<p></p>		
-						
-					<label> Describe the expense </label>
-						<p></p>											
-					<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
-						<p></p>
-						<input type="submit" className="btn btn-primary"/>
-					</form>
+							<label className="category" >How would you categorize this?</label>
+							<p></p>						
+					
+							<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" required>
+									{options}
+							</select>
+							<p></p>		
+							
+						<label> Describe the expense </label>
+							<p></p>											
+						<input type="text" className="form-control" ref="description" placeholder="Enter a description" required/>
+							<p></p>
+							<input type="submit" className="btn btn-primary"/>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

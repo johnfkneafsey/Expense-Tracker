@@ -124,44 +124,46 @@ export class DisplayTransactions extends React.Component {
                 <div className="green-bar"> 
                 </div>
             </nav>
-			<div className="component">
-				<div className="buttons">
-					<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-					<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-				</div>
-				<div className="page-header makeColoredHeader">
-					<h3 className="steps">Your Expense History</h3>
-				</div>
-				<form >
-					<label>Choose a category,</label>
-							<p></p>						
+			<div className="container">
+				<div className="component">
+					<div className="buttons">
+						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+					</div>
+					<div className="page-header makeColoredHeader">
+						<h3 className="steps">Your Expense History</h3>
+					</div>
+					<form >
+						<label>Choose a category,</label>
+								<p></p>						
 
-					<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
-						<option value="All">All</option>					
-						{options}
-					</select>
-					<p></p>
-					<p></p>
-				
-					<label className='' >a start date,</label>
-					<p></p>
+						<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
+							<option value="All">All</option>					
+							{options}
+						</select>
+						<p></p>
+						<p></p>
+					
+						<label className='' >a start date,</label>
+						<p></p>
 
-					<p></p>
-					<DatePicker  className='calendarToggle' id="example-datepicker-start"   ref="datePicked" onChange={this.handleChangeStartDate}   placeholderText={this.props.displayTransactions.startDate} />
-					<label className='' >and an end date</label>
-					<DatePicker  className='calendarToggle' id="example-datepicker-end"   ref="datePicked" onChange={this.handleChangeEndDate}   placeholderText={this.props.displayTransactions.endDate}/>
-					<p></p>	
-		
-				</form>
-					<p></p>
-					<p></p>	
-				<div>
-				<table className="table">
-					<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th>Remove</th></tr></thead>
-					<tbody>
-						{listOfTransactions}
-					</tbody>
-				</table>
+						<p></p>
+						<DatePicker  className='calendarToggle' id="example-datepicker-start"   ref="datePicked" onChange={this.handleChangeStartDate}   placeholderText={this.props.displayTransactions.startDate} />
+						<label className='' >and an end date</label>
+						<DatePicker  className='calendarToggle' id="example-datepicker-end"   ref="datePicked" onChange={this.handleChangeEndDate}   placeholderText={this.props.displayTransactions.endDate}/>
+						<p></p>	
+			
+					</form>
+						<p></p>
+						<p></p>	
+					<div>
+					<table className="table">
+						<thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th>Remove</th></tr></thead>
+						<tbody>
+							{listOfTransactions}
+						</tbody>
+					</table>
+					</div>
 				</div>
 			</div>
 		</div>

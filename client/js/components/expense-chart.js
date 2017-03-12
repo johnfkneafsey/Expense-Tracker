@@ -251,35 +251,37 @@ render () {
                 <div className="green-bar"> 
                 </div>
             </nav>
-            <div className="component">
-			<div className="buttons">
-				<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-				<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-			</div>
-                <div>
-                    <div>
-                        <h3>Spent vs. Budgeted by Category</h3>
-                        <Radar className="chart" data={this.radarData()} />
-                    </div>
-                    <div className="chart-space">
-                    </div>  
-                    <div>                  
-                        <h3>Expenditures by Category</h3>
-                        <Doughnut className="chart" data={this.doughnutData()} />
-                    </div>
-                    <div className="chart-space">
+			<div className="container">
+                <div className="component">
+                    <div className="buttons">
+                        <button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+                        <button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
                     </div>
                     <div>
-                        <h3>Expenditures by Day</h3>
-                        {lineChartDisplay}
-                        <form onSubmit={this.onSubmit}>
-                            <label className="category" >Choose a start date,</label>
-                            <DatePicker  className='calendarToggle' id="example-datepicker-start" ref="datePicked" onChange={this.handleChangeStartDate} />
-                            <label className="category" >...and an end date</label> 
-                            <DatePicker  className='calendarToggle' id="example-datepicker-end" ref="datePicked" onChange={this.handleChangeEndDate} />
-                            <input type="submit" className="btn btn-primary"/> 
-                        </form> 
-                    </div>                   
+                        <div>
+                            <h3>Spent vs. Budgeted by Category</h3>
+                            <Radar className="chart" data={this.radarData()} />
+                        </div>
+                        <div className="chart-space">
+                        </div>  
+                        <div>                  
+                            <h3>Expenditures by Category</h3>
+                            <Doughnut className="chart" data={this.doughnutData()} />
+                        </div>
+                        <div className="chart-space">
+                        </div>
+                        <div>
+                            <h3>Expenditures by Day</h3>
+                            {lineChartDisplay}
+                            <form onSubmit={this.onSubmit}>
+                                <label className="category" >Choose a start date,</label>
+                                <DatePicker  className='calendarToggle' id="example-datepicker-start" ref="datePicked" onChange={this.handleChangeStartDate} />
+                                <label className="category" >...and an end date</label> 
+                                <DatePicker  className='calendarToggle' id="example-datepicker-end" ref="datePicked" onChange={this.handleChangeEndDate} />
+                                <input type="submit" className="btn btn-primary"/> 
+                            </form> 
+                        </div>                   
+                    </div>
                 </div>
             </div>
         </div>

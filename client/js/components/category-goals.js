@@ -138,37 +138,39 @@ export class CategoryGoals extends React.Component {
 				<div className="green-bar"> 
 				</div>
 			</nav>
-			<div className="component">
-				<div className="buttons">
-					<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-					<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-				</div>
-				<div className="page-header makeColoredHeader">
-					<h1 className="stepHeaders">Step 2:</h1>
-					<h3 className="steps">Define budgets by category</h3>
-				</div>
+			<div className="container">
+				<div className="component">
+					<div className="buttons">
+						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
+						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+					</div>
+					<div className="page-header makeColoredHeader">
+						<h1 className="stepHeaders">Step 2:</h1>
+						<h3 className="steps">Define budgets by category</h3>
+					</div>
 
-				<div>
-					<form onSubmit={this.onSubmit} >
-						<label>Select a category</label>
-						<p></p>
-							<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
-								{options}
-							</select>
-						<p></p>
-						<label>Set a budget</label>
-						<p></p>
-							<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
+					<div>
+						<form onSubmit={this.onSubmit} >
+							<label>Select a category</label>
 							<p></p>
-							<input type="submit" className="btn btn-primary"/>
-					</form>
-				</div>
-					<p></p>
-				<div>
-				<ul>
-						{categories}
-						{totalBudget}
-				</ul>
+								<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
+									{options}
+								</select>
+							<p></p>
+							<label>Set a budget</label>
+							<p></p>
+								<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
+								<p></p>
+								<input type="submit" className="btn btn-primary"/>
+						</form>
+					</div>
+						<p></p>
+					<div>
+					<ul>
+							{categories}
+							{totalBudget}
+					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
