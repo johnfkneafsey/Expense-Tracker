@@ -6,6 +6,7 @@ import DisplayTransactions from './display-transactions';
 import ExpenseSummary from './expense-summary';
 import ExpenseChart from './expense-chart';
 import Landing from './landing';
+import Title from './title';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import store from '../store';
@@ -26,7 +27,10 @@ export class Layout extends React.Component {
 
 		if (this.props.renderPage === 0) {
 			return (
-			< Landing  />
+			<div>
+				< Title /> 
+				< Landing  />
+			</div>
 			)
 		}
 		if (this.props.renderPage === 1) {

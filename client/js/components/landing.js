@@ -52,13 +52,22 @@ export class Landing extends React.Component {
 	render() {
 	
 	return (
-        <div>
-            <div className="container">
+        <div className="landingContainer" >
+            <div className="container ">
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <br></br>
-                        <h1>Want to make budgeting easy?</h1>
+                        <h1 className="landingHeader" >Ready to make budgeting easy?</h1>
                         <hr className="star-primary"></hr>
+                        <br></br>
+                            <h2>It's as easy as  1... 2... 3...</h2>
+                            <br></br>
+                        <div className="stepsLanding" >
+                            <h4>1. Enter categories for your expenses</h4>
+                            <br></br>
+                            <h4>2. Define budgets for each category</h4>
+                            <br></br>
+                            <h4>3. Input your expenses</h4>
+                        </div>
                     </div>
                     <div className="buttons">
                         <button className="glyphicon glyphicon-play landingStart" onClick={() => this.onClickNext()} ></button>
