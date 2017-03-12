@@ -50,76 +50,83 @@ export class ExpenseCategoryList extends React.Component {
 
 
 	render() {
-	
-	let categories = this.props.categories.map((category,index)=>{
+
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+
+		let categories = this.props.categories.map((category,index)=>{
 			return (
 				<li key={index} className="list-group-item">{category.name.capitalize()}</li>
 			);
 		})
 
 		return (
-		<div>
-            <nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
-                <div className="container">
-                
-                    <div className="navbar-header page-scroll">
-                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
-                        </button>
-                        <a className="navbar-brand" href="#page-top">Easy Budget</a>
-                    </div>
-                    
-                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li className="hidden">
-                                <a href="#page-top"></a>
-                            </li>
-                            <li className="page-scroll">
-                                <a href="#portfolio">Advice</a>
-                            </li>
-                            <li className="page-scroll">
-                                <a href="#about">Resources</a>
-                            </li>
-                            <li className="page-scroll">
-                                <a href="#about">Sign In</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="green-bar"> 
-                </div>
-            </nav>
 			<div className="container">
-				<div className="component">
-					<div className="buttons">
-						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-					</div>
-					<div className="page-header makeColoredHeader">
-						<h1 className="stepHeaders">Step 1:</h1>
-						<h3 className="steps"> Categorize your expenses</h3>
-					</div>
-					<div className="submitNewExpenseCategory">
-						<form onSubmit={this.onSubmit}>
-							<label>Add a category below</label> 
-							<p></p>
-							<input type="text"  className="form-control" placeholder="i.e. Food/Entertainment"
-							ref="newCategory"/>	
-							<p></p>
-							<input type="submit" className="btn btn-primary"/>				
-						</form>
-					</div>
-					<p></p>
-					<div className="row">
-						<div>
-							<ul className="list-group">
-								{categories}
+				<nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom topNavComponents">
+					<div className="container">
+					
+						<div className="navbar-header page-scroll">
+							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
+							</button>
+							<a className="navbar-brand" href="#page-top">Easy Budget</a>
+						</div>
+						
+						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul className="nav navbar-nav navbar-right">
+								<li className="hidden">
+									<a href="#page-top"></a>
+								</li>
+								<li className="page-scroll">
+									<a href="#portfolio">Advice</a>
+								</li>
+								<li className="page-scroll">
+									<a href="#about">Resources</a>
+								</li>
+								<li className="page-scroll">
+									<a href="#about">Sign In</a>
+								</li>
 							</ul>
+						</div>
+					</div>
+					<div className="green-bar"> 
+					</div>
+				</nav>
+
+				<div className="container">
+					<div className="categoriesContent">
+						<div className="buttons">
+							<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+							<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
+						</div>
+						
+						<div className="page-header makeColoredHeader">
+							<h1 className="stepHeaders">Step 1:</h1>
+							<h3 className="steps"> Categorize your expenses</h3>
+						</div>
+
+						<div className="submitNewExpenseCategory">
+							<form onSubmit={this.onSubmit}>
+								<label>Add a category below</label> 
+								<p></p>
+								<input type="text"  className="form-control" placeholder="i.e. Food/Entertainment"
+								ref="newCategory"/>	
+								<p></p>
+								<input type="submit" className="btn btn-primary"/>				
+							</form>
+						</div>
+
+						<div className="row">
+							<div>
+								<ul className="list-group">
+									{categories}
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	)}
 }
 

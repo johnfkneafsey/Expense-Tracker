@@ -1,12 +1,39 @@
+form {
+  margin-bottom: 15px;
+}
+
+.budgets2 {
+ color: rgb(24,188,156);
+}
+
+.budgets3 {
+
+}
+
 .landingHeader {
   margin-top: 80px;
 }
 
-.stepsLanding {
-  margin-top: 50px;
+.directionalButtons {
+  padding: 0;
+  border: none;
+  background: none;
+  outline:none ;
+  font-size: 80px;
+  color: rgb(44, 62, 80);
+  vertical-align: middle;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
+.categoriesContent {
+  margin-top: 130px;
+  height: 100vh;
+}
 
+.stepsLanding {
+  margin-top: 80px;
+}
 
 .container {
   width: 100vw; 
@@ -32,6 +59,7 @@
 	-o-animation-name: bounce;
 	animation-name: bounce;
 }
+
 .animated{-webkit-animation-fill-mode:both;
 -moz-animation-fill-mode:both;
 -ms-animation-fill-mode:both;
@@ -48,7 +76,6 @@ animation-fill-mode:both;
 -o-animation-duration:2s;
 animation-duration:2s;
 }
-
 
 @-webkit-keyframes bounce {
 	0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}	40% {-webkit-transform: translateY(-30px);}
@@ -72,11 +99,8 @@ animation-duration:2s;
 	60% {transform: translateY(-15px);}
 }
 
-
-
-
 .form-control {
-  width: 40%;
+  width: 300px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -133,7 +157,6 @@ animation-duration:2s;
 		opacity: 0;
 	}
 }
-
 
 .demo a {	
 	z-index: 2;
@@ -304,6 +327,7 @@ canvas {
 
 
 .budgets {
+  text-indent: -40px;
     font-size: 18px  ;
     font-weight: bold  ;
     display: inline-block  ;

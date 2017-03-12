@@ -63,7 +63,6 @@ export class CategoryGoals extends React.Component {
 	}
 
 	getBudget(categoryName) {
-
 		for (let i = 0; i < this.props.goals.length; i++) {
 			if (this.props.goals[i].category === categoryName) {
 				return this.props.goals[i].goal;
@@ -84,20 +83,17 @@ export class CategoryGoals extends React.Component {
 
 		let categories = this.props.categories.map((category,index)=>{
 			return (
-				<div className="shrink-div">
-					<p key={index} className='budgets'>{category.name.capitalize()}  :  ${this.getBudget(category.name)}</p>
-					<span className={this.completeStatus(category.name) + ' centerMarks'} aria-hidden="true"></span>  
+				<div key={index} className="shrink-div">
+					<p key={index+10} className='budgets'>{category.name.capitalize()}  :  ${this.getBudget(category.name)}</p>
+					<span key={index+50} className={this.completeStatus(category.name) + ' centerMarks'} aria-hidden="true"></span>  
 				</div>
 			);
 		})
 
 		let totalBudget = 
-				<b><p className='budgets'>Total  :  ${this.getTotalBudget()}</p></b>
+			<b><p className='budgets'>Total  :  ${this.getTotalBudget()}</p></b>
 			
 
-		String.prototype.capitalize = function() {
-    		return this.charAt(0).toUpperCase() + this.slice(1);
-		}
 
 		let options = this.props.categories.map((category, index) => {
 			return (
@@ -105,45 +101,50 @@ export class CategoryGoals extends React.Component {
 			);
 		})
 
-	return (
-		<div>
-			
-			<nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
-				<div className="container">
-				
-					<div className="navbar-header page-scroll">
-						<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
-						</button>
-						<a className="navbar-brand" href="#page-top">Easy Budget</a>
-					</div>
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+
+		return (
+			<div className="container" >
+				<nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
 					
-					<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul className="nav navbar-nav navbar-right">
-							<li className="hidden">
-								<a href="#page-top"></a>
-							</li>
-							<li className="page-scroll">
-								<a href="#portfolio">Advice</a>
-							</li>
-							<li className="page-scroll">
-								<a href="#about">Resources</a>
-							</li>
-							<li className="page-scroll">
-								<a href="#about">Sign In</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div className="green-bar"> 
-				</div>
-			</nav>
-			<div className="container">
-				<div className="component">
-					<div className="buttons">
-						<button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-						<button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
-					</div>
+						<div className="navbar-header page-scroll">
+							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
+							</button>
+							<a className="navbar-brand" href="#page-top">Easy Budget</a>
+						</div>
+						
+						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul className="nav navbar-nav navbar-right">
+								<li className="hidden">
+									<a href="#page-top"></a>
+								</li>
+								<li className="page-scroll">
+									<a href="#portfolio">Advice</a>
+								</li>
+								<li className="page-scroll">
+									<a href="#about">Resources</a>
+								</li>
+								<li className="page-scroll">
+									<a href="#about">Sign In</a>
+								</li>
+							</ul>
+						</div>
+
+						<div className="green-bar"> 
+						</div>
+
+				</nav>
+
+					<div className="categoriesContent">
+						<div className="buttons">
+							<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+							<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
+						</div>
+			
+
 					<div className="page-header makeColoredHeader">
 						<h1 className="stepHeaders">Step 2:</h1>
 						<h3 className="steps">Define budgets by category</h3>
@@ -152,30 +153,31 @@ export class CategoryGoals extends React.Component {
 					<div>
 						<form onSubmit={this.onSubmit} >
 							<label>Select a category</label>
-							<p></p>
 								<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 									{options}
 								</select>
-							<p></p>
 							<label>Set a budget</label>
-							<p></p>
-								<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />
-								<p></p>
+								<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />					
 								<input type="submit" className="btn btn-primary"/>
 						</form>
 					</div>
-						<p></p>
-					<div>
-					<ul>
+
+					<div >
+						<ul>
+							<div className="budgets3">
 							{categories}
+							</div>
+							<div className="budgets2">
 							{totalBudget}
-					</ul>
+							</div>
+						</ul>
 					</div>
 				</div>
+
 			</div>
-		</div>
-	)}
-}
+		
+		)}
+	}
 
 const mapStateToProps = (state, props) => ({
 	categories: state.categories,

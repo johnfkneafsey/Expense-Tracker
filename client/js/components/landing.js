@@ -52,8 +52,8 @@ export class Landing extends React.Component {
 	render() {
 	
 	return (
-        <div className="landingContainer" >
-            <div className="container ">
+    <div className="container ">
+            <div className="landingContainer" >
                 <div className="row">
                     <div className="col-lg-12 text-center">
                         <h1 className="landingHeader" >Ready to make budgeting easy?</h1>
@@ -68,14 +68,14 @@ export class Landing extends React.Component {
                             <br></br>
                             <h4>3. Input your expenses</h4>
                         </div>
-                    </div>
                     <div className="buttons">
                         <button className="glyphicon glyphicon-play landingStart" onClick={() => this.onClickNext()} ></button>
                     </div>
                 </div>
             </div>
         </div>
-       
+    </div>
+    
 			
 	)}
 }
