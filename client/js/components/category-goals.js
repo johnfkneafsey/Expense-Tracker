@@ -65,7 +65,7 @@ export class CategoryGoals extends React.Component {
 	getBudget(categoryName) {
 		for (let i = 0; i < this.props.goals.length; i++) {
 			if (this.props.goals[i].category === categoryName) {
-				return this.props.goals[i].goal;
+				return this.props.goals[i].goal.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 			}
 		}
 	}
@@ -75,8 +75,10 @@ export class CategoryGoals extends React.Component {
 		for (let i = 0; i < this.props.goals.length; i++) {	
 			totalBudget += this.props.goals[i].goal;	
 		}
-		return totalBudget;
+		return totalBudget.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 	}
+
+
 
 	render() {
 
@@ -108,7 +110,7 @@ export class CategoryGoals extends React.Component {
 		return (
 			<div className="container" >
 				<nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
-					
+					<div className="container">
 						<div className="navbar-header page-scroll">
 							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 								<span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
@@ -135,6 +137,7 @@ export class CategoryGoals extends React.Component {
 
 						<div className="green-bar"> 
 						</div>
+					</div>
 
 				</nav>
 
@@ -156,8 +159,10 @@ export class CategoryGoals extends React.Component {
 								<select className="form-control center-dropdown" name="expenseCategory" id='expenseCategory' ref="expenseCategory" required>
 									{options}
 								</select>
+							<br></br>
 							<label>Set a budget</label>
 								<input type="text" className="form-control" placeholder="Enter dollar amount" ref="dollars" required />					
+							<br></br>	
 								<input type="submit" className="btn btn-primary"/>
 						</form>
 					</div>

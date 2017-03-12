@@ -40,7 +40,7 @@ export class ExpenseSummary extends React.Component {
 		for (let i = 0; i < this.props.goals.length; i++) {	
 			totalBudget += this.props.goals[i].goal;	
 		}
-		return totalBudget;
+		return totalBudget
 	}
 
 	getTotalSpent() {
@@ -52,7 +52,6 @@ export class ExpenseSummary extends React.Component {
 			}
 			return totalSpent
 		}
-		return totalSpent;
 	}
 
 
@@ -97,8 +96,8 @@ export class ExpenseSummary extends React.Component {
 			return (
 				<tr key={index}>
 					<td className="category-title"><b>{goal.category.capitalize()}</b></td>
-					<td className="center">${totalExpenses[otherTemp]}</td>
-					<td className="center">${goal.goal}</td>
+					<td className="center">${totalExpenses[otherTemp].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
+					<td className="center">${goal.goal.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td>
 					<div className="progress">
 						<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
 							{percentageVal}%
@@ -120,8 +119,8 @@ export class ExpenseSummary extends React.Component {
 		let totals = 
 			<tr className="summaryTotal">
 				<td className="category-title"><b><h5>Total</h5></b></td>
-				<td className="center"><b><h5>${this.getTotalSpent()}</h5></b></td>
-				<td className="center"><b><h5>${this.getTotalBudget()}</h5></b></td>
+				<td className="center"><b><h5>${this.getTotalSpent().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</h5></b></td>
+				<td className="center"><b><h5>${this.getTotalBudget().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</h5></b></td>
 				<div className="progress">
 					<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageValue}" aria-valuemin="0" aria-valuemax="100" style={totalDivStyle}> 
 						{percentageValue}%
@@ -165,7 +164,7 @@ export class ExpenseSummary extends React.Component {
 				</div>
 
 				<div className="page-header makeColoredHeader">
-					<h3 className="steps">Summary of your expenses</h3>
+					<h1 className="stepHeaders">Summary of your expenses</h1>
 				</div>
 
 				<table className="table">
@@ -181,10 +180,8 @@ export class ExpenseSummary extends React.Component {
 						<td className="center"><b className="center">__________</b></td>
 						<td className="center"><b className="center">__________</b></td>
 						<td className="center"><b className="center">________________________________________________________________________________</b></td>
-					</tr>	
-									
-							{totals}
-						
+					</tr>					
+						{totals}
 				</table>
 			</div>
 		</div>

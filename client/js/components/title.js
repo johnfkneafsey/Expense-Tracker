@@ -57,7 +57,7 @@ export class Title extends React.Component {
                             <div className="intro-text">
                                 <span className="name">Easy Budget</span>
                                 <hr className="star-light"></hr>
-                                <span className="skills">Expense Tracking - Budgeting - <em>Simplicity</em></span>
+                                <span className="skills">Expense Tracking - Budgeting - Simplicity</span>
                             </div>
                         </div>
 

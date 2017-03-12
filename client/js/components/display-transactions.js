@@ -81,7 +81,7 @@ export class DisplayTransactions extends React.Component {
 				for (let i = this.props.calendar.indexOf(this.props.displayTransactions.startDate); i <= this.props.calendar.indexOf(this.props.displayTransactions.endDate); i++) {
 					if (this.props.calendar[i] === transaction.date) {	
 						return (
-							<tr key={index}><td className="left">{transaction.date}</td><td className="left">{transaction.category.capitalize()}</td><td className="left">${transaction.cost}</td><td className="left">{transaction.description}</td><td className="alignRemoveMarker" ><button className="glyphicon glyphicon-remove left" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
+							<tr key={index}><td className="left">{transaction.date}</td><td className="left">{transaction.category.capitalize()}</td><td className="left">${transaction.cost.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}</td><td className="left">{transaction.description}</td><td className="alignRemoveMarker" ><button className="glyphicon glyphicon-remove left" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
 				)
 				}}})
 			} else {
@@ -135,7 +135,7 @@ export class DisplayTransactions extends React.Component {
 						<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 					</div>
 					<div className="page-header makeColoredHeader">
-						<h3 className="steps">Your Expense History</h3>
+						<h1 className="stepHeaders">Your Expense History</h1>
 					</div>
 					<br></br>
 					<form >

@@ -97,7 +97,6 @@ export class ExpenseCategoryList extends React.Component {
 				<div className="container">
 					<div className="categoriesContent">
 						<div className="buttons">
-							<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
 							<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 						</div>
 						

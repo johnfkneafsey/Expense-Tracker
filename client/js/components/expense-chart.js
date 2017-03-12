@@ -262,8 +262,8 @@ render () {
 						<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
 					</div>
 
-                    <div>      
-                        <h3><h2><u>Chart</u></h2>Expenditures by Category</h3>
+                    <div className="stepHeaders">      
+                        <h1><h2><u>Chart</u></h2>Expenditures by Category</h1>
                         <Doughnut className="chart" data={this.doughnutData()} height={400} width={400}/>
                     </div>
 

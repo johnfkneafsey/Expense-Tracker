@@ -264,9 +264,9 @@ render () {
 						<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
 					</div>
 
-                    <div>
+                    <div className="stepHeaders">
 
-                        <h3><h2><u>Chart</u></h2>Transactions by Day</h3>
+                        <h1><h2><u>Chart</u></h2>Transactions by Day</h1>
                             {lineChartDisplay}
                         <form onSubmit={this.onSubmit}>
                             <label className="category" >Choose a start date,</label>
