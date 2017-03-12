@@ -26,7 +26,7 @@ export class ExpenseInput extends React.Component {
 
 	onClickNext() {
 		console.log('NEXT')
-		if (this.props.renderPage < 6) {
+		if (this.props.renderPage < 7) {
 		this.props.dispatch(actions.incrementRenderView())	
 		}
 	}

@@ -5,6 +5,7 @@ import ExpenseInput from './expense-input';
 import DisplayTransactions from './display-transactions';
 import ExpenseSummary from './expense-summary';
 import ExpenseChart from './expense-chart';
+import DailyExpensesChart from './daily-expenses-chart';
 import Landing from './landing';
 import Title from './title';
 import {connect} from 'react-redux';
@@ -61,6 +62,11 @@ export class Layout extends React.Component {
 		if (this.props.renderPage === 6) {
 			return (
 			< ExpenseChart /> 
+			)
+		}
+		if (this.props.renderPage === 7) {
+			return (
+			< DailyExpensesChart /> 
 			)
 		}
 

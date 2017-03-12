@@ -24,7 +24,7 @@ export class ExpenseSummary extends React.Component {
 
 	onClickNext() {
 		console.log('NEXT')
-		if (this.props.renderPage < 6) {
+		if (this.props.renderPage < 7) {
 		this.props.dispatch(actions.incrementRenderView())	
 		}
 	}
@@ -95,16 +95,16 @@ export class ExpenseSummary extends React.Component {
 
 			let divStyle = {width: `${percentageVal}%`}
 			return (
-						<tr key={index}>
-							<td className="category-title"><b>{goal.category.capitalize()}</b></td>
-							<td className="center">${totalExpenses[otherTemp]}</td>
-							<td className="center">${goal.goal}</td>
-							<div className="progress">
-								<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
-									{percentageVal}%
-								</div>
-							</div>	
-						</tr>
+				<tr key={index}>
+					<td className="category-title"><b>{goal.category.capitalize()}</b></td>
+					<td className="center">${totalExpenses[otherTemp]}</td>
+					<td className="center">${goal.goal}</td>
+					<div className="progress">
+						<div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{percentageVal}" aria-valuemin="0" aria-valuemax="100" style={divStyle}> 
+							{percentageVal}%
+						</div>
+					</div>	
+				</tr>
 			);
 		})
 

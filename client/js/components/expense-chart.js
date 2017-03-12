@@ -9,6 +9,7 @@ import {calendar} from '../calendar';
 import DatePicker from 'react-bootstrap-date-picker';
 
 
+
 export class ExpenseChart extends React.Component {
 	constructor(props) {
     	super(props);
@@ -31,7 +32,7 @@ export class ExpenseChart extends React.Component {
 
 	onClickNext() {
 		console.log('NEXT')
-		if (this.props.renderPage < 6) {
+		if (this.props.renderPage < 7) {
 		this.props.dispatch(actions.incrementRenderView())	
 		}
 	}
@@ -220,6 +221,8 @@ render () {
     }
 
     return (
+
+
         <div>
             <nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
                 <div className="container">
@@ -252,36 +255,18 @@ render () {
                 </div>
             </nav>
 			<div className="container">
-                <div className="component">
-                    <div className="buttons">
-                        <button className="backNavButton glyphicon glyphicon-chevron-left" onClick={() => this.onClickBack()} >Back</button>
-                        <button className="nextNavButton glyphicon glyphicon-chevron-right" onClick={() => this.onClickNext()} >Next</button>
+				<div className="summaryContent">
+
+					<div className="buttons">
+						<button className=" glyphicon glyphicon-chevron-left directionalButtons" onClick={() => this.onClickBack()} ></button>
+						<button className=" glyphicon glyphicon-chevron-right directionalButtons" onClick={() => this.onClickNext()} ></button>
+					</div>
+
+                    <div>      
+                        <h3><h2><u>Chart</u></h2>Expenditures by Category</h3>
+                        <Doughnut className="chart" data={this.doughnutData()} height={400} width={400}/>
                     </div>
-                    <div>
-                        <div>
-                            <h3>Spent vs. Budgeted by Category</h3>
-                            <Radar className="chart" data={this.radarData()} />
-                        </div>
-                        <div className="chart-space">
-                        </div>  
-                        <div>                  
-                            <h3>Expenditures by Category</h3>
-                            <Doughnut className="chart" data={this.doughnutData()} />
-                        </div>
-                        <div className="chart-space">
-                        </div>
-                        <div>
-                            <h3>Expenditures by Day</h3>
-                            {lineChartDisplay}
-                            <form onSubmit={this.onSubmit}>
-                                <label className="category" >Choose a start date,</label>
-                                <DatePicker  className='calendarToggle' id="example-datepicker-start" ref="datePicked" onChange={this.handleChangeStartDate} />
-                                <label className="category" >...and an end date</label> 
-                                <DatePicker  className='calendarToggle' id="example-datepicker-end" ref="datePicked" onChange={this.handleChangeEndDate} />
-                                <input type="submit" className="btn btn-primary"/> 
-                            </form> 
-                        </div>                   
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -299,3 +284,7 @@ const mapStateToProps = (state, props) => ({
 
 export default connect(mapStateToProps)(ExpenseChart);
 
+/*<div>
+    <h3>Spent vs. Budgeted by Category</h3>
+    <Radar className="chart" data={this.radarData()} />
+</div>*/

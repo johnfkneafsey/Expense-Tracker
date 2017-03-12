@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import DatePicker from 'react-bootstrap-date-picker';
 import store from '../store';
-
+import Chart from 'chart.js'
+Chart.defaults.global.responsive = false;
 
 export class DisplayTransactions extends React.Component {
 	constructor(props) {
@@ -16,7 +17,6 @@ export class DisplayTransactions extends React.Component {
     	this.onClickNext = this.onClickNext.bind(this);
   	}
 
-
 	onClickBack() {
 		console.log('PREV');
 		if (this.props.renderPage > 1) {
@@ -26,11 +26,10 @@ export class DisplayTransactions extends React.Component {
 
 	onClickNext() {
 		console.log('NEXT')
-		if (this.props.renderPage < 6) {
+		if (this.props.renderPage < 7) {
 		this.props.dispatch(actions.incrementRenderView())	
 		}
 	}
-
 
 	componentDidMount() {
 		this.props.dispatch(actions.asyncFetchCalendar());
@@ -82,7 +81,7 @@ export class DisplayTransactions extends React.Component {
 				for (let i = this.props.calendar.indexOf(this.props.displayTransactions.startDate); i <= this.props.calendar.indexOf(this.props.displayTransactions.endDate); i++) {
 					if (this.props.calendar[i] === transaction.date) {	
 						return (
-							<tr key={index}><td className="left">{transaction.date}</td><td className="left">{transaction.category.capitalize()}</td><td className="left">${transaction.cost}</td><td className="left">{transaction.description}</td><td><button className="glyphicon glyphicon-remove left" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
+							<tr key={index}><td className="left">{transaction.date}</td><td className="left">{transaction.category.capitalize()}</td><td className="left">${transaction.cost}</td><td className="left">{transaction.description}</td><td className="alignRemoveMarker" ><button className="glyphicon glyphicon-remove left" onClick={() => this.onClick(transaction.id)} value={transaction.id} type="submit"></button></td></tr>
 				)
 				}}})
 			} else {
@@ -138,14 +137,14 @@ export class DisplayTransactions extends React.Component {
 					<div className="page-header makeColoredHeader">
 						<h3 className="steps">Your Expense History</h3>
 					</div>
+					<br></br>
 					<form >
-						<label>Choose a category,</label>
-						<br></br>					
-
+						<label>Choose a category,</label>				
 						<select name="expenseCategory" id='expenseCategory' className="form-control center-dropdown" value={this.value} ref="expenseCategory" onChange={this.handleChange} required>
 							<option value="All">All</option>					
 							{options}
 						</select>
+						<br></br>	
 						<label className='' >a start date,</label>
 						<DatePicker  className='calendarToggle' id="example-datepicker-start"   ref="datePicked" onChange={this.handleChangeStartDate}   placeholderText={this.props.displayTransactions.startDate} />
 						<br></br>
